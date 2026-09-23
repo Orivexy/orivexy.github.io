@@ -1,0 +1,460 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>ORIVEXY Validator · demo</title>
+<meta name="description" content="Demo interactiva de ORIVEXY Validator: valida IBAN y titulares contra el certificado del banco antes de pagar.">
+<link rel="icon" href="logo.png">
+<style>
+  /* Tema oscuro por defecto; el botón «Tema claro» cambia a la versión blanca. */
+  :root {
+    --odoo: #8a5d80; --odoo-dark: #714B67; --azul: #4DA3FF; --marino: #060B14;
+    --texto: #E6EDF5; --suave: #8FA3B8; --borde: #22314A; --fondo: #0B1220; --blanco: #121B2B;
+    --superficie2: #172235; --hover: #1B2840; --linea: #1A2638; --foco: #1f4c86;
+    --ok: #34d378; --ok-fondo: #0f2e1f; --ok-texto: #6EE7A8;
+    --ko: #ff6b6b; --ko-fondo: #3a1719; --ko-texto: #ff8a8a;
+    --aviso: #f5b451; --aviso-fondo: #3a2a12; --aviso-texto: #f5c270;
+    color-scheme: dark;
+  }
+  :root[data-tema="claro"] {
+    --odoo: #714B67; --odoo-dark: #5b3b53; --azul: #3A86FF; --marino: #17212E;
+    --texto: #1f2933; --suave: #5b6b7d; --borde: #dde3ea; --fondo: #f3f4f6; --blanco: #fff;
+    --superficie2: #fafbfc; --hover: #f1f3f5; --linea: #eef0f3; --foco: #c9dcff;
+    --ok: #2fbf71; --ok-fondo: #e6f7ee; --ok-texto: #157347;
+    --ko: #e5484d; --ko-fondo: #fdecec; --ko-texto: #b42318;
+    --aviso: #f2a33c; --aviso-fondo: #fff4e3; --aviso-texto: #b45309;
+    color-scheme: light;
+  }
+  * { box-sizing: border-box; }
+  body { margin: 0; font-family: "Segoe UI", Roboto, Helvetica, Arial, sans-serif; color: var(--texto); background: var(--fondo); font-size: 14px; }
+  button { font: inherit; cursor: pointer; }
+  a { color: var(--azul); }
+
+  .aviso-demo { background: var(--marino); color: #dbe6f3; padding: 10px 16px; display: flex; flex-wrap: wrap; gap: 8px 18px; align-items: center; justify-content: center; font-size: 13px; }
+  .aviso-demo b { color: #fff; }
+  .aviso-demo a { color: #9cc3ff; font-weight: 600; text-decoration: none; }
+  .aviso-demo a.comprar { background: var(--azul); color: #fff; padding: 6px 14px; border-radius: 16px; }
+  .aviso-demo button.tema { background: transparent; color: #dbe6f3; border: 1px solid #3a4e66; padding: 5px 12px; border-radius: 16px; }
+  .aviso-demo button.tema:hover { border-color: #9cc3ff; color: #fff; }
+
+  .barra { background: var(--odoo); color: #fff; height: 46px; display: flex; align-items: center; gap: 14px; padding: 0 16px; }
+  .barra img { width: 26px; height: 26px; border-radius: 6px; }
+  .barra .app { font-weight: 600; font-size: 15px; }
+  .barra .menu { opacity: .85; font-size: 13px; }
+
+  .panel { background: var(--blanco); border-bottom: 1px solid var(--borde); padding: 10px 16px; display: flex; flex-wrap: wrap; gap: 10px; align-items: center; justify-content: space-between; }
+  .miga { color: var(--suave); font-size: 15px; } .miga b { color: var(--texto); font-weight: 600; }
+
+  .contenedor { max-width: 1180px; margin: 0 auto; padding: 16px; display: grid; grid-template-columns: minmax(0, 1fr) 320px; gap: 16px; }
+  @media (max-width: 960px) { .contenedor { grid-template-columns: 1fr; } }
+
+  .hoja { background: var(--blanco); border: 1px solid var(--borde); border-radius: 6px; overflow: hidden; }
+  .cabecera { display: flex; flex-wrap: wrap; gap: 8px; align-items: center; justify-content: space-between; padding: 10px 14px; border-bottom: 1px solid var(--borde); background: var(--superficie2); }
+  .botones { display: flex; gap: 8px; flex-wrap: wrap; }
+  .btn { border: 1px solid var(--borde); background: var(--blanco); color: var(--texto); padding: 7px 12px; border-radius: 4px; }
+  .btn:hover { background: var(--hover); }
+  .btn.primario { background: var(--odoo); border-color: var(--odoo); color: #fff; font-weight: 600; }
+  .btn.primario:hover { background: var(--odoo-dark); }
+  .btn[hidden] { display: none; }
+  .estados { display: flex; font-size: 12px; }
+  .estados span { padding: 6px 14px 6px 18px; background: var(--linea); color: var(--suave); clip-path: polygon(0 0, calc(100% - 8px) 0, 100% 50%, calc(100% - 8px) 100%, 0 100%, 8px 50%); margin-left: -6px; }
+  .estados span.activo { background: var(--odoo); color: #fff; }
+
+  .contenido { padding: 18px 22px 24px; }
+  .contadores { display: grid; grid-template-columns: repeat(4, minmax(0, 1fr)); gap: 8px; margin-bottom: 16px; }
+  @media (max-width: 640px) { .contadores { grid-template-columns: repeat(2, minmax(0, 1fr)); } }
+  .contador { border: 1px solid var(--borde); border-radius: 6px; padding: 10px 12px; opacity: .45; transition: opacity .4s, transform .4s; }
+  .contador.vivo { opacity: 1; transform: translateY(-2px); }
+  .contador .num { font-size: 22px; font-weight: 700; }
+  .contador .eti { color: var(--suave); font-size: 12px; }
+  .contador.ok .num { color: var(--ok); } .contador.ko .num { color: var(--ko); } .contador.aviso .num { color: var(--aviso); }
+
+  h1 { font-size: 26px; margin: 0 0 14px; }
+  .campos { display: grid; grid-template-columns: repeat(2, minmax(0, 1fr)); gap: 12px 24px; margin-bottom: 18px; }
+  @media (max-width: 640px) { .campos { grid-template-columns: 1fr; } }
+  .campo .eti { font-weight: 600; font-size: 13px; margin-bottom: 4px; }
+  .fichero { display: flex; align-items: center; gap: 8px; border-bottom: 1px solid var(--borde); padding: 6px 0; }
+  .fichero .icono { width: 28px; height: 34px; border-radius: 3px; display: grid; place-items: center; font-size: 10px; font-weight: 700; color: #fff; }
+  .fichero .icono.pdf { background: #d8453b; } .fichero .icono.txt { background: #5b6b7d; }
+  .fichero button { border: 0; background: none; color: var(--azul); padding: 0; }
+
+  .progreso { display: none; margin: 4px 0 18px; }
+  .progreso.visible { display: block; }
+  .pasos { list-style: none; margin: 0 0 10px; padding: 0; display: grid; gap: 6px; }
+  .pasos li { display: flex; gap: 10px; align-items: center; color: var(--suave); }
+  .pasos li .marca { width: 18px; height: 18px; border-radius: 50%; border: 2px solid var(--borde); flex: none; }
+  .pasos li.en-curso { color: var(--texto); }
+  .pasos li.en-curso .marca { border-color: var(--azul); border-top-color: transparent; animation: gira .8s linear infinite; }
+  .pasos li.hecho { color: var(--texto); }
+  .pasos li.hecho .marca { border-color: var(--ok); background: var(--ok); }
+  @keyframes gira { to { transform: rotate(360deg); } }
+  .barra-progreso { height: 6px; background: var(--linea); border-radius: 3px; overflow: hidden; }
+  .barra-progreso div { height: 100%; width: 0; background: linear-gradient(90deg, var(--azul), var(--odoo)); transition: width .45s; }
+
+  .pestanas { display: flex; gap: 4px; border-bottom: 1px solid var(--borde); margin-bottom: 10px; flex-wrap: wrap; }
+  .pestanas button { border: 0; background: none; padding: 8px 12px; color: var(--suave); border-bottom: 2px solid transparent; }
+  .pestanas button.activa { color: var(--odoo); border-bottom-color: var(--odoo); font-weight: 600; }
+
+  .tabla-envoltorio { overflow-x: auto; }
+  table { width: 100%; border-collapse: collapse; min-width: 640px; }
+  th { text-align: left; font-size: 12px; color: var(--suave); font-weight: 600; padding: 8px; border-bottom: 1px solid var(--borde); }
+  td { padding: 9px 8px; border-bottom: 1px solid var(--linea); }
+  tbody tr { cursor: pointer; opacity: 0; transform: translateX(-8px); transition: opacity .35s, transform .35s, background .2s; }
+  tbody tr.visible { opacity: 1; transform: none; }
+  tbody tr:hover { background: var(--hover); }
+  tr.ok td.estado { color: var(--ok); } tr.holder_mismatch td { color: var(--ko-texto); } tr.iban_not_found td { color: var(--aviso-texto); }
+  .chip { display: inline-block; padding: 2px 8px; border-radius: 10px; font-size: 11px; font-weight: 700; }
+  .chip.ok { background: var(--ok-fondo); color: var(--ok-texto); } .chip.holder_mismatch { background: var(--ko-fondo); color: var(--ko-texto); } .chip.iban_not_found { background: var(--aviso-fondo); color: var(--aviso-texto); }
+  .mono { font-family: Consolas, "Courier New", monospace; font-size: 13px; white-space: nowrap; }
+  .vacio { color: var(--suave); text-align: center; padding: 26px 8px; }
+
+  .lateral { display: grid; gap: 16px; align-content: start; }
+  .tarjeta { background: var(--blanco); border: 1px solid var(--borde); border-radius: 6px; padding: 16px; }
+  .tarjeta h2 { font-size: 15px; margin: 0 0 8px; }
+  .tarjeta p { color: var(--suave); margin: 0 0 10px; line-height: 1.5; }
+  .tarjeta input { width: 100%; padding: 9px 10px; background: var(--superficie2); color: var(--texto); border: 1px solid var(--borde); border-radius: 4px; font-family: Consolas, monospace; font-size: 14px; }
+  .tarjeta input:focus { outline: 2px solid var(--foco); border-color: var(--azul); }
+  .ejemplos { display: flex; gap: 6px; flex-wrap: wrap; margin-top: 8px; }
+  .ejemplos button { border: 1px solid var(--borde); background: var(--superficie2); color: var(--texto); border-radius: 12px; padding: 3px 10px; font-size: 12px; }
+  .veredicto { margin-top: 10px; padding: 10px; border-radius: 4px; display: none; line-height: 1.5; }
+  .veredicto.si { display: block; background: var(--ok-fondo); color: var(--ok-texto); }
+  .veredicto.no { display: block; background: var(--ko-fondo); color: var(--ko-texto); }
+  .veredicto .mono { display: block; margin-top: 4px; }
+  .lista { margin: 0; padding-left: 18px; color: var(--suave); line-height: 1.6; }
+  .cta { display: block; text-align: center; background: var(--odoo); color: #fff; text-decoration: none; padding: 11px; border-radius: 4px; font-weight: 600; margin-top: 10px; }
+  .cta.secundario { background: var(--blanco); color: var(--texto); border: 1px solid var(--odoo); }
+
+  .detalle { position: fixed; inset: 0; background: rgba(23, 33, 46, .45); display: none; align-items: center; justify-content: center; padding: 16px; z-index: 10; }
+  .detalle.abierto { display: flex; }
+  .detalle .caja { background: var(--blanco); border-radius: 8px; max-width: 560px; width: 100%; max-height: 90vh; overflow: auto; padding: 20px; animation: aparece .25s ease-out; }
+  .detalle .caja.ancha { max-width: 760px; }
+  .detalle img { width: 100%; border: 1px solid var(--borde); }
+  .detalle pre { background: var(--superficie2); padding: 12px; border-radius: 4px; overflow-x: auto; font-size: 12px; }
+  .detalle dl { display: grid; grid-template-columns: 150px 1fr; gap: 8px 12px; margin: 12px 0; }
+  .detalle dt { color: var(--suave); } .detalle dd { margin: 0; }
+  @keyframes aparece { from { opacity: 0; transform: translateY(8px); } }
+  .pie { text-align: center; color: var(--suave); font-size: 12px; padding: 10px 16px 30px; }
+</style>
+</head>
+<body>
+
+<div class="aviso-demo">
+  <span><b>Demo interactiva</b> con documentos de prueba ficticios. Los resultados son los que devuelve el motor real de ORIVEXY. Nada sale de tu navegador.</span>
+  <button class="tema" id="tema" type="button">☀ Tema claro</button>
+  <a class="comprar" href="https://apps.odoo.com/apps/modules/18.0/orivexy_validator" target="_blank" rel="noopener">Comprar en Odoo Apps</a>
+</div>
+
+<div class="barra">
+  <img src="logo.png" alt="">
+  <span class="app">ORIVEXY Validator</span>
+  <span class="menu">Validación</span>
+</div>
+
+<div class="panel">
+  <div class="miga">Validaciones / <b id="titulo-miga">Nueva</b></div>
+  <div class="estados"><span id="est-borrador" class="activo">Borrador</span><span id="est-validado">Validado</span></div>
+</div>
+
+<div class="contenedor">
+  <main class="hoja">
+    <div class="cabecera">
+      <div class="botones">
+        <button class="btn primario" id="validar">VALIDAR DATOS</button>
+        <button class="btn" id="csv" hidden>Exportar CSV</button>
+        <button class="btn" id="reiniciar" hidden>Reiniciar</button>
+      </div>
+      <span class="miga" id="motor"></span>
+    </div>
+
+    <div class="contenido">
+      <div class="contadores">
+        <div class="contador" data-clave="total"><div class="num">0</div><div class="eti">Registros</div></div>
+        <div class="contador ok" data-clave="ok"><div class="num">0</div><div class="eti">Correctos</div></div>
+        <div class="contador ko" data-clave="holder_mismatch"><div class="num">0</div><div class="eti">Titular incorrecto</div></div>
+        <div class="contador aviso" data-clave="iban_not_found"><div class="num">0</div><div class="eti">IBAN no encontrado</div></div>
+      </div>
+
+      <h1>ORIVEXY Validator</h1>
+
+      <div class="campos">
+        <div class="campo">
+          <div class="eti">Certificado (PDF / XML SEPA)</div>
+          <div class="fichero"><span class="icono pdf">PDF</span><button id="ver-cert"></button></div>
+        </div>
+        <div class="campo">
+          <div class="eti">Fichero a comprobar (TXT / CSV / XML)</div>
+          <div class="fichero"><span class="icono txt">TXT</span><button id="ver-txt"></button></div>
+        </div>
+      </div>
+
+      <div class="progreso" id="progreso">
+        <ol class="pasos" id="pasos"></ol>
+        <div class="barra-progreso"><div id="barra"></div></div>
+      </div>
+
+      <div class="pestanas" id="filtros">
+        <button class="activa" data-filtro="todos">Resultados</button>
+        <button data-filtro="ok">Correctos</button>
+        <button data-filtro="holder_mismatch">Titular incorrecto</button>
+        <button data-filtro="iban_not_found">IBAN no encontrado</button>
+      </div>
+      <div class="tabla-envoltorio">
+        <table>
+          <thead><tr><th>IBAN</th><th>Titular a comprobar</th><th>Titular certificado</th><th>Resultado</th></tr></thead>
+          <tbody id="filas"><tr class="visible"><td colspan="4" class="vacio">Pulsa <b>VALIDAR DATOS</b> para comprobar la remesa contra el certificado.</td></tr></tbody>
+        </table>
+      </div>
+    </div>
+  </main>
+
+  <aside class="lateral">
+    <section class="tarjeta">
+      <h2>Comprueba un IBAN</h2>
+      <p>Estructura del país y dígito de control mod-97, igual que el módulo. Se calcula aquí mismo, sin enviar nada.</p>
+      <input id="iban" placeholder="ES91 2100 0418 4502 0005 1332" autocomplete="off" spellcheck="false" aria-label="IBAN">
+      <div class="ejemplos">
+        <button data-iban="ES9121000418450200051332">Válido</button>
+        <button data-iban="ES9121000418450200051333">Dígito mal</button>
+        <button data-iban="DE89370400440532013000">Alemania</button>
+        <button data-iban="ES912100041845">Corto</button>
+      </div>
+      <div class="veredicto" id="veredicto" role="status"></div>
+    </section>
+
+    <section class="tarjeta">
+      <h2>Qué verás en tu Odoo</h2>
+      <ul class="lista">
+        <li>Cada IBAN validado y buscado en el certificado del banco.</li>
+        <li>El titular comparado con reglas exactas y, si hace falta, una red neuronal local.</li>
+        <li>Exportación a CSV y Excel, y cada usuario ve sólo lo suyo.</li>
+        <li>Odoo 15 a 20 y aplicación de escritorio para Windows, macOS y Linux.</li>
+      </ul>
+      <a class="cta" href="https://apps.odoo.com/apps/modules/18.0/orivexy_validator" target="_blank" rel="noopener">Ver en Odoo Apps · 29,99 €</a>
+      <a class="cta secundario" href="https://apps.odoo.com/apps/modules/18.0/orivexy_validator" target="_blank" rel="noopener">Incluye app de escritorio: Windows, macOS y Linux</a>
+    </section>
+  </aside>
+</div>
+
+<div class="pie">ORIVEXY Validator 0.1 · Eric Muñiz Genebriera · <a href="mailto:thelexy902@gmail.com">thelexy902@gmail.com</a></div>
+
+<div class="detalle" id="detalle" role="dialog" aria-modal="true">
+  <div class="caja" id="caja"></div>
+</div>
+
+<script src="datos.js"></script>
+<script>
+(function () {
+  const D = window.ORIVEXY_DEMO;
+  const $ = (id) => document.getElementById(id);
+
+  // Tema oscuro o claro; se recuerda en este navegador si se puede.
+  function ponTema(tema) {
+    if (tema === "claro") document.documentElement.dataset.tema = "claro";
+    else delete document.documentElement.dataset.tema;
+    $("tema").textContent = tema === "claro" ? "\u{1F319} Tema oscuro" : "☀ Tema claro";
+  }
+  let temaGuardado = "oscuro";
+  try { temaGuardado = localStorage.getItem("orivexy-tema") || "oscuro"; } catch (e) { /* sin almacenamiento */ }
+  ponTema(temaGuardado);
+  $("tema").addEventListener("click", () => {
+    const nuevo = document.documentElement.dataset.tema === "claro" ? "oscuro" : "claro";
+    ponTema(nuevo);
+    try { localStorage.setItem("orivexy-tema", nuevo); } catch (e) { /* sin almacenamiento */ }
+  });
+  const ETIQUETAS = { ok: "CORRECTO", holder_mismatch: "TITULAR INCORRECTO", iban_not_found: "IBAN NO ENCONTRADO" };
+  const PASOS = [
+    "Leyendo el certificado del banco",
+    "Leyendo el fichero a comprobar",
+    "Validando cada IBAN (estructura y mod-97)",
+    "Buscando cada IBAN en el certificado",
+    "Comparando titulares",
+  ];
+  let filtro = "todos";
+  let validado = false;
+
+  $("ver-cert").textContent = D.referencia;
+  $("ver-txt").textContent = D.comprobar;
+
+  function escapa(texto) {
+    const div = document.createElement("div");
+    div.textContent = texto == null ? "" : String(texto);
+    return div.innerHTML;
+  }
+
+  function abrir(html, ancha) {
+    $("caja").className = "caja" + (ancha ? " ancha" : "");
+    $("caja").innerHTML = html + '<p style="text-align:right;margin:14px 0 0"><button class="btn" id="cerrar">Cerrar</button></p>';
+    $("detalle").classList.add("abierto");
+    $("cerrar").focus();
+    $("cerrar").onclick = cerrar;
+  }
+  function cerrar() { $("detalle").classList.remove("abierto"); }
+  $("detalle").addEventListener("click", (e) => { if (e.target.id === "detalle") cerrar(); });
+  document.addEventListener("keydown", (e) => { if (e.key === "Escape") cerrar(); });
+
+  $("ver-cert").onclick = () => abrir("<h2>" + escapa(D.referencia) + "</h2><img src='certificado.png' alt='Certificado bancario ficticio'>", true);
+  $("ver-txt").onclick = () => abrir("<h2>" + escapa(D.comprobar) + "</h2><pre>" + escapa(D.texto_comprobar) + "</pre>", true);
+
+  function cuenta() {
+    const r = { total: D.lineas.length, ok: 0, holder_mismatch: 0, iban_not_found: 0 };
+    D.lineas.forEach((l) => r[l.estado]++);
+    return r;
+  }
+
+  function animaNumero(el, hasta, decimales, sufijo) {
+    const inicio = performance.now(), duracion = 700;
+    function paso(ahora) {
+      const t = Math.min(1, (ahora - inicio) / duracion);
+      const valor = hasta * (1 - Math.pow(1 - t, 3));
+      el.textContent = valor.toFixed(decimales).replace(".", ",") + (sufijo || "");
+      if (t < 1) requestAnimationFrame(paso);
+    }
+    requestAnimationFrame(paso);
+  }
+
+  function pintaFilas() {
+    const tbody = $("filas");
+    const lineas = D.lineas.filter((l) => filtro === "todos" || l.estado === filtro);
+    if (!lineas.length) {
+      tbody.innerHTML = '<tr class="visible"><td colspan="4" class="vacio">No hay líneas con este resultado.</td></tr>';
+      return;
+    }
+    tbody.innerHTML = lineas.map((l) =>
+      '<tr class="' + l.estado + '" data-i="' + D.lineas.indexOf(l) + '">' +
+      '<td class="mono">' + escapa(l.iban) + "</td><td>" + escapa(l.titular) + "</td><td>" + escapa(l.certificado) +
+      '</td><td class="estado"><span class="chip ' + l.estado + '">' + ETIQUETAS[l.estado] + "</span></td></tr>").join("");
+    [...tbody.rows].forEach((fila, i) => setTimeout(() => fila.classList.add("visible"), 70 * i));
+  }
+
+  $("filas").addEventListener("click", (e) => {
+    const fila = e.target.closest("tr[data-i]");
+    if (!fila) return;
+    const l = D.lineas[+fila.dataset.i];
+    abrir("<h2>Detalle de la línea</h2><dl>" +
+      "<dt>IBAN</dt><dd class='mono'>" + escapa(l.iban) + "</dd>" +
+      "<dt>Titular a comprobar</dt><dd>" + escapa(l.titular) + "</dd>" +
+      "<dt>Titular certificado</dt><dd>" + escapa(l.certificado) + "</dd>" +
+      "<dt>Resultado</dt><dd><span class='chip " + l.estado + "'>" + ETIQUETAS[l.estado] + "</span></dd>" +
+      "<dt>Observaciones</dt><dd>" + escapa(l.nota) + "</dd>" +
+      "<dt>Origen</dt><dd>" + escapa(l.origen) + "</dd></dl>");
+  });
+
+  $("filtros").addEventListener("click", (e) => {
+    const b = e.target.closest("button");
+    if (!b) return;
+    filtro = b.dataset.filtro;
+    [...$("filtros").children].forEach((x) => x.classList.toggle("activa", x === b));
+    if (validado) pintaFilas();
+  });
+
+  function espera(ms) { return new Promise((r) => setTimeout(r, ms)); }
+
+  $("validar").onclick = async function () {
+    this.disabled = true;
+    $("progreso").classList.add("visible");
+    $("pasos").innerHTML = PASOS.map((p) => '<li><span class="marca"></span>' + p + "</li>").join("");
+    const items = [...$("pasos").children];
+    for (let i = 0; i < items.length; i++) {
+      items[i].className = "en-curso";
+      await espera(520);
+      items[i].className = "hecho";
+      $("barra").style.width = (100 * (i + 1) / items.length) + "%";
+    }
+    await espera(250);
+    $("progreso").classList.remove("visible");
+    validado = true;
+    const r = cuenta();
+    document.querySelectorAll(".contador").forEach((c, i) => {
+      const clave = c.dataset.clave;
+      setTimeout(() => {
+        c.classList.add("vivo");
+        animaNumero(c.querySelector(".num"), r[clave], 0, "");
+      }, 90 * i);
+    });
+    $("est-borrador").classList.remove("activo");
+    $("est-validado").classList.add("activo");
+    $("titulo-miga").textContent = D.comprobar;
+    $("motor").textContent = "Comparador: " + D.motor;
+    this.hidden = true;
+    $("csv").hidden = false;
+    $("reiniciar").hidden = false;
+    pintaFilas();
+  };
+
+  $("reiniciar").onclick = function () {
+    validado = false;
+    document.querySelectorAll(".contador").forEach((c) => {
+      c.classList.remove("vivo");
+      c.querySelector(".num").textContent = "0";
+    });
+    $("est-validado").classList.remove("activo");
+    $("est-borrador").classList.add("activo");
+    $("titulo-miga").textContent = "Nueva";
+    $("motor").textContent = "";
+    $("barra").style.width = "0";
+    $("validar").hidden = false;
+    $("validar").disabled = false;
+    $("csv").hidden = true;
+    this.hidden = true;
+    $("filas").innerHTML = '<tr class="visible"><td colspan="4" class="vacio">Pulsa <b>VALIDAR DATOS</b> para comprobar la remesa contra el certificado.</td></tr>';
+  };
+
+  $("csv").onclick = function () {
+    const celda = (v) => {
+      let t = String(v == null ? "" : v);
+      if (/^[=+\-@]/.test(t)) t = "'" + t;
+      return '"' + t.replace(/"/g, '""') + '"';
+    };
+    const filas = [["IBAN certificado", "Titular a comprobar", "Titular certificado", "Resultado", "Origen", "Observaciones"]]
+      .concat(D.lineas.map((l) => [l.iban, l.titular, l.certificado, ETIQUETAS[l.estado], l.origen, l.nota]));
+    const csv = "﻿" + filas.map((f) => f.map(celda).join(";")).join("\r\n");
+    const a = document.createElement("a");
+    a.href = URL.createObjectURL(new Blob([csv], { type: "text/csv;charset=utf-8" }));
+    a.download = "resultados_validacion.csv";
+    a.click();
+    URL.revokeObjectURL(a.href);
+  };
+
+  // IBAN: misma regla que core/iban.py (registro ISO 13616 y mod-97).
+  function mod97(iban) {
+    const reordenado = iban.slice(4) + iban.slice(0, 4);
+    let numero = "";
+    for (const c of reordenado) numero += /[0-9]/.test(c) ? c : String(c.charCodeAt(0) - 55);
+    let resto = 0;
+    for (let i = 0; i < numero.length; i += 7) resto = Number(String(resto) + numero.slice(i, i + 7)) % 97;
+    return resto;
+  }
+
+  function compruebaIban(valor) {
+    const iban = valor.replace(/[^A-Za-z0-9]/g, "").toUpperCase();
+    if (!iban) return null;
+    const bonito = iban.replace(/(.{4})/g, "$1 ").trim();
+    const pais = iban.slice(0, 2);
+    if (!/^[A-Z]{2}\d{2}/.test(iban)) return { ok: false, texto: "Debe empezar por el código del país y dos dígitos de control.", bonito };
+    const largo = D.longitudes[pais];
+    if (!largo) return { ok: false, texto: "«" + pais + "» no está en el registro IBAN.", bonito };
+    if (iban.length !== largo) return { ok: false, texto: "Un IBAN de " + pais + " tiene " + largo + " caracteres y este tiene " + iban.length + ".", bonito };
+    if (!new RegExp("^" + D.patrones[pais] + "$").test(iban.slice(4))) return { ok: false, texto: "La parte nacional no tiene el formato de " + pais + ".", bonito };
+    if (mod97(iban) !== 1) return { ok: false, texto: "El dígito de control no cuadra: hay algún carácter mal escrito.", bonito };
+    return { ok: true, texto: "IBAN válido: estructura de " + pais + " y dígito de control correctos.", bonito };
+  }
+
+  function actualiza() {
+    const r = compruebaIban($("iban").value);
+    const v = $("veredicto");
+    if (!r) { v.className = "veredicto"; return; }
+    v.className = "veredicto " + (r.ok ? "si" : "no");
+    v.innerHTML = (r.ok ? "✔ " : "✖ ") + escapa(r.texto) + '<span class="mono">' + escapa(r.bonito) + "</span>";
+  }
+  $("iban").addEventListener("input", actualiza);
+  document.querySelector(".ejemplos").addEventListener("click", (e) => {
+    const b = e.target.closest("button");
+    if (!b) return;
+    $("iban").value = b.dataset.iban;
+    actualiza();
+  });
+})();
+</script>
+</body>
+</html>
