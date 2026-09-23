@@ -2,11 +2,68 @@
 <html lang="es">
 <head>
 <meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
 <title>ORIVEXY Validator</title>
-<meta http-equiv="refresh" content="0; url=demo/">
-<link rel="canonical" href="demo/">
+<meta name="description" content="Comprueba cada IBAN y su titular contra el certificado del banco antes de pagar. Módulo para Odoo 15 a 20 y app de escritorio. 100 % local.">
+<link rel="icon" href="demo/logo.png">
+<style>
+  :root { --fondo: #0B1324; --caja: #121C2E; --borde: #22314A; --texto: #E6EDF5; --suave: #9FB1C6; --azul: #4DA3FF; --boton: #2E7DF6; --verde: #34D378; }
+  * { box-sizing: border-box; }
+  body { margin: 0; background: var(--fondo); color: var(--texto); font-family: "Segoe UI", Roboto, Helvetica, Arial, sans-serif; line-height: 1.6; }
+  main { max-width: 1080px; margin: 0 auto; padding: 32px 16px 56px; }
+  header { display: flex; align-items: center; gap: 12px; }
+  header img { width: 44px; height: 44px; border-radius: 10px; }
+  header b { font-size: 20px; }
+  .hero { text-align: center; padding: 48px 0 20px; }
+  h1 { font-size: clamp(32px, 5vw, 52px); line-height: 1.12; margin: 0; }
+  h1 span { color: var(--azul); }
+  .sub { max-width: 720px; margin: 16px auto 0; color: var(--suave); font-size: 19px; }
+  .botones { margin-top: 26px; display: flex; gap: 12px; justify-content: center; flex-wrap: wrap; }
+  .btn { display: inline-block; padding: 14px 28px; border-radius: 30px; font-weight: 700; text-decoration: none; font-size: 17px; }
+  .btn.principal { background: var(--boton); color: #fff; }
+  .btn.secundario { border: 1px solid var(--borde); color: var(--texto); }
+  .precio { margin-top: 14px; color: var(--verde); font-weight: 700; }
+  .portada { display: block; width: 100%; max-width: 960px; margin: 34px auto 0; border-radius: 14px; border: 1px solid var(--borde); }
+  .rejilla { display: grid; grid-template-columns: repeat(auto-fit, minmax(230px, 1fr)); gap: 14px; margin-top: 40px; }
+  .caja { background: var(--caja); border: 1px solid var(--borde); border-radius: 16px; padding: 22px; }
+  .caja h2 { font-size: 18px; margin: 0 0 6px; }
+  .caja p { margin: 0; color: var(--suave); }
+  .capturas { display: grid; grid-template-columns: repeat(auto-fit, minmax(300px, 1fr)); gap: 14px; margin-top: 40px; }
+  .capturas img { width: 100%; border-radius: 12px; border: 1px solid var(--borde); }
+  footer { margin-top: 48px; text-align: center; color: var(--suave); font-size: 14px; }
+  footer a { color: var(--azul); }
+</style>
 </head>
 <body>
-<p><a href="demo/">Ir a la demo de ORIVEXY Validator</a></p>
+<main>
+  <header><img src="demo/logo.png" alt=""><b>ORIVEXY Validator</b></header>
+
+  <section class="hero">
+    <h1>Antes de pagar, <span>comprueba cada IBAN</span><br>y que es de quien dice ser</h1>
+    <p class="sub">Cruza tu remesa de pagos con el certificado de titularidad del banco y te dice, pago a pago,
+      si la cuenta es correcta, si es de otra persona o si no aparece. Todo en tu propio Odoo o en tu ordenador:
+      ningún dato bancario sale de él.</p>
+    <div class="botones">
+      <a class="btn principal" href="https://apps.odoo.com/apps/modules/18.0/orivexy_validator">Comprar en Odoo Apps</a>
+      <a class="btn secundario" href="demo/">Probar la demo en vivo</a>
+    </div>
+    <p class="precio">29,99 € · Odoo 15, 16, 17, 18, 19 y 20 · app de escritorio incluida</p>
+    <img class="portada" src="img/banner.gif" alt="ORIVEXY Validator funcionando en Odoo">
+  </section>
+
+  <section class="rejilla">
+    <div class="caja"><h2>🏦 Contra el certificado del banco</h2><p>Busca cada IBAN en el certificado (PDF, escaneado o XML SEPA) y compara el titular.</p></div>
+    <div class="caja"><h2>🧠 Entiende los nombres</h2><p>Tildes, mayúsculas, orden de apellidos o «S.L.» frente a «SL» no cuentan como diferencia.</p></div>
+    <div class="caja"><h2>🔒 100 % local</h2><p>Sin APIs externas ni nubes de terceros: nada sale de tu servidor o de tu equipo.</p></div>
+    <div class="caja"><h2>⚡ Un clic</h2><p>Adjuntas dos ficheros, pulsas VALIDAR DATOS y exportas a CSV o Excel.</p></div>
+  </section>
+
+  <section class="capturas">
+    <img src="img/odoo_resultados.png" alt="Resultados de una validación en Odoo">
+    <img src="img/escritorio_oscuro.png" alt="App de escritorio de ORIVEXY Validator">
+  </section>
+
+  <footer>ORIVEXY Validator 0.1 · Eric Muñiz Genebriera · <a href="mailto:thelexy902@gmail.com">thelexy902@gmail.com</a></footer>
+</main>
 </body>
 </html>
