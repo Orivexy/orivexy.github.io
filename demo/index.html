@@ -7,8 +7,8 @@
 <meta name="description" content="Demo interactiva de ORIVEXY Validator: valida IBAN y titulares contra el certificado del banco antes de pagar.">
 <link rel="icon" href="logo.png">
 <style>
-  /* Tema oscuro por defecto; el botón «Tema claro» cambia a la versión blanca. */
-  :root {
+  /* Tema claro (estilo Odoo, colores del icono) por defecto; el botón cambia al oscuro. */
+  :root[data-tema="oscuro"] {
     --odoo: #8a5d80; --odoo-dark: #714B67; --azul: #4DA3FF; --marino: #060B14;
     --texto: #E6EDF5; --suave: #8FA3B8; --borde: #22314A; --fondo: #0B1220; --blanco: #121B2B;
     --superficie2: #172235; --hover: #1B2840; --linea: #1A2638; --foco: #1f4c86;
@@ -17,24 +17,30 @@
     --aviso: #f5b451; --aviso-fondo: #3a2a12; --aviso-texto: #f5c270;
     color-scheme: dark;
   }
-  :root[data-tema="claro"] {
-    --odoo: #714B67; --odoo-dark: #5b3b53; --azul: #3A86FF; --marino: #17212E;
-    --texto: #1f2933; --suave: #5b6b7d; --borde: #dde3ea; --fondo: #f3f4f6; --blanco: #fff;
-    --superficie2: #fafbfc; --hover: #f1f3f5; --linea: #eef0f3; --foco: #c9dcff;
-    --ok: #2fbf71; --ok-fondo: #e6f7ee; --ok-texto: #157347;
-    --ko: #e5484d; --ko-fondo: #fdecec; --ko-texto: #b42318;
-    --aviso: #f2a33c; --aviso-fondo: #fff4e3; --aviso-texto: #b45309;
+  :root {
+    --odoo: #714B67; --odoo-dark: #5b3b53; --azul: #168f90; --marino: #714B67;
+    --texto: #1f2433; --suave: #5c6678; --borde: #e0e4ec; --fondo: #f8f9fb; --blanco: #fff;
+    --superficie2: #fbfcfd; --hover: #f2f4f7; --linea: #eef0f4; --foco: #bfeaea;
+    --ok: #21b6b7; --ok-fondo: #e3f6f6; --ok-texto: #127274;
+    --ko: #e75470; --ko-fondo: #fdecf0; --ko-texto: #b42346;
+    --aviso: #fbb945; --aviso-fondo: #fff5e0; --aviso-texto: #a15c00;
     color-scheme: light;
   }
   * { box-sizing: border-box; }
+  /* Formas planas en las esquinas, como en la ficha de Odoo Apps. */
+  body::before, body::after { content: ""; position: fixed; z-index: -1; pointer-events: none; opacity: .22; }
+  body::before { top: -120px; right: -120px; width: 300px; height: 300px; border-radius: 50%;
+    background: linear-gradient(90deg, #e75470 50%, #fbb945 50%); }
+  body::after { bottom: -90px; left: -90px; width: 220px; height: 220px; border-radius: 48px; background: #21b6b7; }
+  :root[data-tema="oscuro"] body::before, :root[data-tema="oscuro"] body::after { opacity: .10; }
   body { margin: 0; font-family: "Segoe UI", Roboto, Helvetica, Arial, sans-serif; color: var(--texto); background: var(--fondo); font-size: 14px; }
   button { font: inherit; cursor: pointer; }
   a { color: var(--azul); }
 
   .aviso-demo { background: var(--marino); color: #dbe6f3; padding: 10px 16px; display: flex; flex-wrap: wrap; gap: 8px 18px; align-items: center; justify-content: center; font-size: 13px; }
   .aviso-demo b { color: #fff; }
-  .aviso-demo a { color: #9cc3ff; font-weight: 600; text-decoration: none; }
-  .aviso-demo a.comprar { background: var(--azul); color: #fff; padding: 6px 14px; border-radius: 16px; }
+  .aviso-demo a { color: #bfeaea; font-weight: 600; text-decoration: none; }
+  .aviso-demo a.comprar { background: #fbb945; color: #1f2433; color: #fff; padding: 6px 14px; border-radius: 16px; }
   .aviso-demo button.tema { background: transparent; color: #dbe6f3; border: 1px solid #3a4e66; padding: 5px 12px; border-radius: 16px; }
   .aviso-demo button.tema:hover { border-color: #9cc3ff; color: #fff; }
 
@@ -141,7 +147,7 @@
 
 <div class="aviso-demo">
   <span><b>Demo interactiva</b> con documentos de prueba ficticios. Los resultados son los que devuelve el motor real de ORIVEXY. Nada sale de tu navegador.</span>
-  <button class="tema" id="tema" type="button">☀ Tema claro</button>
+  <button class="tema" id="tema" type="button">🌙 Tema oscuro</button>
   <a class="comprar" href="https://apps.odoo.com/apps/modules/18.0/orivexy_validator" target="_blank" rel="noopener">Comprar en Odoo Apps</a>
 </div>
 
@@ -230,7 +236,7 @@
         <li>Exportación a CSV y Excel, y cada usuario ve sólo lo suyo.</li>
         <li>Odoo 15 a 20 y aplicación de escritorio para Windows, macOS y Linux.</li>
       </ul>
-      <a class="cta" href="https://apps.odoo.com/apps/modules/18.0/orivexy_validator" target="_blank" rel="noopener">Ver en Odoo Apps · 29,99 €</a>
+      <a class="cta" href="https://apps.odoo.com/apps/modules/18.0/orivexy_validator" target="_blank" rel="noopener">Ver en Odoo Apps · 295 € pago único</a>
       <a class="cta secundario" href="https://apps.odoo.com/apps/modules/18.0/orivexy_validator" target="_blank" rel="noopener">Incluye app de escritorio: Windows, macOS y Linux</a>
     </section>
   </aside>
@@ -250,17 +256,17 @@
 
   // Tema oscuro o claro; se recuerda en este navegador si se puede.
   function ponTema(tema) {
-    if (tema === "claro") document.documentElement.dataset.tema = "claro";
+    if (tema === "oscuro") document.documentElement.dataset.tema = "oscuro";
     else delete document.documentElement.dataset.tema;
-    $("tema").textContent = tema === "claro" ? "\u{1F319} Tema oscuro" : "☀ Tema claro";
+    $("tema").textContent = tema === "oscuro" ? "☀ Tema claro" : "\u{1F319} Tema oscuro";
   }
-  let temaGuardado = "oscuro";
-  try { temaGuardado = localStorage.getItem("orivexy-tema") || "oscuro"; } catch (e) { /* sin almacenamiento */ }
+  let temaGuardado = "claro";
+  try { temaGuardado = localStorage.getItem("orivexy-tema-v2") || "claro"; } catch (e) { /* sin almacenamiento */ }
   ponTema(temaGuardado);
   $("tema").addEventListener("click", () => {
-    const nuevo = document.documentElement.dataset.tema === "claro" ? "oscuro" : "claro";
+    const nuevo = document.documentElement.dataset.tema === "oscuro" ? "claro" : "oscuro";
     ponTema(nuevo);
-    try { localStorage.setItem("orivexy-tema", nuevo); } catch (e) { /* sin almacenamiento */ }
+    try { localStorage.setItem("orivexy-tema-v2", nuevo); } catch (e) { /* sin almacenamiento */ }
   });
   const ETIQUETAS = { ok: "CORRECTO", holder_mismatch: "TITULAR INCORRECTO", iban_not_found: "IBAN NO ENCONTRADO" };
   const PASOS = [
