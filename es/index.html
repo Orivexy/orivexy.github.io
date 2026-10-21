@@ -1,0 +1,93 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>ORIVEXY Verify</title>
+<meta name="description" content="Comprueba antes de pagar que cada IBAN de tu remesa es de quien dice ser: lo cruza con el certificado del banco. Módulo para Odoo 15 a 20 y app de escritorio. 100 % local.">
+<link rel="canonical" href="https://orivexy.github.io/es/">
+<link rel="alternate" hreflang="es" href="https://orivexy.github.io/es/">
+<link rel="alternate" hreflang="ca" href="https://orivexy.github.io/ca/">
+<link rel="alternate" hreflang="en" href="https://orivexy.github.io/">
+<link rel="alternate" hreflang="x-default" href="https://orivexy.github.io/">
+<meta property="og:type" content="website">
+<meta property="og:title" content="ORIVEXY Verify · comprueba IBAN y titulares">
+<meta property="og:description" content="Comprueba antes de pagar que cada IBAN de tu remesa es de quien dice ser: lo cruza con el certificado del banco. Módulo para Odoo 15 a 20 y app de escritorio. 100 % local.">
+<meta property="og:image" content="https://orivexy.github.io/es/img/portada.png">
+<meta property="og:url" content="https://orivexy.github.io/es/">
+<meta name="twitter:card" content="summary_large_image">
+<meta name="keywords" content="IBAN, SEPA, Odoo, account holder verification, verificación de titular, remesas, pagos, fraude, bank certificate">
+<script type="application/ld+json">{"@context": "https://schema.org", "@type": "SoftwareApplication", "name": "ORIVEXY Verify", "applicationCategory": "BusinessApplication", "operatingSystem": "Odoo 15, 16, 17, 18, 19, 20; Windows; macOS; Linux", "description": "Comprueba antes de pagar que cada IBAN de tu remesa es de quien dice ser: lo cruza con el certificado del banco. Módulo para Odoo 15 a 20 y app de escritorio. 100 % local.", "inLanguage": "es", "url": "https://orivexy.github.io/es/", "image": "https://orivexy.github.io/es/img/banner.gif", "softwareVersion": "0.1", "author": {"@type": "Person", "name": "Eric Muñiz Genebriera"}, "offers": {"@type": "Offer", "price": "29.00", "priceCurrency": "EUR", "url": "https://apps.odoo.com/apps/modules/18.0/orivexy_validator", "availability": "https://schema.org/InStock"}}</script>
+<link rel="icon" href="../demo/logo.png">
+<style>
+  :root { --fondo: #F8F9FB; --caja: #FFFFFF; --borde: #E0E4EC; --texto: #1F2433; --suave: #5C6678; --azul: #714B67; --boton: #714B67; --verde: #168F90; }
+  * { box-sizing: border-box; }
+  body { margin: 0; background: var(--fondo); color: var(--texto); font-family: "Segoe UI", Roboto, Helvetica, Arial, sans-serif; line-height: 1.6; }
+  main { max-width: 1080px; margin: 0 auto; padding: 32px 16px 56px; }
+  header { display: flex; align-items: center; gap: 12px; }
+  header img { width: 44px; height: 44px; border-radius: 10px; }
+  header b { font-size: 20px; }
+  .hero { text-align: center; padding: 48px 0 20px; }
+  h1 { font-size: clamp(32px, 5vw, 52px); line-height: 1.12; margin: 0; }
+  h1 span { color: var(--azul); }
+  .sub { max-width: 720px; margin: 16px auto 0; color: var(--suave); font-size: 19px; }
+  .botones { margin-top: 26px; display: flex; gap: 12px; justify-content: center; flex-wrap: wrap; }
+  .btn { display: inline-block; padding: 14px 28px; border-radius: 30px; font-weight: 700; text-decoration: none; font-size: 17px; }
+  .btn.principal { background: var(--boton); color: #fff; }
+  .btn.secundario { border: 1px solid var(--borde); color: var(--texto); }
+  .precio { margin-top: 14px; color: var(--verde); font-weight: 700; }
+  .portada { display: block; width: 100%; max-width: 960px; margin: 34px auto 0; border-radius: 14px; border: 1px solid var(--borde); }
+  .rejilla { display: grid; grid-template-columns: repeat(auto-fit, minmax(230px, 1fr)); gap: 14px; margin-top: 40px; }
+  .caja { background: var(--caja); border: 1px solid var(--borde); border-radius: 16px; padding: 22px; }
+  .caja h2 { font-size: 18px; margin: 0 0 6px; }
+  .caja p { margin: 0; color: var(--suave); }
+  .capturas { display: grid; grid-template-columns: repeat(auto-fit, minmax(300px, 1fr)); gap: 14px; margin-top: 40px; }
+  .capturas img { width: 100%; border-radius: 12px; border: 1px solid var(--borde); }
+  footer { margin-top: 48px; text-align: center; color: var(--suave); font-size: 14px; }
+  footer a { color: var(--azul); }
+  /* Formas planas en las esquinas, como en la ficha de Odoo Apps. */
+  body::before, body::after { content: ""; position: fixed; z-index: -1; pointer-events: none; opacity: .22; }
+  body::before { top: -120px; right: -120px; width: 300px; height: 300px; border-radius: 50%; background: linear-gradient(90deg, #e75470 50%, #fbb945 50%); }
+  body::after { bottom: -90px; left: -90px; width: 220px; height: 220px; border-radius: 48px; background: #21b6b7; }
+  .caja { box-shadow: 0 6px 20px rgba(31,36,51,.05); }
+  .portada, .capturas img { box-shadow: 0 12px 34px rgba(31,36,51,.10); }
+  .btn.principal:hover { background: #5b3b53; }
+  .btn.secundario { background: #fff; }
+  .idiomas { margin-left: auto; display: flex; gap: 4px; }
+  .idiomas a { padding: 4px 10px; border-radius: 14px; color: var(--azul); text-decoration: none; font-weight: 700; font-size: 14px; }
+  .idiomas a[aria-current] { background: var(--azul); color: #fff; }
+</style>
+</head>
+<body>
+<main>
+  <header><img src="../demo/logo.png" alt=""><b>ORIVEXY Verify</b><nav class="idiomas" aria-label="Idioma"><a href="./" lang="es" aria-current="page">ES</a><a href="../ca/" lang="ca">CA</a><a href="../" lang="en">EN</a></nav></header>
+
+  <section class="hero">
+    <h1>Antes de pagar, <span>comprueba cada IBAN</span><br>y que es de quien dice ser</h1>
+    <p class="sub">Cruza tu remesa de pagos con el certificado de titularidad del banco y te dice, pago a pago,
+      si la cuenta es correcta, si es de otra persona o si no aparece. Todo en tu propio Odoo o en tu ordenador:
+      ningún dato bancario sale de él.</p>
+    <div class="botones">
+      <a class="btn principal" href="https://apps.odoo.com/apps/modules/18.0/orivexy_validator">Comprar en Odoo Apps</a>
+      <a class="btn secundario" href="../demo/">Probar la demo en vivo</a>
+    </div>
+    <p class="precio">29 €/mes · suscripción mensual · Odoo 15, 16, 17, 18, 19 y 20 · app de escritorio incluida</p>
+    <img class="portada" src="../img/banner.gif" alt="ORIVEXY Verify funcionando en Odoo">
+  </section>
+
+  <section class="rejilla">
+    <div class="caja"><h2>🏦 Contra el certificado del banco</h2><p>Busca cada IBAN en el certificado (PDF, escaneado o XML SEPA) y compara el titular.</p></div>
+    <div class="caja"><h2>🧠 Entiende los nombres</h2><p>Tildes, mayúsculas, orden de apellidos o «S.L.» frente a «SL» no cuentan como diferencia.</p></div>
+    <div class="caja"><h2>🔒 100 % local</h2><p>Sin APIs externas ni nubes de terceros: nada sale de tu servidor o de tu equipo.</p></div>
+    <div class="caja"><h2>⚡ Un clic</h2><p>Adjuntas dos ficheros, pulsas VALIDAR DATOS y exportas a CSV o Excel.</p></div>
+  </section>
+
+  <section class="capturas">
+    <img src="../img/odoo_resultados.png" alt="Resultados de una validación en Odoo">
+    <img src="../img/escritorio_claro.png" alt="App de escritorio de ORIVEXY Verify">
+  </section>
+
+  <footer>ORIVEXY Verify 0.1 · Eric Muñiz Genebriera · <a href="mailto:ericmunizgeneb@gmail.com">ericmunizgeneb@gmail.com</a></footer>
+</main>
+</body>
+</html>
