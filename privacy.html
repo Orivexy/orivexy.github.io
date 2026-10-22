@@ -1,0 +1,78 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>ORIVEXY Verify · Privacy policy</title>
+<link rel="canonical" href="https://orivexy.github.io/privacy.html">
+<style>
+  body { font-family: "Segoe UI", Roboto, Arial, sans-serif; color: #142033; background: #F7F9FC; margin: 0; line-height: 1.6; }
+  main { max-width: 820px; margin: 0 auto; padding: 32px 20px 60px; }
+  h1 { font-size: 30px; } h2 { font-size: 20px; margin-top: 30px; }
+  a { color: #0E7C86; } table { border-collapse: collapse; width: 100%; } td, th { border: 1px solid #D5DDE7; padding: 8px; text-align: left; vertical-align: top; }
+  .es { border-top: 2px solid #D5DDE7; margin-top: 50px; padding-top: 10px; }
+</style>
+</head>
+<body>
+<main>
+<p><a href="./">← ORIVEXY Verify</a> · <a href="#es">Español</a></p>
+<h1>Privacy policy</h1>
+<p>Last updated: 22 October 2026.</p>
+
+<h2>Who is responsible</h2>
+<p>Eric Muñiz Genebriera, individual developer based in Spain (data controller for the account data described below).
+Contact: <a href="mailto:ericmunizgeneb@gmail.com">ericmunizgeneb@gmail.com</a>.</p>
+
+<h2>Banking data: processed only on your side</h2>
+<p>Bank certificates, payment files, IBANs and account-holder names are processed <b>only on your computer</b>
+(desktop app) or <b>on your own Odoo server</b> (Odoo module). They are never sent to us or to any third party,
+and we cannot see them.</p>
+
+<h2>What we do store</h2>
+<table>
+<tr><th>Data</th><th>Where</th><th>Why</th></tr>
+<tr><td>Email address, plan and plan end date</td><td>Supabase (account database)</td><td>Sign-in and checking your subscription in the desktop app</td></tr>
+<tr><td>Email received from Google, if you sign in with Google</td><td>Supabase</td><td>Sign-in</td></tr>
+<tr><td>Irreversible fingerprints (SHA-256) of IBANs from previous batches</td><td>Only on your computer (<code>Documents\ORIVEXY Validator\huellas_iban.json</code>)</td><td>Warning when a supplier changes account. You can delete them from the app</td></tr>
+<tr><td>Technical log without IBANs or names</td><td>Only on your computer</td><td>Troubleshooting</td></tr>
+</table>
+<p>The Odoo module stores validation results in your own Odoo database; we have no access to it. Purchases on
+Odoo Apps are handled by Odoo S.A. under its own privacy policy.</p>
+
+<h2>Internet connections</h2>
+<p>The desktop app connects to the internet only to sign in and check your plan (at most every 7 days). The Odoo
+module makes no external calls.</p>
+
+<h2>Retention and your rights</h2>
+<p>Account data is kept while your account exists and deleted on request. You can ask to access, correct or
+delete your data, or object to its processing, by writing to the email above. You may also complain to the
+Spanish Data Protection Agency (aepd.es).</p>
+
+<section class="es" id="es" lang="es">
+<h1>Política de privacidad</h1>
+<p>Última actualización: 22 de octubre de 2026.</p>
+<h2>Responsable</h2>
+<p>Eric Muñiz Genebriera, desarrollador persona física con residencia en España, responsable de los datos de cuenta
+descritos abajo. Contacto: <a href="mailto:ericmunizgeneb@gmail.com">ericmunizgeneb@gmail.com</a>.</p>
+<h2>Datos bancarios: sólo en tu equipo</h2>
+<p>Los certificados, remesas, IBAN y nombres de titulares se procesan <b>sólo en tu ordenador</b> (app de escritorio)
+o <b>en tu propio servidor Odoo</b> (módulo). Nunca se nos envían a nosotros ni a terceros y no podemos verlos.</p>
+<h2>Qué guardamos</h2>
+<ul>
+<li><b>Email, plan y fecha de fin</b>, en Supabase: para iniciar sesión y comprobar tu suscripción en la app de escritorio.</li>
+<li><b>El email que nos da Google</b> si entras con Google, en Supabase.</li>
+<li><b>Huellas irreversibles (SHA-256) de IBAN de remesas anteriores</b>, sólo en tu ordenador, para avisar de cambios de cuenta. Se pueden borrar desde la app.</li>
+<li><b>Registro técnico sin IBAN ni nombres</b>, sólo en tu ordenador.</li>
+</ul>
+<p>El módulo de Odoo guarda los resultados en tu propia base de datos de Odoo, a la que no tenemos acceso. Las compras
+en Odoo Apps las gestiona Odoo S.A. con su propia política.</p>
+<h2>Conexiones a internet</h2>
+<p>La app de escritorio sólo se conecta para iniciar sesión y comprobar tu plan (como máximo cada 7 días). El módulo
+de Odoo no hace llamadas externas.</p>
+<h2>Conservación y derechos</h2>
+<p>Los datos de cuenta se guardan mientras exista la cuenta y se borran si lo pides. Puedes ejercer tus derechos de
+acceso, rectificación, supresión u oposición escribiendo al email de arriba, y reclamar ante la AEPD (aepd.es).</p>
+</section>
+</main>
+</body>
+</html>
