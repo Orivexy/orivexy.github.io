@@ -17,7 +17,7 @@
 <meta property="og:url" content="https://orivexy.github.io/ca/">
 <meta name="twitter:card" content="summary_large_image">
 <meta name="keywords" content="IBAN, SEPA, Odoo, account holder verification, verificació de titular, remeses, pagaments, frau, bank certificate">
-<script type="application/ld+json">{"@context": "https://schema.org", "@type": "SoftwareApplication", "name": "ORIVEXY Verify", "applicationCategory": "BusinessApplication", "operatingSystem": "Odoo 15, 16, 17, 18, 19, 20; Windows; macOS; Linux", "description": "Comprova abans de pagar que cada IBAN de la teva remesa és de qui diu ser: el creua amb el certificat del banc. Mòdul per a Odoo 15 a 20 i app d'escriptori. 100 % local.", "inLanguage": "ca", "url": "https://orivexy.github.io/ca/", "image": "https://orivexy.github.io/es/img/banner.gif", "softwareVersion": "0.1", "author": {"@type": "Person", "name": "Eric Muñiz Genebriera"}, "offers": {"@type": "Offer", "price": "29.00", "priceCurrency": "EUR", "url": "https://apps.odoo.com/apps/modules/18.0/orivexy_validator", "availability": "https://schema.org/InStock"}}</script>
+<script type="application/ld+json">{"@context": "https://schema.org", "@type": "SoftwareApplication", "name": "ORIVEXY Verify", "applicationCategory": "BusinessApplication", "operatingSystem": "Odoo 15, 16, 17, 18, 19, 20; Windows; macOS; Linux", "description": "Comprova abans de pagar que cada IBAN de la teva remesa és de qui diu ser: el creua amb el certificat del banc. Mòdul per a Odoo 15 a 20 i app d'escriptori. 100 % local.", "inLanguage": "ca", "url": "https://orivexy.github.io/ca/", "image": "https://orivexy.github.io/es/img/banner.gif", "softwareVersion": "0.1", "author": {"@type": "Person", "name": "Eric Muñiz Genebriera"}, "offers": {"@type": "Offer", "price": "29.00", "priceCurrency": "EUR", "url": "https://apps.odoo.com/apps/modules/20.0/orivexy_validator", "availability": "https://schema.org/InStock"}}</script>
 <link rel="icon" href="../demo/logo.png">
 <style>
   :root { --fondo: #F8F9FB; --caja: #FFFFFF; --borde: #E0E4EC; --texto: #1F2433; --suave: #5C6678; --azul: #714B67; --boton: #714B67; --verde: #168F90; }
@@ -60,34 +60,38 @@
 </head>
 <body>
 <main>
-  <header><img src="../demo/logo.png" alt=""><b>ORIVEXY Verify</b><nav class="idiomas" aria-label="Idioma"><a href="../es/" lang="es">ES</a><a href="../ca/" lang="ca" aria-current="page">CA</a><a href="../" lang="en">EN</a></nav></header>
+  <header><img src="../demo/logo.png" alt="Logotip d'ORIVEXY Verify"><b>ORIVEXY Verify</b><nav class="idiomas" aria-label="Idioma"><a href="../es/" lang="es">ES</a><a href="../ca/" lang="ca" aria-current="page">CA</a><a href="../" lang="en">EN</a></nav></header>
 
   <section class="hero">
-    <h1>Abans de pagar, <span>comprova cada IBAN</span><br>i que és de qui diu ser</h1>
-    <p class="sub">Creua la teva remesa de pagaments amb el certificat de titularitat del banc i et diu, pagament a pagament,
-      si el compte és correcte, si és d'una altra persona o si no hi apareix. Tot al teu propi Odoo o al teu ordinador:
-      cap dada bancària no en surt.</p>
+    <h1>Abans de pagar, <span>comprova que cada IBAN</span> és de qui diu ser</h1>
+    <p class="sub">ORIVEXY Verify creua la teva remesa de pagaments amb el certificat de titularitat del banc i et diu, pagament a pagament, si el compte és correcte, si és d'una altra persona o si no hi apareix.</p>
     <div class="botones">
-      <a class="btn principal" href="https://apps.odoo.com/apps/modules/18.0/orivexy_validator">Comprar a Odoo Apps</a>
-      <a class="btn secundario" href="../demo/">Provar la demo en directe</a>
+      <a class="btn principal" href="https://apps.odoo.com/apps/modules/20.0/orivexy_validator">Aconsegueix-lo a Odoo Apps</a>
+      <a class="btn secundario" href="../demo/">Prova la demo en directe</a>
     </div>
-    <p class="precio">29 €/mes · subscripció mensual · Odoo 15, 16, 17, 18, 19 i 20 · app d'escriptori inclosa</p>
-    <img class="portada" src="../img/banner.gif" alt="ORIVEXY Verify funcionant a Odoo">
+    <p class="precio"><b>App d'escriptori (Windows):</b> 29 €/mes, sense permanència · <b>Mòdul d'Odoo:</b> 29 € pagament únic per versió d'Odoo, a Odoo Apps</p>
+    <img class="portada" src="../img/banner.gif" alt="Demo animada d'una validació amb ORIVEXY Verify">
   </section>
 
   <section class="rejilla">
     <div class="caja"><h2>🏦 Contra el certificat del banc</h2><p>Busca cada IBAN al certificat (PDF, escanejat o XML SEPA) i compara el titular.</p></div>
-    <div class="caja"><h2>🧠 Entén els noms</h2><p>Accents, majúscules, ordre dels cognoms o «S.L.» davant de «SL» no compten com a diferència.</p></div>
-    <div class="caja"><h2>🔒 100 % local</h2><p>Sense APIs externes ni núvols de tercers: res no surt del teu servidor o del teu equip.</p></div>
-    <div class="caja"><h2>⚡ Un clic</h2><p>Adjuntes dos fitxers, prems VALIDAR DADES i exportes a CSV o Excel.</p></div>
+    <div class="caja"><h2>🧠 Entén els noms, amb límits</h2><p>Majúscules, accents, puntuació, «S.L.» davant «SL» i l'ordre de les paraules només s'ignoren si hi apareixen exactament les mateixes paraules. Un cognom diferent o que falta es marca, i els casos dubtosos passen a revisió manual. Confirma-ho sempre abans de pagar.</p></div>
+    <div class="caja"><h2>🔒 La validació és 100 % local</h2><p>Els IBAN, noms i fitxers només es processen al teu ordinador o servidor Odoo. L'app d'escriptori només es connecta a internet per iniciar sessió i comprovar el teu pla (correu i pla, mai dades bancàries). El mòdul d'Odoo no fa crides externes.</p></div>
+    <div class="caja"><h2>⚡ Un clic</h2><p>Adjuntes dos fitxers, prems VALIDAR i exportes a CSV o Excel.</p></div>
   </section>
 
   <section class="capturas">
-    <img src="../img/odoo_resultados.png" alt="Resultats d'una validació a Odoo">
+    <img src="../img/odoo_resultados.png" alt="Resultats de la validació a Odoo">
     <img src="../img/escritorio_claro.png" alt="App d'escriptori d'ORIVEXY Verify">
   </section>
 
-  <footer>ORIVEXY Verify 0.1 · Eric Muñiz Genebriera · <a href="mailto:ericmunizgeneb@gmail.com">ericmunizgeneb@gmail.com</a></footer>
+  <div class="notas" style="text-align:center;color:#9FB1C6;margin-top:28px;line-height:1.6">
+    <p>Compara amb el certificat que aportes: no consulta el banc, no demostra que un compte existeixi o estigui actiu i no bloqueja pagaments.</p>
+    <p>Versions d'Odoo: <a href="https://apps.odoo.com/apps/modules/15.0/orivexy_validator">15</a> · <a href="https://apps.odoo.com/apps/modules/16.0/orivexy_validator">16</a> · <a href="https://apps.odoo.com/apps/modules/17.0/orivexy_validator">17</a> · <a href="https://apps.odoo.com/apps/modules/20.0/orivexy_validator">18</a> · <a href="https://apps.odoo.com/apps/modules/19.0/orivexy_validator">19</a> · <a href="https://apps.odoo.com/apps/modules/20.0/orivexy_validator">20</a>. Les versions anteriors es van provar en Odoo 17, 18 i 19 reals; l'actual (0.1.5) només ha passat les comprovacions automàtiques.</p>
+    <p>Idiomes: mòdul d'Odoo en anglès (les notes de cada resultat, en castellà) · app d'escriptori en castellà. IBAN dels 85 països amb IBAN; certificats en 9 idiomes.</p>
+    <p>ORIVEXY Verify abans es deia ORIVEXY Validator; el seu nom tècnic a Odoo és <code>orivexy_validator</code>.</p>
+  </div>
+  <footer>ORIVEXY Verify 0.1.5 · Desenvolupador: Eric Muñiz Genebriera (persona física, Espanya) · <a href="mailto:ericmunizgeneb@gmail.com">ericmunizgeneb@gmail.com</a> · <a href="../privacy.html">Privadesa</a> · <a href="../terms.html">Condicions</a></footer>
 </main>
 </body>
 </html>
