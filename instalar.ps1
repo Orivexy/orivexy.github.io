@@ -2,8 +2,8 @@
 # Uso:  powershell -c "irm https://orivexy.github.io/instalar.ps1 | iex"
 #       (versión de prueba: instalar-prueba.ps1)
 $ErrorActionPreference = "Stop"
-if (-not $OrivexyVersion) { $OrivexyVersion = "ORIVEXY-Verify-Setup-0.1.6.exe" }
-$url = "https://github.com/Orivexy/orivexy.github.io/releases/download/v0.1.6/$OrivexyVersion"
+if (-not $OrivexyVersion) { $OrivexyVersion = "ORIVEXY-Verify-Setup-0.1.7.exe" }
+$url = "https://github.com/Orivexy/orivexy.github.io/releases/download/v0.1.7/$OrivexyVersion"
 $destino = Join-Path $env:TEMP $OrivexyVersion
 
 Write-Host ""
