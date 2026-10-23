@@ -1,0 +1,43 @@
+<!doctype html>
+<html lang="es">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Instalar ORIVEXY Verify</title>
+<style>
+  body { font-family: "Segoe UI", Roboto, Arial, sans-serif; color: #0F1E3D; background: #F7F9FC; margin: 0; line-height: 1.6; }
+  main { max-width: 760px; margin: 0 auto; padding: 32px 20px 60px; }
+  h1 { font-size: 30px; } h2 { font-size: 20px; margin-top: 28px; } a { color: #0E7C86; }
+  pre { background: #0F1E3D; color: #fff; padding: 14px 16px; border-radius: 10px; white-space: pre-wrap; word-break: break-all; font-size: 15px; }
+  button { background: #0E7C86; color: #fff; border: 0; border-radius: 8px; padding: 9px 16px; font-weight: 700; cursor: pointer; }
+  .paso { background: #fff; border: 1px solid #D5DDE7; border-radius: 12px; padding: 16px 20px; margin: 14px 0; }
+  kbd { border: 1px solid #B4C1D1; border-bottom-width: 2px; border-radius: 4px; padding: 0 6px; background: #fff; }
+</style>
+</head>
+<body>
+<main>
+<p><a href="./">← ORIVEXY Verify</a></p>
+<h1>Instalar ORIVEXY Verify en Windows</h1>
+<p>Instalando con esta orden no hay que descargar nada con el navegador, así que no salen los avisos de
+Chrome, de Google Drive ni de «Windows protegió su PC».</p>
+
+<div class="paso"><b>1.</b> Pulsa <kbd>Windows</kbd> + <kbd>R</kbd> (se abre la ventana «Ejecutar»).</div>
+<div class="paso"><b>2.</b> Copia esta orden, pégala con <kbd>Ctrl</kbd> + <kbd>V</kbd> y pulsa <kbd>Intro</kbd>:
+<pre id="orden">powershell -c "irm https://orivexy.github.io/instalar.ps1 | iex"</pre>
+<button onclick="navigator.clipboard.writeText(document.getElementById('orden').textContent);this.textContent='Copiada'">Copiar</button></div>
+<div class="paso"><b>3.</b> Se descarga el instalador y se abre. Sigue sus pasos y abre ORIVEXY Verify desde el menú Inicio.</div>
+
+<h2>¿Te han invitado a la prueba?</h2>
+<p>Usa esta orden en el paso 2 (versión que pide una clave de licencia):</p>
+<pre id="prueba">powershell -c "irm https://orivexy.github.io/instalar-prueba.ps1 | iex"</pre>
+<button onclick="navigator.clipboard.writeText(document.getElementById('prueba').textContent);this.textContent='Copiada'">Copiar</button>
+
+<h2>¿Qué hace la orden?</h2>
+<p>Descarga el instalador oficial desde la página de descargas de ORIVEXY en GitHub y lo abre. Puedes ver el
+script antes de usarlo: <a href="instalar.ps1">instalar.ps1</a>. No cambia ninguna configuración de seguridad
+de Windows. Microsoft Defender analiza el programa igualmente al instalarlo.</p>
+<p>¿Prefieres la descarga normal? <a href="https://github.com/Orivexy/orivexy.github.io/releases/tag/v0.1.5">Descargas</a>
+(el navegador y Windows mostrarán avisos porque el programa aún no está firmado).</p>
+</main>
+</body>
+</html>
