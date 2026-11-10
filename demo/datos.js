@@ -1,7 +1,7 @@
 window.ORIVEXY_DEMO = {
  "referencia": "datos_referencia_ficticios.pdf",
  "comprobar": "datos_comprobar_ficticios.txt",
- "texto_comprobar": "# ORIVEXY Verify - fichero de comprobación (DATOS FICTICIOS)\n# Formato: IBAN | Titular\nES25 0011 0022 0033 0044 0055 | Juan García Pérez\nES9501120023003400450056 | maria lopez ruiz\nES68 0213 0024 0035 0046 0057 | Carlos Martines Soler\nES41 0314 0025 0036 0047 0058;CANDAYA BUSINESS SL\nES14 0415 0026 0037 0048 0059\tHealth and Training 2024 S.L.\nES84 0516 0027 0038 0049 0060 | Daniel Cuevas Porras\nSE70 0617 0028 0039 0050 0061 | AutoTech By Sikstrom AB\nES85 0999 0099 0099 0099 0099 | Mario Torres\nES95 0112 0023 0034 0045 0056 | Pedro Fernández\n",
+ "texto_comprobar": "# ORIVEXY Verify - fichero de comprobación (DATOS FICTICIOS)\n# Formato: IBAN | Titular\nES25 0011 0022 0033 0044 0055 | Juan García Pérez\nES9501120023003400450056 | maria lopez ruiz\nES68 0213 0024 0035 0046 0057 | Carlos Martines Soler\nES41 0314 0025 0036 0047 0058;FICTICIA ALFA SL\nES14 0415 0026 0037 0048 0059\tFicticia Beta 2024 S.L.\nES84 0516 0027 0038 0049 0060 | Daniel Ejemplo Ficticio\nSE70 0617 0028 0039 0050 0061 | Ficticia By Lindqvarn AB\nES85 0999 0099 0099 0099 0099 | Mario Torres\nES95 0112 0023 0034 0045 0056 | Pedro Fernández\n",
  "registros_referencia": 7,
  "motor": "Red neuronal (ONNX Runtime)",
  "lineas": [
@@ -31,32 +31,32 @@ window.ORIVEXY_DEMO = {
   },
   {
    "iban": "ES41 0314 0025 0036 0047 0058",
-   "titular": "CANDAYA BUSINESS SL",
-   "certificado": "Candaya Business, S.l.",
+   "titular": "FICTICIA ALFA SL",
+   "certificado": "Ficticia Alfa, S.l.",
    "estado": "ok",
    "origen": "datos_comprobar_ficticios.txt · línea 6",
    "nota": "Coincide · sólo cambia la puntuación o el S.L."
   },
   {
    "iban": "ES14 0415 0026 0037 0048 0059",
-   "titular": "Health and Training 2024 S.L.",
-   "certificado": "HEALTH AND TRAINING 2024 SL",
+   "titular": "Ficticia Beta 2024 S.L.",
+   "certificado": "FICTICIA BETA 2024 SL",
    "estado": "ok",
    "origen": "datos_comprobar_ficticios.txt · línea 7",
    "nota": "Coincide · sólo cambia la puntuación o el S.L."
   },
   {
    "iban": "ES84 0516 0027 0038 0049 0060",
-   "titular": "Daniel Cuevas Porras",
-   "certificado": "CUEVAS PORRAS, DANIEL",
+   "titular": "Daniel Ejemplo Ficticio",
+   "certificado": "EJEMPLO FICTICIO, DANIEL",
    "estado": "ok",
    "origen": "datos_comprobar_ficticios.txt · línea 8",
    "nota": "Coincide · nombre y apellidos en otro orden"
   },
   {
    "iban": "SE70 0617 0028 0039 0050 0061",
-   "titular": "AutoTech By Sikstrom AB",
-   "certificado": "AutoTech By Sikström AB",
+   "titular": "Ficticia By Lindqvarn AB",
+   "certificado": "Ficticia By Lindqvärn AB",
    "estado": "ok",
    "origen": "datos_comprobar_ficticios.txt · línea 9",
    "nota": "Coincide exactamente"

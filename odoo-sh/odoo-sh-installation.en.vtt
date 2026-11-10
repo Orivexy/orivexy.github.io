@@ -1,0 +1,441 @@
+WEBVTT
+
+1
+00:00:00.150 --> 00:00:07.161
+Hi. In this tutorial you will install ORIVEXY
+Verify on Odoo.sh, step by step, and
+
+2
+00:00:07.161 --> 00:00:11.094
+leave it working with a first
+test validation.
+
+3
+00:00:11.550 --> 00:00:16.587
+Before you pay, ORIVEXY Verify checks that every
+IBAN in your payment batch belongs
+
+4
+00:00:16.587 --> 00:00:21.623
+to who it says. It cross-checks it with the
+account ownership certificate your bank
+
+5
+00:00:21.623 --> 00:00:22.230
+gives you.
+
+6
+00:00:22.683 --> 00:00:28.352
+It tells you which payments are correct, which go
+to someone else and which accounts
+
+7
+00:00:28.352 --> 00:00:33.617
+are not in the certificate. Everything runs
+inside your own Odoo: no bank data
+
+8
+00:00:33.617 --> 00:00:34.899
+leaves your server.
+
+9
+00:00:35.350 --> 00:00:40.676
+Before you start you need three things: an
+Odoo.sh project with administrator
+
+10
+00:00:40.676 --> 00:00:46.348
+rights, access to the project's GitHub
+repository, and ORIVEXY Verify purchased on
+
+11
+00:00:46.348 --> 00:00:50.014
+Odoo Apps, for the same Odoo
+version as your project.
+
+12
+00:00:50.450 --> 00:00:53.162
+Part two: preparation.
+
+13
+00:00:53.617 --> 00:00:59.459
+Find ORIVEXY Verify on Odoo Apps and choose
+your Odoo version. It is a one-time
+
+14
+00:00:59.459 --> 00:01:05.671
+payment per version. After the purchase, Odoo
+Apps lets you download the module as a
+
+15
+00:01:05.671 --> 00:01:06.337
+ZIP file.
+
+16
+00:01:06.783 --> 00:01:13.715
+Inside the ZIP there is a folder,
+orivexy_validator, which is the module. Inside it,
+
+17
+00:01:13.715 --> 00:01:18.831
+the requirements.txt file lists the
+Python libraries it needs.
+
+18
+00:01:19.283 --> 00:01:26.232
+Your Odoo.sh project keeps its modules in a
+GitHub repository. If you don't have a
+
+19
+00:01:26.232 --> 00:01:30.299
+project yet, go to odoo.sh and
+press Create New.
+
+20
+00:01:30.750 --> 00:01:35.988
+There you choose the repository, the Odoo
+version and your Odoo Enterprise
+
+21
+00:01:35.988 --> 00:01:41.862
+subscription code, and press Deploy. If you
+already have a project, skip this step.
+
+22
+00:01:42.317 --> 00:01:47.153
+Now, in a copy of the repository, create
+a test branch and copy the
+
+23
+00:01:47.153 --> 00:01:51.845
+orivexy_validator folder to the root,
+next to your other modules.
+
+24
+00:01:52.283 --> 00:01:58.307
+Add its libraries to the repository's
+requirements.txt, the one Odoo.sh reads, and
+
+25
+00:01:58.307 --> 00:02:04.477
+push the branch to GitHub. If you don't use the
+terminal, you can do the same on the
+
+26
+00:02:04.477 --> 00:02:05.579
+GitHub website.
+
+27
+00:02:06.017 --> 00:02:08.777
+Part three: installation.
+
+28
+00:02:09.217 --> 00:02:16.276
+In your Odoo.sh project, open the Branches tab:
+the new branch shows up on its own.
+
+29
+00:02:16.276 --> 00:02:23.250
+Drag it to Staging. Odoo.sh will copy your
+database and build the branch, with the
+
+30
+00:02:23.250 --> 00:02:25.801
+libraries in requirements.txt.
+
+31
+00:02:26.250 --> 00:02:33.659
+When the build is green, press Connect to open
+the test database. From here on, what
+
+32
+00:02:33.659 --> 00:02:36.570
+you see is real Odoo, version 18.
+
+33
+00:02:37.017 --> 00:02:44.289
+First, activate developer mode. Open the
+apps menu and go to Settings.
+
+34
+00:02:44.750 --> 00:02:49.478
+Scroll to the bottom of the page and press
+Activate the developer mode.
+
+35
+00:02:52.083 --> 00:02:59.094
+Now go to Apps and press Update Apps List, so
+Odoo finds the modules in the new
+
+36
+00:02:59.094 --> 00:02:59.715
+branch.
+
+37
+00:03:00.150 --> 00:03:03.150
+Type ORIVEXY in the search box.
+
+38
+00:03:03.617 --> 00:03:10.529
+There is ORIVEXY Verify. Press Activate and
+wait a few seconds while it installs.
+
+39
+00:03:10.983 --> 00:03:18.138
+When it finishes, Odoo reloads the page.
+ORIVEXY Verify now appears in the apps
+
+40
+00:03:18.138 --> 00:03:18.591
+menu.
+
+41
+00:03:19.050 --> 00:03:22.194
+Part four: initial setup.
+
+42
+00:03:22.650 --> 00:03:28.718
+ORIVEXY Verify works as soon as it is installed;
+you only decide who sees what. Each
+
+43
+00:03:28.718 --> 00:03:34.207
+internal user sees their own validations. A
+manager sees everyone's in their
+
+44
+00:03:34.207 --> 00:03:37.458
+company, without being an
+Odoo administrator.
+
+45
+00:03:37.917 --> 00:03:44.244
+To make someone a manager, go to Settings,
+Users and Companies, Users, and open
+
+46
+00:03:44.244 --> 00:03:45.285
+their record.
+
+47
+00:03:45.750 --> 00:03:52.926
+With developer mode on, under Access Rights tick
+ORIVEXY Verify: Manager, and save.
+
+48
+00:03:53.383 --> 00:03:58.418
+If you work with several companies, each
+validation is stored in its own company,
+
+49
+00:03:58.418 --> 00:04:02.335
+and each user only sees those of the
+companies they can access.
+
+50
+00:04:02.783 --> 00:04:07.833
+There is no licence to activate: the one-time
+Odoo Apps payment covers the module
+
+51
+00:04:07.833 --> 00:04:13.071
+and the desktop app. There are no integrations to
+set up either, because it does not
+
+52
+00:04:13.071 --> 00:04:14.879
+connect to external services.
+
+53
+00:04:15.317 --> 00:04:22.406
+One detail: scanned certificates need text
+recognition, which Odoo.sh does not
+
+54
+00:04:22.406 --> 00:04:29.405
+include. For those, use the bank's text PDF,
+the SEPA XML or the desktop app.
+
+55
+00:04:29.850 --> 00:04:34.999
+The desktop app is downloaded from the module
+itself, under ORIVEXY Verify, Desktop
+
+56
+00:04:34.999 --> 00:04:38.970
+app, for anyone who prefers to work
+with the files outside Odoo.
+
+57
+00:04:39.417 --> 00:04:43.977
+Part five: a test validation,
+with fictitious data.
+
+58
+00:04:44.417 --> 00:04:52.329
+Open ORIVEXY Verify. Validations will list all
+your checks; the first time, the list
+
+59
+00:04:52.329 --> 00:04:53.177
+is empty.
+
+60
+00:04:53.617 --> 00:05:01.172
+Press New. Under Certificate, upload the bank's
+account ownership certificate, as a
+
+61
+00:05:01.172 --> 00:05:08.545
+PDF or SEPA XML. Under File to check, upload
+your payment batch: TXT, CSV or XML.
+
+62
+00:05:08.983 --> 00:05:14.935
+Press VALIDATE. In a couple of seconds you
+have the result for every payment.
+
+63
+00:05:15.383 --> 00:05:20.830
+At the top is the summary: nine payments, six
+correct, two in another holder's name
+
+64
+00:05:20.830 --> 00:05:23.783
+and one whose IBAN is not in
+the certificate.
+
+65
+00:05:24.250 --> 00:05:29.532
+Below, each row shows the holder in your batch,
+the one in the certificate and the
+
+66
+00:05:29.532 --> 00:05:31.786
+result, with a note explaining why.
+
+67
+00:05:32.250 --> 00:05:37.137
+Look at the payment to Pedro Fernández: the
+IBAN is in the certificate, but it
+
+68
+00:05:37.137 --> 00:05:42.212
+belongs to María López. That payment should not
+go out without confirming it with
+
+69
+00:05:42.212 --> 00:05:43.026
+the supplier.
+
+70
+00:05:43.483 --> 00:05:48.019
+With View discrepancies you keep
+only what needs attention.
+
+71
+00:05:48.483 --> 00:05:54.658
+Open a row and press Start review. Write what
+you checked and resolve it: the note
+
+72
+00:05:54.658 --> 00:05:58.875
+is required and is recorded with
+your name and the date.
+
+73
+00:05:59.683 --> 00:06:06.720
+From the validation you can print the PDF
+report, with masked IBANs, or export the
+
+74
+00:06:06.720 --> 00:06:08.779
+results to Excel or CSV.
+
+75
+00:06:09.217 --> 00:06:16.896
+This is how to read the results. Correct:
+nothing to do. Wrong holder: hold the
+
+76
+00:06:16.896 --> 00:06:22.825
+payment and check it. Manual review:
+you decide, with a note.
+
+77
+00:06:23.283 --> 00:06:29.990
+IBAN not found: its certificate is missing.
+And invalid IBAN: the number is
+
+78
+00:06:29.990 --> 00:06:30.795
+mistyped.
+
+79
+00:06:31.250 --> 00:06:34.274
+Part six: final check.
+
+80
+00:06:34.717 --> 00:06:39.942
+The installation is complete if ORIVEXY
+Verify appears in the menu, a test
+
+81
+00:06:39.942 --> 00:06:45.661
+validation ends with results, and a regular
+user only sees their own validations.
+
+82
+00:06:46.117 --> 00:06:51.996
+The most common errors are quick to fix. If it
+does not appear in Apps, check that
+
+83
+00:06:51.996 --> 00:06:57.731
+the folder is at the root of the branch and
+update the list. If the build fails,
+
+84
+00:06:57.731 --> 00:07:02.965
+look at its logs: it is almost always a
+missing line in requirements.txt.
+
+85
+00:07:03.417 --> 00:07:08.965
+If a certificate cannot be read, it is probably
+a scanned image. And if a manager
+
+86
+00:07:08.965 --> 00:07:14.649
+cannot see other people's validations, check
+their access right on the user record.
+
+87
+00:07:15.083 --> 00:07:20.812
+Always test in Staging. When everything is
+right, merge the branch into production
+
+88
+00:07:20.812 --> 00:07:25.283
+and, in that database, install the
+module just as you have seen.
+
+89
+00:07:25.717 --> 00:07:31.387
+To update to a new version, replace the folder
+with the one from the new ZIP, push
+
+90
+00:07:31.387 --> 00:07:34.429
+the change and upgrade the
+module from Apps.
+
+91
+00:07:34.883 --> 00:07:41.976
+And that's it: ORIVEXY Verify installed and
+working on Odoo.sh. If you need help,
+
+92
+00:07:41.976 --> 00:07:47.843
+write to us from the module page on Odoo
+Apps. Thanks for watching.
