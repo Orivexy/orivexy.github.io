@@ -9,7 +9,7 @@ Módulo de Odoo (15 a 20) y app de escritorio para Windows, macOS y Linux. Todo 
 - Web (ES): <https://orivexy.github.io/>
 - Web (EN): <https://orivexy.github.io/en/>
 - Live demo: <https://orivexy.github.io/demo/>
-- Odoo module on Odoo Apps (€29 one-time per Odoo version): <https://apps.odoo.com/apps/modules/20.0/orivexy_validator>
-- Desktop app (Windows): €29/month · [Privacy](https://orivexy.github.io/privacy.html) · [Terms](https://orivexy.github.io/terms.html)
+- Odoo module on Odoo Apps (€249 one-time per Odoo version): <https://apps.odoo.com/apps/modules/20.0/orivexy_validator>
+- Desktop app (Windows): €249 one-time · [Privacy](https://orivexy.github.io/privacy.html) · [Terms](https://orivexy.github.io/terms.html)
 
 ![ORIVEXY Verify](img/banner_en.gif)
