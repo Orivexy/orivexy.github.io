@@ -3,95 +3,229 @@
 <head>
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1">
-<title>ORIVEXY Verify</title>
-<meta name="description" content="Before paying, check that every IBAN in your payment batch belongs to the right account holder by matching it against the bank certificate. Odoo 15–20 module and desktop app. 100% local.">
+<title>ORIVEXY Verify · Check IBAN and account holder before you pay</title>
+<meta name="description" content="Before you pay, ORIVEXY Verify matches every IBAN in your payment batch against the bank&#x27;s account ownership certificate and tells you which payments go to someone else. Odoo 15–20 module and desktop app. €249 one-time. Fully local.">
 <link rel="canonical" href="https://orivexy.com/">
+<link rel="alternate" hreflang="en" href="https://orivexy.com/">
 <link rel="alternate" hreflang="es" href="https://orivexy.com/es/">
 <link rel="alternate" hreflang="ca" href="https://orivexy.com/ca/">
-<link rel="alternate" hreflang="en" href="https://orivexy.com/">
 <link rel="alternate" hreflang="x-default" href="https://orivexy.com/">
 <meta property="og:type" content="website">
-<meta property="og:title" content="ORIVEXY Verify · IBAN & account holder verification">
-<meta property="og:description" content="Before paying, check that every IBAN in your payment batch belongs to the right account holder by matching it against the bank certificate. Odoo 15–20 module and desktop app. 100% local.">
-<meta property="og:image" content="https://orivexy.com/es/img/portada_en.png">
+<meta property="og:locale" content="en_GB">
+<meta property="og:title" content="ORIVEXY Verify · Check IBAN and account holder before you pay">
+<meta property="og:description" content="Before you pay, ORIVEXY Verify matches every IBAN in your payment batch against the bank&#x27;s account ownership certificate and tells you which payments go to someone else. Odoo 15–20 module and desktop app. €249 one-time. Fully local.">
+<meta property="og:image" content="https://orivexy.com/img/web-resultados-odoo.jpg">
 <meta property="og:url" content="https://orivexy.com/">
 <meta name="twitter:card" content="summary_large_image">
-<meta name="keywords" content="IBAN, SEPA, Odoo, account holder verification, verificación de titular, remesas, pagos, fraude, bank certificate">
-<script type="application/ld+json">{"@context": "https://schema.org", "@type": "SoftwareApplication", "name": "ORIVEXY Verify", "applicationCategory": "BusinessApplication", "operatingSystem": "Odoo 15, 16, 17, 18, 19, 20; Windows", "description": "Before paying, check that every IBAN in your payment batch belongs to the right account holder by matching it against the bank certificate. Odoo 15–20 module and desktop app. 100% local.", "inLanguage": "en", "url": "https://orivexy.com/", "image": "https://orivexy.com/es/img/banner.gif", "softwareVersion": "0.1", "author": {"@type": "Person", "name": "Eric Muñiz Genebriera"}, "offers": {"@type": "Offer", "price": "249.00", "priceCurrency": "EUR", "url": "https://apps.odoo.com/apps/modules/20.0/orivexy_validator", "availability": "https://schema.org/InStock"}}</script>
-<link rel="icon" href="demo/logo.png">
-<style>
-  :root { --fondo: #F8F9FB; --caja: #FFFFFF; --borde: #E0E4EC; --texto: #1F2433; --suave: #5C6678; --azul: #714B67; --boton: #714B67; --verde: #168F90; }
-  * { box-sizing: border-box; }
-  body { margin: 0; background: var(--fondo); color: var(--texto); font-family: "Segoe UI", Roboto, Helvetica, Arial, sans-serif; line-height: 1.6; }
-  main { max-width: 1080px; margin: 0 auto; padding: 32px 16px 56px; }
-  header { display: flex; align-items: center; gap: 12px; }
-  header img { width: 44px; height: 44px; border-radius: 10px; }
-  header b { font-size: 20px; }
-  .hero { text-align: center; padding: 48px 0 20px; }
-  h1 { font-size: clamp(32px, 5vw, 52px); line-height: 1.12; margin: 0; }
-  h1 span { color: var(--azul); }
-  .sub { max-width: 720px; margin: 16px auto 0; color: var(--suave); font-size: 19px; }
-  .botones { margin-top: 26px; display: flex; gap: 12px; justify-content: center; flex-wrap: wrap; }
-  .btn { display: inline-block; padding: 14px 28px; border-radius: 30px; font-weight: 700; text-decoration: none; font-size: 17px; }
-  .btn.principal { background: var(--boton); color: #fff; }
-  .btn.secundario { border: 1px solid var(--borde); color: var(--texto); }
-  .precio { margin-top: 14px; color: var(--verde); font-weight: 700; }
-  .portada { display: block; width: 100%; max-width: 960px; margin: 34px auto 0; border-radius: 14px; border: 1px solid var(--borde); }
-  .rejilla { display: grid; grid-template-columns: repeat(auto-fit, minmax(230px, 1fr)); gap: 14px; margin-top: 40px; }
-  .caja { background: var(--caja); border: 1px solid var(--borde); border-radius: 16px; padding: 22px; }
-  .caja h2 { font-size: 18px; margin: 0 0 6px; }
-  .caja p { margin: 0; color: var(--suave); }
-  .capturas { display: grid; grid-template-columns: repeat(auto-fit, minmax(300px, 1fr)); gap: 14px; margin-top: 40px; }
-  .capturas img { width: 100%; border-radius: 12px; border: 1px solid var(--borde); }
-  footer { margin-top: 48px; text-align: center; color: var(--suave); font-size: 14px; }
-  footer a { color: var(--azul); }
-  /* Formas planas en las esquinas, como en la ficha de Odoo Apps. */
-  body::before, body::after { content: ""; position: fixed; z-index: -1; pointer-events: none; opacity: .22; }
-  body::before { top: -120px; right: -120px; width: 300px; height: 300px; border-radius: 50%; background: linear-gradient(90deg, #e75470 50%, #fbb945 50%); }
-  body::after { bottom: -90px; left: -90px; width: 220px; height: 220px; border-radius: 48px; background: #21b6b7; }
-  .caja { box-shadow: 0 6px 20px rgba(31,36,51,.05); }
-  .portada, .capturas img { box-shadow: 0 12px 34px rgba(31,36,51,.10); }
-  .btn.principal:hover { background: #5b3b53; }
-  .btn.secundario { background: #fff; }
-  .idiomas { margin-left: auto; display: flex; gap: 4px; }
-  .idiomas a { padding: 4px 10px; border-radius: 14px; color: var(--azul); text-decoration: none; font-weight: 700; font-size: 14px; }
-  .idiomas a[aria-current] { background: var(--azul); color: #fff; }
-</style>
+<meta name="theme-color" content="#0f2747">
+<link rel="icon" href="img/web-simbolo.svg" type="image/svg+xml">
+<link rel="preload" href="assets/fonts/stack-sans-text-latin.woff2" as="font" type="font/woff2" crossorigin>
+<link rel="preload" href="assets/fonts/stack-sans-headline-latin.woff2" as="font" type="font/woff2" crossorigin>
+<link rel="stylesheet" href="assets/web.css?v=bbdf2fa3">
+<script>document.documentElement.classList.add('js')</script>
+<script type="application/ld+json">{"@context": "https://schema.org", "@type": "SoftwareApplication", "name": "ORIVEXY Verify", "applicationCategory": "BusinessApplication", "operatingSystem": "Odoo 15–20; Windows", "description": "Before you pay, ORIVEXY Verify matches every IBAN in your payment batch against the bank's account ownership certificate and tells you which payments go to someone else. Odoo 15–20 module and desktop app. €249 one-time. Fully local.", "inLanguage": "en", "url": "https://orivexy.com/", "image": "https://orivexy.com/img/web-resultados-odoo.jpg", "author": {"@type": "Person", "name": "Eric Muñiz Genebriera"}, "offers": {"@type": "Offer", "price": "249.00", "priceCurrency": "EUR", "url": "https://apps.odoo.com/apps/modules/18.0/orivexy_validator", "availability": "https://schema.org/InStock"}}</script>
 </head>
 <body>
 <main>
-  <header><img src="demo/logo.png" alt="ORIVEXY Verify logo"><b>ORIVEXY Verify</b><nav class="idiomas" aria-label="Idioma"><a href="es/" lang="es">ES</a><a href="ca/" lang="ca">CA</a><a href="./" lang="en" aria-current="page">EN</a></nav></header>
-
-  <section class="hero">
-    <h1>Before you pay, <span>check that every IBAN</span> belongs to the right person</h1>
-    <p class="sub">ORIVEXY Verify matches your payment batch against the bank's account ownership certificate and tells you, payment by payment, whether the account is correct, belongs to someone else or is missing.</p>
-    <div class="botones">
-      <a class="btn principal" href="https://apps.odoo.com/apps/modules/20.0/orivexy_validator">Get it on Odoo Apps</a>
-      <a class="btn secundario" href="demo/">Try the live demo</a>
+<section class="hero" aria-labelledby="titulo">
+  <div class="hero__stage">
+    <header class="top">
+      <a class="brand" href="./"><img src="img/web-simbolo.svg" width="30" height="30" alt="">ORIVEXY Verify</a>
+      <nav aria-label="How it works"><a class="link " href="#how">How it works</a><a class="link opt" href="#payments">Payments</a><a class="link opt2" href="#price">Price</a><span class="langs"><a href="es/" lang="es" hreflang="es">ES</a><a href="ca/" lang="ca" hreflang="ca">CA</a><a href="./" lang="en" hreflang="en" aria-current="page">EN</a></span><a class="button button--small" href="demo/">Try the demo</a></nav>
+    </header>
+    <div class="hero__body">
+      <h1 class="hero__title" id="titulo"><span class="hero__a" data-rise>A valid IBAN,</span> <span class="hero__b" data-rise style="--d:2">someone else&#x27;s</span></h1>
+      <div class="reel" role="group" aria-label="Four views of ORIVEXY Verify">
+    <div class="reel__track">
+    <div class="reel__frame is-far"><img src="img/web-reel-certificado.jpg" width="1008" height="567" alt="Fictitious account ownership certificate with three accounts"></div>
+    <div class="reel__frame reel__frame--live" data-ui>
+      <div class="ui-card result-frame">
+        <div class="result-frame__top"><span>Payment 3 of 9 · Tuesday&#x27;s batch</span><span>ORIVEXY Verify</span></div>
+        <div class="result-frame__pair">
+          <div><span class="ui-label">In your batch</span><strong>Ficticia Beta 2024 SL</strong><span class="iban">ES25 0011 0022 0033 0044 0055</span></div>
+          <div><span class="ui-label">In the bank certificate</span><strong>Gamma Servicios Ficticios SA</strong><span class="iban">ES25 0011 0022 0033 0044 0055</span></div>
+        </div>
+        <div class="result-frame__note"><span class="badge badge--other">DIFFERENT HOLDER</span><span>The IBAN is in the certificate, but in another company&#x27;s name.</span></div>
+      </div>
     </div>
-    <p class="precio"><b>Desktop app (Windows):</b> Individual €249 one-time, never expires (key by email) · Company/team €249 per user, one-time, never expires · <b>Odoo module:</b> €249 one-time per Odoo version, sold on Odoo Apps</p>
-    <img class="portada" src="img/banner_en.gif" alt="Animated demo of an ORIVEXY Verify validation">
-  </section>
-
-  <section class="rejilla">
-    <div class="caja"><h2>🏦 Against the bank certificate</h2><p>Finds every IBAN in the certificate (PDF, scanned or SEPA XML) and compares the account holder.</p></div>
-    <div class="caja"><h2>🧠 Understands names, with limits</h2><p>Capitals, accents, punctuation, “S.L.” vs “SL” and word order are ignored only when exactly the same words appear. A different or missing surname is flagged, and doubtful cases go to manual review. Always confirm before paying.</p></div>
-    <div class="caja"><h2>🔒 Validation is 100% local</h2><p>IBANs, names and files are processed only on your computer or Odoo server. The desktop app connects to the internet only to sign in and check your plan (email and plan, never banking data). The Odoo module makes no external calls.</p></div>
-    <div class="caja"><h2>⚡ One click</h2><p>Attach two files, press VALIDATE and export to CSV or Excel.</p></div>
-  </section>
-
-  <section class="capturas">
-    <img src="img/odoo_resultados.png" alt="Validation results in Odoo">
-    <img src="img/escritorio_claro.png" alt="ORIVEXY Verify desktop app">
-  </section>
-
-  <div class="notas" style="text-align:center;color:#9FB1C6;margin-top:28px;line-height:1.6">
-    <p>It compares against the certificate you provide: it does not ask the bank, does not prove that an account exists or is active, and does not block payments.</p>
-    <p>Odoo versions: <a href="https://apps.odoo.com/apps/modules/15.0/orivexy_validator">15</a> · <a href="https://apps.odoo.com/apps/modules/16.0/orivexy_validator">16</a> · <a href="https://apps.odoo.com/apps/modules/17.0/orivexy_validator">17</a> · <a href="https://apps.odoo.com/apps/modules/20.0/orivexy_validator">18</a> · <a href="https://apps.odoo.com/apps/modules/19.0/orivexy_validator">19</a> · <a href="https://apps.odoo.com/apps/modules/20.0/orivexy_validator">20</a>. Earlier versions were tested on live Odoo 17, 18 and 19; the current version (0.1.5) has passed automated checks only.</p>
-    <p>Languages: Odoo module interface in English (result notes in Spanish) · desktop app in Spanish. IBAN checks for the 85 IBAN countries; certificates read in 9 languages.</p>
-    <p>ORIVEXY Verify was previously called ORIVEXY Validator; its technical name in Odoo is <code>orivexy_validator</code>.</p>
+    <div class="reel__frame is-far"><img src="img/web-reel-odoo.jpg" width="1008" height="567" alt="Validation results in Odoo, with fictitious data"></div>
+    <div class="reel__frame is-far"><img src="img/web-reel-escritorio.jpg" width="1008" height="567" alt="ORIVEXY Verify desktop app with the results of a fictitious batch"></div>
+    <div class="reel__frame is-far"><video src="img/web-clip-validacion.mp4" poster="img/web-clip-validacion.jpg" muted loop playsinline preload="metadata" aria-label="A validation in Odoo, from the installation video"></video></div>
+    </div>
   </div>
-  <footer>ORIVEXY Verify 0.1.5 · Developer: Eric Muñiz Genebriera (individual, Spain) · <a href="mailto:ericmunizgeneb@gmail.com">ericmunizgeneb@gmail.com</a> · <a href="privacy.html">Privacy</a> · <a href="terms.html">Terms</a></footer>
+      <div class="hero__foot">
+        <p class="hero__sub" data-rise style="--d:3">ORIVEXY Verify matches every payment in your batch against the bank&#x27;s account ownership certificate and tells you, before you pay, which ones go to the right person. Odoo 15–20 module and desktop app: €249, one-time.</p>
+        <div class="hero__actions" data-rise style="--d:4"><a class="button" href="demo/">Try the demo</a><a class="link" href="https://apps.odoo.com/apps/modules/18.0/orivexy_validator">See it on Odoo Apps</a></div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<section class="wrap section" aria-labelledby="intro-t">
+  <h2 class="intro__title" id="intro-t" data-reveal>What it does</h2>
+  <div class="grid">
+    <p class="intro__lead" data-reveal style="--d:1">Before you send a payment batch, ORIVEXY Verify looks up every IBAN in the bank&#x27;s ownership certificate and compares the holder&#x27;s name. It tells you which payments are correct, which go to someone else and which are missing.</p>
+    <div class="intro__cols"><p data-reveal style="--d:2"><b>Who it is for.</b> Anyone who pays suppliers from Odoo or prepares SEPA batches: accounts, treasury, administration. Also for accounting firms that check their clients&#x27; batches with the desktop app, without Odoo.</p><p data-reveal style="--d:3"><b>What it checks.</b> That the IBAN is valid (85 countries, length and check digits), that it is in the certificate and that the holder matches. Accents, capitals and &quot;S.L.&quot; versus &quot;SL&quot; do not count; a different surname does. It also warns when an IBAN repeats in the batch.</p><p data-reveal style="--d:4"><b>Where.</b> Inside your Odoo, on your server or Odoo.sh, or on your computer with the app. IBANs, names and files never leave your installation: the module calls no external service.</p><p data-reveal style="--d:5"><b>How to start.</b> Try the demo in your browser, with fictitious data and no sign-up. Then buy the module on Odoo Apps for your Odoo version, or ask for the desktop app by email.</p></div>
+  </div>
+</section>
+
+<section class="wrap section how" id="how" aria-labelledby="how-t">
+  <div class="how__inner">
+    <h2 class="head how__title" id="how-t" data-reveal>Two files and a button</h2>
+    <div class="how__step" data-reveal>
+      <p class="how__say">First, the bank certificate.</p>
+      <div class="how__call" data-ui><div class="file-chip"><span class="file-chip__icon">PDF</span><span><strong>ownership_certificate_beta.pdf</strong><br><span class="ui-label">PDF, scanned PDF or SEPA XML</span></span></div></div>
+      <div class="how__resp" data-ui><div class="ui-card read-list"><div class="read-list__head"><span>3 accounts read</span><span class="badge badge--ok">OK</span></div><div class="read-list__row"><span class="iban">ES14 0415 0026 0037 0048 0059</span><span>Ficticia Beta 2024 SL</span></div><div class="read-list__row"><span class="iban">ES41 0314 0025 0036 0047 0058</span><span>Ficticia Alfa SL</span></div><div class="read-list__row"><span class="iban">ES68 0213 0024 0035 0046 0057</span><span>Carlos Martínez Soler</span></div></div></div>
+    </div>
+    <div class="how__step" data-reveal>
+      <p class="how__say">Then, the batch you are about to pay.</p>
+      <div class="how__call" data-ui><pre class="batch-lines" aria-label="TXT, CSV or SEPA XML pain.001 / pain.008">IBAN | Holder
+ES14 0415 0026 0037 0048 0059 | FICTICIA BETA 2024, S.L.
+ES41 0314 0025 0036 0047 0058 | Ficticia Alfa SA
+ES68 0213 0024 0035 0046 0057 | Carlos Martín Soler
+ES85 0999 0099 0099 0099 0099 | Mario Torres Ficticio
+ES95 0112 0023 0034 0045 0057 | María López Ruiz</pre><span class="ui-label">TXT, CSV or SEPA XML pain.001 / pain.008</span></div>
+      <div class="how__resp" data-ui><div class="ui-card read-list"><div class="read-list__head"><span>5 payments read</span><span class="badge badge--ok">OK</span></div></div></div>
+    </div>
+    <div class="how__step how__step--wide" data-reveal>
+      <p class="how__say">And press VALIDATE.</p>
+      <div class="how__call" data-ui><span class="validate-btn">VALIDATE</span></div>
+      <div class="how__resp" data-ui><div class="ui-card results"><table><thead><tr><th scope="col">IBAN</th><th scope="col">In your batch</th><th scope="col">In the certificate</th><th scope="col">Result</th><th scope="col">Note</th></tr></thead><tbody><tr><td class="iban">ES14 0415 0026 0037 0048 0059</td><td>FICTICIA BETA 2024, S.L.</td><td>Ficticia Beta 2024 SL</td><td><span class="badge badge--ok">CORRECT</span></td><td>Only punctuation and &quot;S.L.&quot; differ</td></tr><tr><td class="iban">ES41 0314 0025 0036 0047 0058</td><td>Ficticia Alfa SA</td><td>Ficticia Alfa SL</td><td><span class="badge badge--review">MANUAL REVIEW</span></td><td>Another legal form: a person decides</td></tr><tr><td class="iban">ES68 0213 0024 0035 0046 0057</td><td>Carlos Martín Soler</td><td>Carlos Martínez Soler</td><td><span class="badge badge--other">DIFFERENT HOLDER</span></td><td>Does not match the certificate holder</td></tr><tr><td class="iban">ES85 0999 0099 0099 0099 0099</td><td>Mario Torres Ficticio</td><td>—</td><td><span class="badge badge--missing">IBAN NOT FOUND</span></td><td>Not in any certificate</td></tr><tr><td class="iban">ES95 0112 0023 0034 0045 0057</td><td>María López Ruiz</td><td>—</td><td><span class="badge badge--invalid">INVALID IBAN</span></td><td>The check digits are wrong</td></tr></tbody></table><div class="results__counts ui-label">1 correct · 1 in review · 1 different holder · 1 without certificate · 1 invalid</div></div></div>
+    </div>
+  </div>
+</section>
+
+<section class="wrap section grid" aria-labelledby="states-t">
+  <h2 class="head states__title" id="states-t" data-reveal>A person decides the doubtful ones</h2>
+  
+    <div class="states__row" data-reveal>
+      <p class="states__word">Pending</p>
+      <div class="states__copy" data-ui><div class="ui-card review-row">
+        <div class="review-row__main"><div><span class="ui-label">In your batch</span><strong>Juana Pérez Ficticia</strong><span class="iban ui-label">ES84 0516 0027 0038 0049 0060</span></div><div><span class="ui-label">In the certificate</span><strong>Juan Pérez Ficticio</strong><span class="iban ui-label">ES84 0516 0027 0038 0049 0060</span></div><span><span class="badge badge--review">MANUAL REVIEW</span></span></div>
+        <p class="review-row__log"><span class="badge badge--missing">PENDING</span> &nbsp;Similar name, not identical: Juana and Juan.</p>
+        <div class="review-row__actions"><span class="ui-btn" aria-hidden="true">Start review</span></div>
+      </div></div>
+    </div>
+    <div class="states__row" data-reveal data-review-live>
+      <p class="states__word">In review</p>
+      <div class="states__copy" data-ui><div class="ui-card review-row">
+        <div class="review-row__main"><div><span class="ui-label">In your batch</span><strong>Juana Pérez Ficticia</strong><span class="iban ui-label">ES84 0516 0027 0038 0049 0060</span></div><div><span class="ui-label">In the certificate</span><strong>Juan Pérez Ficticio</strong><span class="iban ui-label">ES84 0516 0027 0038 0049 0060</span></div><span data-review-status class="badge badge--review">IN REVIEW</span></div>
+        <p class="review-row__log">Similar name, not identical: Juana and Juan.</p>
+        <div data-review-actions>
+          <label class="ui-label" for="review-note">What you checked</label>
+          <textarea id="review-note" rows="2">Called the supplier: the account is Juan&#x27;s, not Juana&#x27;s. Holding the payment.</textarea>
+          <div class="review-row__actions" style="margin-top:8px"><button type="button" class="ui-btn" data-resolve>Resolve</button><button type="button" class="ui-btn ui-btn--ghost">Dismiss</button><span class="review-row__log" data-review-msg role="status"></span></div>
+        </div>
+      </div></div>
+    </div>
+    <div class="states__row" data-reveal id="review-done">
+      <p class="states__word">Resolved</p>
+      <div class="states__copy" data-ui><div class="ui-card review-row">
+        <div class="review-row__main"><div><span class="ui-label">In your batch</span><strong>Juana Pérez Ficticia</strong><span class="iban ui-label">ES84 0516 0027 0038 0049 0060</span></div><div><span class="ui-label">In the certificate</span><strong>Juan Pérez Ficticio</strong><span class="iban ui-label">ES84 0516 0027 0038 0049 0060</span></div><span><span class="badge badge--ok">RESOLVED</span></span></div>
+        <p class="review-row__note">Called the supplier: the account is Juan&#x27;s, not Juana&#x27;s. Holding the payment.</p>
+        <p class="review-row__log">Laura · accounts · 11/11/2026 10:42 · kept in the history; the result cannot be edited</p>
+      </div></div>
+    </div>
+</section>
+
+<section class="wrap lab" data-lab aria-labelledby="lab-t">
+  <h2 class="lab__title" id="lab-t" data-reveal>Try how it compares</h2>
+  <div class="lab__field"><div class="ui-card check" data-ui aria-live="polite">
+        <div class="check__head"><span>Payment check</span><span class="ui-label">ORIVEXY Verify</span></div>
+        <div class="check__row"><span class="ui-label">IBAN</span><strong class="iban" data-out="iban">ES14 0415 0026 0037 0048 0059</strong></div>
+        <div class="check__row"><span class="ui-label">Holder in your batch</span><strong data-out="mine">FICTICIA BETA 2024, S.L.</strong></div>
+        <div class="check__row"><span class="ui-label">Holder in the certificate</span><strong data-out="cert">Ficticia Beta 2024 SL</strong></div>
+        <ul class="check__list">
+          <li><span>Format and check digits</span><span data-out="c-format" class="yes">Yes</span></li>
+          <li><span>In the certificate</span><span data-out="c-in" class="yes">Yes</span></li>
+          <li><span>Holder</span><span data-out="c-holder" class="yes">Same after normalising</span></li>
+        </ul>
+        <div class="check__verdict"><span data-out="badge" class="badge badge--ok">CORRECT</span><span class="check__why" data-out="why">Same words: only capitals, accents or punctuation differ.</span></div>
+        <p class="check__foot">Simplified rules for this page. The demo runs the full engine.</p>
+      </div></div>
+  <div class="lab__text">
+    <div class="lab__block" data-reveal><h3>Type the holder as you have it.</h3><p>Capitals, accents, commas and &quot;S.L.&quot; versus &quot;SL&quot; do not count. Word order only stops mattering when the words are exactly the same.</p><div class="lab__control"><label for="lab-holder">Holder in your batch</label><input class="field" id="lab-holder" value="FICTICIA BETA 2024, S.L." autocomplete="off" spellcheck="false"></div></div><div class="lab__block" data-reveal><h3>Change the legal form.</h3><p>S.L. versus S.A. or GmbH is not a detail: it may be another company. It goes to manual review, never to correct.</p><div class="lab__control"><div class="seg" role="group" aria-label="Change the legal form."><button type="button" data-legal="S.L." aria-pressed="false">S.L.</button><button type="button" data-legal="S.A." aria-pressed="false">S.A.</button><button type="button" data-legal="GmbH" aria-pressed="false">GmbH</button></div></div></div><div class="lab__block" data-reveal><h3>Get one digit wrong.</h3><p>A typo breaks the IBAN check digits and is caught before the certificate is even looked at.</p><div class="lab__control"><div class="seg" role="group" aria-label="Get one digit wrong."><button type="button" data-typo="0" aria-pressed="true">Correct IBAN</button><button type="button" data-typo="1" aria-pressed="false">With a typo</button></div></div></div><div class="lab__block" data-reveal><h3>Remove the certificate.</h3><p>If the IBAN is in no certificate, it is not taken as good: ask for the certificate or confirm the account.</p><div class="lab__control"><label class="switch"><input type="checkbox" id="lab-cert" checked> Ficticia Beta certificate loaded</label></div></div>
+  </div>
+</section>
+
+<section class="wrap proof" aria-labelledby="proof-t">
+  <h2 id="proof-t">Installed and tested on</h2>
+  <ul><li><a class="link" href="https://apps.odoo.com/apps/modules/15.0/orivexy_validator">Odoo 15</a></li><li><a class="link" href="https://apps.odoo.com/apps/modules/16.0/orivexy_validator">Odoo 16</a></li><li><a class="link" href="https://apps.odoo.com/apps/modules/17.0/orivexy_validator">Odoo 17</a></li><li><a class="link" href="https://apps.odoo.com/apps/modules/18.0/orivexy_validator">Odoo 18</a></li><li><a class="link" href="https://apps.odoo.com/apps/modules/19.0/orivexy_validator">Odoo 19</a></li><li><a class="link" href="https://apps.odoo.com/apps/modules/20.0/orivexy_validator">Odoo 20</a></li></ul>
+  <p class="proof__note">Tested on Odoo Community of each version: install, validate, upgrade and uninstall. It also works with Enterprise and on Odoo.sh, not yet tested on a real project; not Odoo Online.</p>
+</section>
+
+<section class="wrap section" id="payments" aria-labelledby="pay-t">
+  <div class="pay__head">
+    <h2 class="pay__title" id="pay-t" data-reveal><span class="soft">Payments in Odoo 18:</span><span>two signatures</span></h2>
+    <a class="button button--ink" href="mailto:ericmunizgeneb@gmail.com?subject=Ask%20for%20a%20demo%20%C2%B7%20ORIVEXY%20Verify" data-reveal>Ask for a demo</a>
+  </div>
+  <p class="pay__intro" data-reveal>In pilot. The same check inside the whole payment workflow: tickets, a document repository, two signatures by different people, the SEPA file and an audit trail nobody can edit without it showing. It is installed on a test branch of your Odoo 18 and tried with fictitious data before anything real is touched. Custom price. The example uses fictitious people and data.</p>
+  <div class="pay__body">
+    <div class="pay__tabs" role="tablist" aria-label="two signatures" aria-orientation="vertical"><button class="pay__tab" role="tab" id="tab-l" aria-controls="panel-l" aria-selected="true" tabindex="0"><b>Laura</b><span>Accounts</span></button><button class="pay__tab" role="tab" id="tab-m" aria-controls="panel-m" aria-selected="false" tabindex="-1"><b>Marc</b><span>Validation</span></button><button class="pay__tab" role="tab" id="tab-a" aria-controls="panel-a" aria-selected="false" tabindex="-1"><b>Ana</b><span>Administration</span></button></div>
+    <div><ol class="pay__bands" role="tabpanel" id="panel-l" aria-labelledby="tab-l"><li class="pay__band"><span class="pay__time">09:05</span><span class="pay__what"><b>Prepares Tuesday&#x27;s batch</b><span>12 supplier transfers, imported or created by hand</span></span><span class="avatar avatar--l" aria-hidden="true">L</span></li><li class="pay__band"><span class="pay__time">09:12</span><span class="pay__what"><b>Uploads Ficticia Beta&#x27;s certificate</b><span>The repository reads it, files it and extracts IBAN and holder</span></span><span class="avatar avatar--l" aria-hidden="true">L</span></li><li class="pay__band"><span class="pay__time">09:20</span><span class="pay__what"><b>One payment is blocked</b><span>The certificate does not back the new account and the company requires a certificate to sign</span></span><span class="avatar avatar--l" aria-hidden="true">L</span></li><li class="pay__band"><span class="pay__time">09:31</span><span class="pay__what"><b>Gives the first signature to the 11 correct ones</b><span>What is missing shows in red and stops the ticket</span></span><span class="avatar avatar--l" aria-hidden="true">L</span></li></ol><ol class="pay__bands" role="tabpanel" id="panel-m" aria-labelledby="tab-m" hidden><li class="pay__band"><span class="pay__time">10:02</span><span class="pay__what"><b>Opens the blocked payment&#x27;s ticket</b><span>The green button gathers the supplier&#x27;s documents, tickets and validations</span></span><span class="avatar avatar--m" aria-hidden="true">M</span></li><li class="pay__band"><span class="pay__time">10:10</span><span class="pay__what"><b>Rejects the account change</b><span>An email asked to pay into another bank; the reason is recorded</span></span><span class="avatar avatar--m" aria-hidden="true">M</span></li><li class="pay__band"><span class="pay__time">10:15</span><span class="pay__what"><b>Validates Ficticia Beta&#x27;s certificate</b><span>Only a validator or an administrator can validate or reject documents</span></span><span class="avatar avatar--m" aria-hidden="true">M</span></li></ol><ol class="pay__bands" role="tabpanel" id="panel-a" aria-labelledby="tab-a" hidden><li class="pay__band"><span class="pay__time">11:40</span><span class="pay__what"><b>Gives the second signature</b><span>It must be someone else: whoever signed first cannot sign twice</span></span><span class="avatar avatar--a" aria-hidden="true">A</span></li><li class="pay__band"><span class="pay__time">11:45</span><span class="pay__what"><b>Generates the SEPA file</b><span>Only with what was approved; if someone changes an amount, the signatures stop counting</span></span><span class="avatar avatar--a" aria-hidden="true">A</span></li><li class="pay__band"><span class="pay__time">12:00</span><span class="pay__what"><b>Reviews the audit trail</b><span>Who did what and when, before and after; nobody can edit it without it showing</span></span><span class="avatar avatar--a" aria-hidden="true">A</span></li></ol></div>
+  </div>
+  <div class="pay__shots">
+    <figure data-reveal><img src="img/web-pagos-tablero.jpg" width="1600" height="894" loading="lazy" alt="Payment ticket board in Odoo, with fictitious data"><figcaption>Ticket board: who created it, who it is assigned to, what is missing and the next step.</figcaption></figure>
+    <figure data-reveal style="--d:1"><img src="img/web-pagos-relacionado.jpg" width="1600" height="950" loading="lazy" alt="Panel with everything related to a ticket, with fictitious data"><figcaption>A ticket&#x27;s green button: all related activity, documents and validations.</figcaption></figure>
+  </div>
+</section>
+
+<section class="wrap section" aria-labelledby="inst-t">
+  <div class="inst__head">
+    <h2 class="head" id="inst-t" data-reveal>Install it on Odoo.sh</h2>
+    <p data-reveal style="--d:1">An 8-minute video in Spanish with Spanish, Catalan and English subtitles: from buying on Odoo Apps to your first validation.</p>
+  </div>
+  <div class="inst__tiles"><a class="inst__tile" href="odoo-sh/" data-reveal style="--d:0"><div class="inst__pic"><img src="img/web-instalar-1.jpg" width="960" height="540" loading="lazy" alt="Still from the installation video: Preparation · Download from Odoo Apps"></div><div class="inst__strip"><b>Preparation</b><span>00:50 · Download from Odoo Apps</span></div></a><a class="inst__tile" href="odoo-sh/" data-reveal style="--d:1"><div class="inst__pic"><img src="img/web-instalar-2.jpg" width="960" height="540" loading="lazy" alt="Still from the installation video: Installation · The branch on Odoo.sh"></div><div class="inst__strip"><b>Installation</b><span>02:06 · The branch on Odoo.sh</span></div></a><a class="inst__tile" href="odoo-sh/" data-reveal style="--d:2"><div class="inst__pic"><img src="img/web-instalar-3.jpg" width="960" height="540" loading="lazy" alt="Still from the installation video: Configuration · Who sees what"></div><div class="inst__strip"><b>Configuration</b><span>03:19 · Who sees what</span></div></a><a class="inst__tile" href="odoo-sh/" data-reveal style="--d:3"><div class="inst__pic"><img src="img/web-instalar-4.jpg" width="960" height="540" loading="lazy" alt="Still from the installation video: Demonstration · The first validation"></div><div class="inst__strip"><b>Demonstration</b><span>04:39 · The first validation</span></div></a></div>
+  <div class="inst__more">
+    <div data-reveal><h3>On your own server</h3><ol><li>Copy the orivexy_validator folder into your addons.</li><li>Install the libraries: pip install -r orivexy_validator/requirements.txt</li><li>Turn on developer mode, update the apps list, search &quot;ORIVEXY&quot; and press Activate.</li></ol><p class="small muted" style="margin-top:12px">Scanned PDFs need Tesseract OCR on the server. Odoo.sh does not include it: use the text PDF, the SEPA XML or the app.</p></div>
+    <div data-reveal style="--d:1"><h3>Desktop app on Windows</h3><p>Press Windows + R, paste this command and press Enter. It downloads the official installer and opens it.</p>
+      <div class="code"><pre><code id="cmd">powershell -c "irm https://orivexy.com/instalar.ps1 | iex"</code></pre><button type="button" data-copy="cmd">Copy</button></div>
+      <p style="margin-top:12px"><a class="link" href="instalar.html">More details and the normal download (in Spanish)</a></p></div>
+  </div>
+</section>
+
+<section class="wrap price" id="price" aria-labelledby="price-t">
+  <div class="price__text">
+    <h2 id="price-t">One price, once</h2>
+    <p>No subscription and no expiry. The module is bought on Odoo Apps, once per Odoo version, and comes with the desktop app. The desktop app on its own costs the same, per licence or per user.</p>
+  </div>
+  <div class="price__fig">
+    <p class="price__num nums"><span class="price__cur">€</span><span>249</span><span class="price__per">once</span></p>
+    <img class="price__mark" src="img/web-simbolo.svg" width="100" height="100" alt="">
+    <ul class="price__list"><li>Odoo 15, 16, 17, 18, 19 or 20, Community or Enterprise</li><li>Desktop app included</li><li>No subscription and no expiry</li><li>Bought and downloaded on Odoo Apps</li></ul>
+    <div class="price__actions"><a class="button" href="https://apps.odoo.com/apps/modules/18.0/orivexy_validator">Buy on Odoo Apps</a></div>
+    <p class="price__alt">Only the Windows desktop app? <a class="link" href="mailto:ericmunizgeneb@gmail.com?subject=ORIVEXY%20Verify%20desktop%20app%20licence">Ask for it by email</a>: €249 + VAT, per licence or per user. Payments with two signatures: custom price.</p>
+  </div>
+</section>
+
+<section class="wrap section faq" aria-labelledby="faq-t">
+  <h2 class="faq__title" id="faq-t">Questions</h2>
+  <div class="faq__list"><details name="faq"><summary>Does it replace my bank&#x27;s Verification of Payee?</summary><p>No, it complements it. Since 9 October 2025 euro-area banks must check name and IBAN on euro transfers, but for batch payments a business may opt out of that check. ORIVEXY checks the whole batch before you send it, against the ownership certificate issued by your supplier&#x27;s bank, and keeps a record of what was checked and who decided.</p></details><details name="faq"><summary>What if a name is written differently?</summary><p>Accents, capitals, punctuation and &quot;S.L.&quot; versus &quot;SL&quot; do not count. Word order is ignored only when exactly the same words appear. A different or missing surname is flagged, and doubtful cases go to manual review.</p></details><details name="faq"><summary>Does it ask the bank or block payments?</summary><p>No. It compares your batch with the certificate you provide. It does not query the bank, does not prove that an account exists or is active, nor that the certificate is genuine. The verification module does not block payments: it tells you which ones to review.</p></details><details name="faq"><summary>Which files does it accept?</summary><p>Certificates: text PDF, scanned PDF (with OCR) and SEPA XML. Batches: TXT, CSV, TSV, DAT and SEPA XML pain.001 or pain.008. PDFs up to 64 MB; batches and XML up to 24 MB. In Odoo, results export to PDF, CSV and Excel with IBANs masked; the desktop app exports CSV and Excel.</p></details><details name="faq"><summary>Does it work on Odoo Online?</summary><p>No, because it needs its own Python libraries. It works on Odoo 15, 16, 17, 18, 19 and 20, Community and Enterprise, on your server or on Odoo.sh.</p></details><details name="faq"><summary>Does my data leave the company?</summary><p>No. Everything is processed on your Odoo server or your computer; the module makes no external calls. The desktop app only connects to activate or check the licence (your email) and to look for updates on GitHub; it never sends IBANs, names or files.</p></details><details name="faq"><summary>Which languages?</summary><p>The module and the desktop app are in English, Spanish and Catalan; the module&#x27;s result notes are in Spanish. It reads certificates in 9 languages and validates IBANs of the 85 countries that use them.</p></details><details name="faq"><summary>How do I know it gets it right?</summary><p>Version 0.1.13 was measured on 2,000 synthetic pairs of look-alike names: no false &quot;correct&quot;. The published version passes more than 750 automated tests. Even so, always confirm before you pay.</p></details><details name="faq"><summary>Can I try it first?</summary><p>Yes: the demo runs in your browser with fictitious data, no sign-up. If you want to try it with your own files, write to me and we will test it together on your computer; do not send banking data by email.</p></details></div>
+</section>
+
+<section class="wrap contact" aria-labelledby="contact-t">
+  <div class="contact__inner">
+    <h2 id="contact-t" data-reveal><span class="soft">Want to test a batch?</span>Write to me and we will look.</h2>
+    <form data-contact data-reveal style="--d:1">
+      <label class="sr-only" for="contact-q">Your question and your email</label>
+      <input id="contact-q" name="q" placeholder="Your question and your email" autocomplete="off">
+      <button type="submit" aria-label="Send by email"><svg width="20" height="20" viewBox="0 0 20 20" aria-hidden="true"><path d="M3 10h13M11 4l6 6-6 6" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round"/></svg></button>
+    </form>
+    <p class="contact__hint">Your email program will open with the message ready. Do not include IBANs or banking data.</p>
+    <dl><div><dt>Email</dt><dd><a class="link" href="mailto:ericmunizgeneb@gmail.com">ericmunizgeneb@gmail.com</a></dd></div><div><dt>Odoo Apps</dt><dd><a class="link" href="https://apps.odoo.com/apps/modules/18.0/orivexy_validator">apps.odoo.com · orivexy_validator</a></dd></div><div><dt>From</dt><dd>Spain</dd></div></dl>
+  </div>
+</section>
 </main>
+
+<footer class="foot">
+  <div class="tile tile--say"><p>Check it before you pay.</p><p class="foot__legal">© 2026 ORIVEXY · Eric Muñiz Genebriera, independent developer (Spain). The examples use fictitious people, companies and IBANs. · <a href="mailto:ericmunizgeneb@gmail.com">ericmunizgeneb@gmail.com</a></p></div>
+  <nav class="tile tile--nav" aria-label="ORIVEXY Verify"><ul><li><a href="demo/">Demo</a></li><li><a href="odoo-sh/">Install on Odoo.sh</a></li><li><a href="instalar.html">Install on Windows</a></li><li><a href="https://apps.odoo.com/apps/modules/18.0/orivexy_validator">Odoo Apps</a></li><li><a href="privacy.html">Privacy</a></li><li><a href="terms.html">Terms</a></li></ul></nav>
+  <div class="tile tile--time"><span class="small muted">Time in Spain</span><strong data-clock></strong></div>
+  <div class="tile tile--mail"><a href="mailto:ericmunizgeneb@gmail.com">ericmunizgeneb@gmail.com</a></div>
+  <div class="tile tile--word" aria-hidden="true"><span>ORIVEXY Verify</span></div>
+  <a class="tile tile--go" href="demo/"><p>Try the demo, no sign-up</p><svg width="56" height="56" viewBox="0 0 56 56" aria-hidden="true"><path d="M14 42L42 14M20 14h22v22" fill="none" stroke="currentColor" stroke-width="4" stroke-linecap="square"/></svg></a>
+</footer>
+<script type="application/json" id="i18n">{"yes": "Yes", "no": "No", "notChecked": "Not checked", "copy": "Copy", "copied": "Copied", "copyFail": "Copy it by hand", "why": {"identical": "Exact match.", "punct": "Same words: only capitals, accents or punctuation differ.", "order": "Same words in another order.", "legal": "Another legal form: it may be another company. A person decides.", "legalMissing": "One of the two has no legal form: a person decides.", "similar": "Similar but not the same: a person decides.", "other": "Does not match the certificate holder. Hold the payment.", "empty": "Type a holder.", "invalid": "The check digits are wrong: fix the number.", "missing": "This IBAN is in no certificate: ask for the certificate or confirm the account."}, "how": {"identical": "Identical", "normalised": "Same after normalising", "similar": "Similar", "different": "Different"}, "review": {"resolved": "RESOLVED", "by": "You", "needNote": "Write what you checked: the note is mandatory."}, "result": {"ok": "CORRECT", "review": "MANUAL REVIEW", "other": "DIFFERENT HOLDER", "missing": "IBAN NOT FOUND", "invalid": "INVALID IBAN"}, "mail": "ericmunizgeneb@gmail.com", "mailSubject": "ORIVEXY Verify: question from the website", "lab": {"iban": "ES14 0415 0026 0037 0048 0059", "ibanTypo": "ES14 0415 0026 0037 0048 0050", "certHolder": "Ficticia Beta 2024 SL", "noCert": "—"}}</script>
+<script src="assets/web.js?v=bbdf2fa3" defer></script>
 </body>
 </html>

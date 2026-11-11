@@ -3,95 +3,229 @@
 <head>
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1">
-<title>ORIVEXY Verify</title>
-<meta name="description" content="Comprova abans de pagar que cada IBAN de la teva remesa és de qui diu ser: el creua amb el certificat del banc. Mòdul per a Odoo 15 a 20 i app d'escriptori. 100 % local.">
+<title>ORIVEXY Verify · Comprova IBAN i titular abans de pagar</title>
+<meta name="description" content="Abans de pagar, ORIVEXY Verify creua cada IBAN de la remesa amb el certificat de titularitat del banc i et diu quins pagaments van a una altra persona. Mòdul per a Odoo 15–20 i app d&#x27;escriptori. 249 €, pagament únic. Tot en local.">
 <link rel="canonical" href="https://orivexy.com/ca/">
+<link rel="alternate" hreflang="en" href="https://orivexy.com/">
 <link rel="alternate" hreflang="es" href="https://orivexy.com/es/">
 <link rel="alternate" hreflang="ca" href="https://orivexy.com/ca/">
-<link rel="alternate" hreflang="en" href="https://orivexy.com/">
 <link rel="alternate" hreflang="x-default" href="https://orivexy.com/">
 <meta property="og:type" content="website">
-<meta property="og:title" content="ORIVEXY Verify · comprova IBAN i titulars">
-<meta property="og:description" content="Comprova abans de pagar que cada IBAN de la teva remesa és de qui diu ser: el creua amb el certificat del banc. Mòdul per a Odoo 15 a 20 i app d'escriptori. 100 % local.">
-<meta property="og:image" content="https://orivexy.com/es/img/portada.png">
+<meta property="og:locale" content="ca_ES">
+<meta property="og:title" content="ORIVEXY Verify · Comprova IBAN i titular abans de pagar">
+<meta property="og:description" content="Abans de pagar, ORIVEXY Verify creua cada IBAN de la remesa amb el certificat de titularitat del banc i et diu quins pagaments van a una altra persona. Mòdul per a Odoo 15–20 i app d&#x27;escriptori. 249 €, pagament únic. Tot en local.">
+<meta property="og:image" content="https://orivexy.com/img/web-resultados-odoo.jpg">
 <meta property="og:url" content="https://orivexy.com/ca/">
 <meta name="twitter:card" content="summary_large_image">
-<meta name="keywords" content="IBAN, SEPA, Odoo, account holder verification, verificació de titular, remeses, pagaments, frau, bank certificate">
-<script type="application/ld+json">{"@context": "https://schema.org", "@type": "SoftwareApplication", "name": "ORIVEXY Verify", "applicationCategory": "BusinessApplication", "operatingSystem": "Odoo 15, 16, 17, 18, 19, 20; Windows", "description": "Comprova abans de pagar que cada IBAN de la teva remesa és de qui diu ser: el creua amb el certificat del banc. Mòdul per a Odoo 15 a 20 i app d'escriptori. 100 % local.", "inLanguage": "ca", "url": "https://orivexy.com/ca/", "image": "https://orivexy.com/es/img/banner.gif", "softwareVersion": "0.1", "author": {"@type": "Person", "name": "Eric Muñiz Genebriera"}, "offers": {"@type": "Offer", "price": "249.00", "priceCurrency": "EUR", "url": "https://apps.odoo.com/apps/modules/20.0/orivexy_validator", "availability": "https://schema.org/InStock"}}</script>
-<link rel="icon" href="../demo/logo.png">
-<style>
-  :root { --fondo: #F8F9FB; --caja: #FFFFFF; --borde: #E0E4EC; --texto: #1F2433; --suave: #5C6678; --azul: #714B67; --boton: #714B67; --verde: #168F90; }
-  * { box-sizing: border-box; }
-  body { margin: 0; background: var(--fondo); color: var(--texto); font-family: "Segoe UI", Roboto, Helvetica, Arial, sans-serif; line-height: 1.6; }
-  main { max-width: 1080px; margin: 0 auto; padding: 32px 16px 56px; }
-  header { display: flex; align-items: center; gap: 12px; }
-  header img { width: 44px; height: 44px; border-radius: 10px; }
-  header b { font-size: 20px; }
-  .hero { text-align: center; padding: 48px 0 20px; }
-  h1 { font-size: clamp(32px, 5vw, 52px); line-height: 1.12; margin: 0; }
-  h1 span { color: var(--azul); }
-  .sub { max-width: 720px; margin: 16px auto 0; color: var(--suave); font-size: 19px; }
-  .botones { margin-top: 26px; display: flex; gap: 12px; justify-content: center; flex-wrap: wrap; }
-  .btn { display: inline-block; padding: 14px 28px; border-radius: 30px; font-weight: 700; text-decoration: none; font-size: 17px; }
-  .btn.principal { background: var(--boton); color: #fff; }
-  .btn.secundario { border: 1px solid var(--borde); color: var(--texto); }
-  .precio { margin-top: 14px; color: var(--verde); font-weight: 700; }
-  .portada { display: block; width: 100%; max-width: 960px; margin: 34px auto 0; border-radius: 14px; border: 1px solid var(--borde); }
-  .rejilla { display: grid; grid-template-columns: repeat(auto-fit, minmax(230px, 1fr)); gap: 14px; margin-top: 40px; }
-  .caja { background: var(--caja); border: 1px solid var(--borde); border-radius: 16px; padding: 22px; }
-  .caja h2 { font-size: 18px; margin: 0 0 6px; }
-  .caja p { margin: 0; color: var(--suave); }
-  .capturas { display: grid; grid-template-columns: repeat(auto-fit, minmax(300px, 1fr)); gap: 14px; margin-top: 40px; }
-  .capturas img { width: 100%; border-radius: 12px; border: 1px solid var(--borde); }
-  footer { margin-top: 48px; text-align: center; color: var(--suave); font-size: 14px; }
-  footer a { color: var(--azul); }
-  /* Formas planas en las esquinas, como en la ficha de Odoo Apps. */
-  body::before, body::after { content: ""; position: fixed; z-index: -1; pointer-events: none; opacity: .22; }
-  body::before { top: -120px; right: -120px; width: 300px; height: 300px; border-radius: 50%; background: linear-gradient(90deg, #e75470 50%, #fbb945 50%); }
-  body::after { bottom: -90px; left: -90px; width: 220px; height: 220px; border-radius: 48px; background: #21b6b7; }
-  .caja { box-shadow: 0 6px 20px rgba(31,36,51,.05); }
-  .portada, .capturas img { box-shadow: 0 12px 34px rgba(31,36,51,.10); }
-  .btn.principal:hover { background: #5b3b53; }
-  .btn.secundario { background: #fff; }
-  .idiomas { margin-left: auto; display: flex; gap: 4px; }
-  .idiomas a { padding: 4px 10px; border-radius: 14px; color: var(--azul); text-decoration: none; font-weight: 700; font-size: 14px; }
-  .idiomas a[aria-current] { background: var(--azul); color: #fff; }
-</style>
+<meta name="theme-color" content="#0f2747">
+<link rel="icon" href="../img/web-simbolo.svg" type="image/svg+xml">
+<link rel="preload" href="../assets/fonts/stack-sans-text-latin.woff2" as="font" type="font/woff2" crossorigin>
+<link rel="preload" href="../assets/fonts/stack-sans-headline-latin.woff2" as="font" type="font/woff2" crossorigin>
+<link rel="stylesheet" href="../assets/web.css?v=bbdf2fa3">
+<script>document.documentElement.classList.add('js')</script>
+<script type="application/ld+json">{"@context": "https://schema.org", "@type": "SoftwareApplication", "name": "ORIVEXY Verify", "applicationCategory": "BusinessApplication", "operatingSystem": "Odoo 15–20; Windows", "description": "Abans de pagar, ORIVEXY Verify creua cada IBAN de la remesa amb el certificat de titularitat del banc i et diu quins pagaments van a una altra persona. Mòdul per a Odoo 15–20 i app d'escriptori. 249 €, pagament únic. Tot en local.", "inLanguage": "ca", "url": "https://orivexy.com/ca/", "image": "https://orivexy.com/img/web-resultados-odoo.jpg", "author": {"@type": "Person", "name": "Eric Muñiz Genebriera"}, "offers": {"@type": "Offer", "price": "249.00", "priceCurrency": "EUR", "url": "https://apps.odoo.com/apps/modules/18.0/orivexy_validator", "availability": "https://schema.org/InStock"}}</script>
 </head>
 <body>
 <main>
-  <header><img src="../demo/logo.png" alt="Logotip d'ORIVEXY Verify"><b>ORIVEXY Verify</b><nav class="idiomas" aria-label="Idioma"><a href="../es/" lang="es">ES</a><a href="../ca/" lang="ca" aria-current="page">CA</a><a href="../" lang="en">EN</a></nav></header>
-
-  <section class="hero">
-    <h1>Abans de pagar, <span>comprova que cada IBAN</span> és de qui diu ser</h1>
-    <p class="sub">ORIVEXY Verify creua la teva remesa de pagaments amb el certificat de titularitat del banc i et diu, pagament a pagament, si el compte és correcte, si és d'una altra persona o si no hi apareix.</p>
-    <div class="botones">
-      <a class="btn principal" href="https://apps.odoo.com/apps/modules/20.0/orivexy_validator">Aconsegueix-lo a Odoo Apps</a>
-      <a class="btn secundario" href="../demo/">Prova la demo en directe</a>
+<section class="hero" aria-labelledby="titulo">
+  <div class="hero__stage">
+    <header class="top">
+      <a class="brand" href="../ca/"><img src="../img/web-simbolo.svg" width="30" height="30" alt="">ORIVEXY Verify</a>
+      <nav aria-label="Com funciona"><a class="link " href="#com">Com funciona</a><a class="link opt" href="#pagaments">Pagaments</a><a class="link opt2" href="#preu">Preu</a><span class="langs"><a href="../es/" lang="es" hreflang="es">ES</a><a href="../ca/" lang="ca" hreflang="ca" aria-current="page">CA</a><a href=".././" lang="en" hreflang="en">EN</a></span><a class="button button--small" href="../demo/">Provar la demo</a></nav>
+    </header>
+    <div class="hero__body">
+      <h1 class="hero__title" id="titulo"><span class="hero__a" data-rise>Un IBAN vàlid</span> <span class="hero__b" data-rise style="--d:2">d&#x27;algú altre</span></h1>
+      <div class="reel" role="group" aria-label="Quatre vistes d&#x27;ORIVEXY Verify">
+    <div class="reel__track">
+    <div class="reel__frame is-far"><img src="../img/web-reel-certificado.jpg" width="1008" height="567" alt="Certificat de titularitat fictici amb tres comptes"></div>
+    <div class="reel__frame reel__frame--live" data-ui>
+      <div class="ui-card result-frame">
+        <div class="result-frame__top"><span>Pagament 3 de 9 · remesa de dimarts</span><span>ORIVEXY Verify</span></div>
+        <div class="result-frame__pair">
+          <div><span class="ui-label">A la teva remesa</span><strong>Ficticia Beta 2024 SL</strong><span class="iban">ES25 0011 0022 0033 0044 0055</span></div>
+          <div><span class="ui-label">Al certificat del banc</span><strong>Gamma Servicios Ficticios SA</strong><span class="iban">ES25 0011 0022 0033 0044 0055</span></div>
+        </div>
+        <div class="result-frame__note"><span class="badge badge--other">UN ALTRE TITULAR</span><span>L&#x27;IBAN és al certificat, però a nom d&#x27;una altra empresa.</span></div>
+      </div>
     </div>
-    <p class="precio"><b>App d'escriptori (Windows):</b> Individual 249 € pagament únic, no caduca (clau per correu) · Empresa/grup 249 € per usuari, pagament únic, no caduca · <b>Mòdul d'Odoo:</b> 249 € pagament únic per versió d'Odoo, a Odoo Apps</p>
-    <img class="portada" src="../img/banner.gif" alt="Demo animada d'una validació amb ORIVEXY Verify">
-  </section>
-
-  <section class="rejilla">
-    <div class="caja"><h2>🏦 Contra el certificat del banc</h2><p>Busca cada IBAN al certificat (PDF, escanejat o XML SEPA) i compara el titular.</p></div>
-    <div class="caja"><h2>🧠 Entén els noms, amb límits</h2><p>Majúscules, accents, puntuació, «S.L.» davant «SL» i l'ordre de les paraules només s'ignoren si hi apareixen exactament les mateixes paraules. Un cognom diferent o que falta es marca, i els casos dubtosos passen a revisió manual. Confirma-ho sempre abans de pagar.</p></div>
-    <div class="caja"><h2>🔒 La validació és 100 % local</h2><p>Els IBAN, noms i fitxers només es processen al teu ordinador o servidor Odoo. L'app d'escriptori només es connecta a internet per iniciar sessió i comprovar el teu pla (correu i pla, mai dades bancàries). El mòdul d'Odoo no fa crides externes.</p></div>
-    <div class="caja"><h2>⚡ Un clic</h2><p>Adjuntes dos fitxers, prems VALIDAR i exportes a CSV o Excel.</p></div>
-  </section>
-
-  <section class="capturas">
-    <img src="../img/odoo_resultados.png" alt="Resultats de la validació a Odoo">
-    <img src="../img/escritorio_claro.png" alt="App d'escriptori d'ORIVEXY Verify">
-  </section>
-
-  <div class="notas" style="text-align:center;color:#9FB1C6;margin-top:28px;line-height:1.6">
-    <p>Compara amb el certificat que aportes: no consulta el banc, no demostra que un compte existeixi o estigui actiu i no bloqueja pagaments.</p>
-    <p>Versions d'Odoo: <a href="https://apps.odoo.com/apps/modules/15.0/orivexy_validator">15</a> · <a href="https://apps.odoo.com/apps/modules/16.0/orivexy_validator">16</a> · <a href="https://apps.odoo.com/apps/modules/17.0/orivexy_validator">17</a> · <a href="https://apps.odoo.com/apps/modules/20.0/orivexy_validator">18</a> · <a href="https://apps.odoo.com/apps/modules/19.0/orivexy_validator">19</a> · <a href="https://apps.odoo.com/apps/modules/20.0/orivexy_validator">20</a>. Les versions anteriors es van provar en Odoo 17, 18 i 19 reals; l'actual (0.1.5) només ha passat les comprovacions automàtiques.</p>
-    <p>Idiomes: mòdul d'Odoo en anglès (les notes de cada resultat, en castellà) · app d'escriptori en castellà. IBAN dels 85 països amb IBAN; certificats en 9 idiomes.</p>
-    <p>ORIVEXY Verify abans es deia ORIVEXY Validator; el seu nom tècnic a Odoo és <code>orivexy_validator</code>.</p>
+    <div class="reel__frame is-far"><img src="../img/web-reel-odoo.jpg" width="1008" height="567" alt="Resultats d&#x27;una validació a Odoo, amb dades fictícies"></div>
+    <div class="reel__frame is-far"><img src="../img/web-reel-escritorio.jpg" width="1008" height="567" alt="App d&#x27;escriptori d&#x27;ORIVEXY Verify amb els resultats d&#x27;una remesa fictícia"></div>
+    <div class="reel__frame is-far"><video src="../img/web-clip-validacion.mp4" poster="../img/web-clip-validacion.jpg" muted loop playsinline preload="metadata" aria-label="Una validació a Odoo, del vídeo d&#x27;instal·lació"></video></div>
+    </div>
   </div>
-  <footer>ORIVEXY Verify 0.1.5 · Desenvolupador: Eric Muñiz Genebriera (persona física, Espanya) · <a href="mailto:ericmunizgeneb@gmail.com">ericmunizgeneb@gmail.com</a> · <a href="../privacy.html">Privadesa</a> · <a href="../terms.html">Condicions</a></footer>
+      <div class="hero__foot">
+        <p class="hero__sub" data-rise style="--d:3">ORIVEXY Verify creua cada pagament de la remesa amb el certificat de titularitat del banc i et diu, abans de pagar, quins van a la persona correcta. Mòdul per a Odoo 15–20 i app d&#x27;escriptori: 249 €, pagament únic.</p>
+        <div class="hero__actions" data-rise style="--d:4"><a class="button" href="../demo/">Provar la demo</a><a class="link" href="https://apps.odoo.com/apps/modules/18.0/orivexy_validator">Veure-ho a Odoo Apps</a></div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<section class="wrap section" aria-labelledby="intro-t">
+  <h2 class="intro__title" id="intro-t" data-reveal>Què fa</h2>
+  <div class="grid">
+    <p class="intro__lead" data-reveal style="--d:1">Abans d&#x27;enviar una remesa, ORIVEXY Verify busca cada IBAN al certificat de titularitat del banc i compara el nom del titular. Et diu quins pagaments són correctes, quins van a una altra persona i quins no hi apareixen.</p>
+    <div class="intro__cols"><p data-reveal style="--d:2"><b>Per a qui.</b> Per a qui paga proveïdors des d&#x27;Odoo o prepara remeses SEPA: comptabilitat, tresoreria, administració. També per a assessories que revisen les remeses dels clients amb l&#x27;app d&#x27;escriptori, sense Odoo.</p><p data-reveal style="--d:3"><b>Què comprova.</b> Que l&#x27;IBAN és vàlid (85 països, longitud i dígits de control), que surt al certificat i que el titular coincideix. Accents, majúscules i «S.L.» davant «SL» no compten; un cognom diferent, sí. I avisa si un IBAN es repeteix a la remesa.</p><p data-reveal style="--d:4"><b>On.</b> Dins del teu Odoo, al teu servidor o a Odoo.sh, o al teu ordinador amb l&#x27;app. Els IBAN, els noms i els fitxers no surten de la instal·lació: el mòdul no crida cap servei extern.</p><p data-reveal style="--d:5"><b>Com començar.</b> Prova la demo al navegador, amb dades fictícies i sense registrar-te. Després compra el mòdul a Odoo Apps per a la teva versió d&#x27;Odoo, o demana l&#x27;app d&#x27;escriptori per correu.</p></div>
+  </div>
+</section>
+
+<section class="wrap section how" id="com" aria-labelledby="how-t">
+  <div class="how__inner">
+    <h2 class="head how__title" id="how-t" data-reveal>Dos fitxers i un botó</h2>
+    <div class="how__step" data-reveal>
+      <p class="how__say">Primer, el certificat del banc.</p>
+      <div class="how__call" data-ui><div class="file-chip"><span class="file-chip__icon">PDF</span><span><strong>certificat_titularitat_beta.pdf</strong><br><span class="ui-label">PDF, PDF escanejat o XML SEPA</span></span></div></div>
+      <div class="how__resp" data-ui><div class="ui-card read-list"><div class="read-list__head"><span>3 comptes llegits</span><span class="badge badge--ok">OK</span></div><div class="read-list__row"><span class="iban">ES14 0415 0026 0037 0048 0059</span><span>Ficticia Beta 2024 SL</span></div><div class="read-list__row"><span class="iban">ES41 0314 0025 0036 0047 0058</span><span>Ficticia Alfa SL</span></div><div class="read-list__row"><span class="iban">ES68 0213 0024 0035 0046 0057</span><span>Carlos Martínez Soler</span></div></div></div>
+    </div>
+    <div class="how__step" data-reveal>
+      <p class="how__say">Després, la remesa que pagaràs.</p>
+      <div class="how__call" data-ui><pre class="batch-lines" aria-label="TXT, CSV o XML SEPA pain.001 / pain.008">IBAN | Titular
+ES14 0415 0026 0037 0048 0059 | FICTICIA BETA 2024, S.L.
+ES41 0314 0025 0036 0047 0058 | Ficticia Alfa SA
+ES68 0213 0024 0035 0046 0057 | Carlos Martín Soler
+ES85 0999 0099 0099 0099 0099 | Mario Torres Ficticio
+ES95 0112 0023 0034 0045 0057 | María López Ruiz</pre><span class="ui-label">TXT, CSV o XML SEPA pain.001 / pain.008</span></div>
+      <div class="how__resp" data-ui><div class="ui-card read-list"><div class="read-list__head"><span>5 pagaments llegits</span><span class="badge badge--ok">OK</span></div></div></div>
+    </div>
+    <div class="how__step how__step--wide" data-reveal>
+      <p class="how__say">I prem VALIDAR.</p>
+      <div class="how__call" data-ui><span class="validate-btn">VALIDAR</span></div>
+      <div class="how__resp" data-ui><div class="ui-card results"><table><thead><tr><th scope="col">IBAN</th><th scope="col">A la remesa</th><th scope="col">Al certificat</th><th scope="col">Resultat</th><th scope="col">Nota</th></tr></thead><tbody><tr><td class="iban">ES14 0415 0026 0037 0048 0059</td><td>FICTICIA BETA 2024, S.L.</td><td>Ficticia Beta 2024 SL</td><td><span class="badge badge--ok">CORRECTE</span></td><td>Només canvien la puntuació i l&#x27;«S.L.»</td></tr><tr><td class="iban">ES41 0314 0025 0036 0047 0058</td><td>Ficticia Alfa SA</td><td>Ficticia Alfa SL</td><td><span class="badge badge--review">REVISIÓ MANUAL</span></td><td>Una altra forma jurídica: ho decideix una persona</td></tr><tr><td class="iban">ES68 0213 0024 0035 0046 0057</td><td>Carlos Martín Soler</td><td>Carlos Martínez Soler</td><td><span class="badge badge--other">UN ALTRE TITULAR</span></td><td>No coincideix amb el titular del certificat</td></tr><tr><td class="iban">ES85 0999 0099 0099 0099 0099</td><td>Mario Torres Ficticio</td><td>—</td><td><span class="badge badge--missing">IBAN NO TROBAT</span></td><td>No és a cap certificat</td></tr><tr><td class="iban">ES95 0112 0023 0034 0045 0057</td><td>María López Ruiz</td><td>—</td><td><span class="badge badge--invalid">IBAN NO VÀLID</span></td><td>Els dígits de control no quadren</td></tr></tbody></table><div class="results__counts ui-label">1 correcte · 1 en revisió · 1 d&#x27;un altre titular · 1 sense certificat · 1 no vàlid</div></div></div>
+    </div>
+  </div>
+</section>
+
+<section class="wrap section grid" aria-labelledby="states-t">
+  <h2 class="head states__title" id="states-t" data-reveal>El que és dubtós ho decideix una persona</h2>
+  
+    <div class="states__row" data-reveal>
+      <p class="states__word">Pendent</p>
+      <div class="states__copy" data-ui><div class="ui-card review-row">
+        <div class="review-row__main"><div><span class="ui-label">A la remesa</span><strong>Juana Pérez Ficticia</strong><span class="iban ui-label">ES84 0516 0027 0038 0049 0060</span></div><div><span class="ui-label">Al certificat</span><strong>Juan Pérez Ficticio</strong><span class="iban ui-label">ES84 0516 0027 0038 0049 0060</span></div><span><span class="badge badge--review">REVISIÓ MANUAL</span></span></div>
+        <p class="review-row__log"><span class="badge badge--missing">PENDENT</span> &nbsp;Nom semblant, no idèntic: Juana i Juan.</p>
+        <div class="review-row__actions"><span class="ui-btn" aria-hidden="true">Iniciar la revisió</span></div>
+      </div></div>
+    </div>
+    <div class="states__row" data-reveal data-review-live>
+      <p class="states__word">En revisió</p>
+      <div class="states__copy" data-ui><div class="ui-card review-row">
+        <div class="review-row__main"><div><span class="ui-label">A la remesa</span><strong>Juana Pérez Ficticia</strong><span class="iban ui-label">ES84 0516 0027 0038 0049 0060</span></div><div><span class="ui-label">Al certificat</span><strong>Juan Pérez Ficticio</strong><span class="iban ui-label">ES84 0516 0027 0038 0049 0060</span></div><span data-review-status class="badge badge--review">EN REVISIÓ</span></div>
+        <p class="review-row__log">Nom semblant, no idèntic: Juana i Juan.</p>
+        <div data-review-actions>
+          <label class="ui-label" for="review-note">Què has comprovat</label>
+          <textarea id="review-note" rows="2">He trucat al proveïdor: el compte és d&#x27;en Juan, no de la Juana. Retinc el pagament.</textarea>
+          <div class="review-row__actions" style="margin-top:8px"><button type="button" class="ui-btn" data-resolve>Resoldre</button><button type="button" class="ui-btn ui-btn--ghost">Descartar</button><span class="review-row__log" data-review-msg role="status"></span></div>
+        </div>
+      </div></div>
+    </div>
+    <div class="states__row" data-reveal id="review-done">
+      <p class="states__word">Resolt</p>
+      <div class="states__copy" data-ui><div class="ui-card review-row">
+        <div class="review-row__main"><div><span class="ui-label">A la remesa</span><strong>Juana Pérez Ficticia</strong><span class="iban ui-label">ES84 0516 0027 0038 0049 0060</span></div><div><span class="ui-label">Al certificat</span><strong>Juan Pérez Ficticio</strong><span class="iban ui-label">ES84 0516 0027 0038 0049 0060</span></div><span><span class="badge badge--ok">RESOLT</span></span></div>
+        <p class="review-row__note">He trucat al proveïdor: el compte és d&#x27;en Juan, no de la Juana. Retinc el pagament.</p>
+        <p class="review-row__log">Laura · comptabilitat · 11/11/2026 10:42 · queda a l&#x27;historial; el resultat no es pot editar</p>
+      </div></div>
+    </div>
+</section>
+
+<section class="wrap lab" data-lab aria-labelledby="lab-t">
+  <h2 class="lab__title" id="lab-t" data-reveal>Prova com compara</h2>
+  <div class="lab__field"><div class="ui-card check" data-ui aria-live="polite">
+        <div class="check__head"><span>Comprovació del pagament</span><span class="ui-label">ORIVEXY Verify</span></div>
+        <div class="check__row"><span class="ui-label">IBAN</span><strong class="iban" data-out="iban">ES14 0415 0026 0037 0048 0059</strong></div>
+        <div class="check__row"><span class="ui-label">Titular a la remesa</span><strong data-out="mine">FICTICIA BETA 2024, S.L.</strong></div>
+        <div class="check__row"><span class="ui-label">Titular al certificat</span><strong data-out="cert">Ficticia Beta 2024 SL</strong></div>
+        <ul class="check__list">
+          <li><span>Format i dígits de control</span><span data-out="c-format" class="yes">Sí</span></li>
+          <li><span>És al certificat</span><span data-out="c-in" class="yes">Sí</span></li>
+          <li><span>Titular</span><span data-out="c-holder" class="yes">Igual després de normalitzar</span></li>
+        </ul>
+        <div class="check__verdict"><span data-out="badge" class="badge badge--ok">CORRECTE</span><span class="check__why" data-out="why">Les mateixes paraules: només canvien majúscules, accents o puntuació.</span></div>
+        <p class="check__foot">Regles simplificades per a aquesta pàgina. La demo fa servir el motor complet.</p>
+      </div></div>
+  <div class="lab__text">
+    <div class="lab__block" data-reveal><h3>Escriu el titular com el tinguis.</h3><p>Majúscules, accents, comes i «S.L.» davant «SL» no compten. L&#x27;ordre de les paraules només és igual si són exactament les mateixes.</p><div class="lab__control"><label for="lab-holder">Titular a la remesa</label><input class="field" id="lab-holder" value="FICTICIA BETA 2024, S.L." autocomplete="off" spellcheck="false"></div></div><div class="lab__block" data-reveal><h3>Canvia la forma jurídica.</h3><p>S.L. davant S.A. o GmbH no és un detall: pot ser una altra empresa. Va a revisió manual, mai a correcte.</p><div class="lab__control"><div class="seg" role="group" aria-label="Canvia la forma jurídica."><button type="button" data-legal="S.L." aria-pressed="false">S.L.</button><button type="button" data-legal="S.A." aria-pressed="false">S.A.</button><button type="button" data-legal="GmbH" aria-pressed="false">GmbH</button></div></div></div><div class="lab__block" data-reveal><h3>Equivoca&#x27;t en un dígit.</h3><p>Una errada trenca els dígits de control de l&#x27;IBAN i es detecta abans de mirar el certificat.</p><div class="lab__control"><div class="seg" role="group" aria-label="Equivoca&#x27;t en un dígit."><button type="button" data-typo="0" aria-pressed="true">IBAN bé</button><button type="button" data-typo="1" aria-pressed="false">Amb una errada</button></div></div></div><div class="lab__block" data-reveal><h3>Treu el certificat.</h3><p>Si l&#x27;IBAN no surt a cap certificat, no es dona per bo: demana el certificat o confirma el compte.</p><div class="lab__control"><label class="switch"><input type="checkbox" id="lab-cert" checked> Certificat de Ficticia Beta carregat</label></div></div>
+  </div>
+</section>
+
+<section class="wrap proof" aria-labelledby="proof-t">
+  <h2 id="proof-t">Instal·lat i provat a</h2>
+  <ul><li><a class="link" href="https://apps.odoo.com/apps/modules/15.0/orivexy_validator">Odoo 15</a></li><li><a class="link" href="https://apps.odoo.com/apps/modules/16.0/orivexy_validator">Odoo 16</a></li><li><a class="link" href="https://apps.odoo.com/apps/modules/17.0/orivexy_validator">Odoo 17</a></li><li><a class="link" href="https://apps.odoo.com/apps/modules/18.0/orivexy_validator">Odoo 18</a></li><li><a class="link" href="https://apps.odoo.com/apps/modules/19.0/orivexy_validator">Odoo 19</a></li><li><a class="link" href="https://apps.odoo.com/apps/modules/20.0/orivexy_validator">Odoo 20</a></li></ul>
+  <p class="proof__note">Provat a Odoo Community de cada versió: instal·lar, validar, actualitzar i desinstal·lar. Funciona també amb Enterprise i a Odoo.sh, encara sense provar en un projecte real; no serveix per a Odoo Online.</p>
+</section>
+
+<section class="wrap section" id="pagaments" aria-labelledby="pay-t">
+  <div class="pay__head">
+    <h2 class="pay__title" id="pay-t" data-reveal><span class="soft">Pagaments a Odoo 18:</span><span>amb doble signatura</span></h2>
+    <a class="button button--ink" href="mailto:ericmunizgeneb@gmail.com?subject=Demanar%20una%20demostració%20%C2%B7%20ORIVEXY%20Verify" data-reveal>Demanar una demostració</a>
+  </div>
+  <p class="pay__intro" data-reveal>En pilot. La mateixa comprovació, dins del circuit complet de pagaments: tiquets, repositori de documents, dues signatures de persones diferents, fitxer SEPA i una auditoria que ningú no pot retocar sense que es noti. S&#x27;instal·la en una branca de proves del teu Odoo 18 i es prova amb dades fictícies abans de tocar res real. Preu a mida. L&#x27;exemple fa servir persones i dades fictícies.</p>
+  <div class="pay__body">
+    <div class="pay__tabs" role="tablist" aria-label="amb doble signatura" aria-orientation="vertical"><button class="pay__tab" role="tab" id="tab-l" aria-controls="panel-l" aria-selected="true" tabindex="0"><b>Laura</b><span>Comptabilitat</span></button><button class="pay__tab" role="tab" id="tab-m" aria-controls="panel-m" aria-selected="false" tabindex="-1"><b>Marc</b><span>Validació</span></button><button class="pay__tab" role="tab" id="tab-a" aria-controls="panel-a" aria-selected="false" tabindex="-1"><b>Ana</b><span>Administració</span></button></div>
+    <div><ol class="pay__bands" role="tabpanel" id="panel-l" aria-labelledby="tab-l"><li class="pay__band"><span class="pay__time">09:05</span><span class="pay__what"><b>Prepara la remesa de dimarts</b><span>12 transferències a proveïdors, importades o creades a mà</span></span><span class="avatar avatar--l" aria-hidden="true">L</span></li><li class="pay__band"><span class="pay__time">09:12</span><span class="pay__what"><b>Puja el certificat de Ficticia Beta</b><span>El repositori el llegeix, el classifica i en treu l&#x27;IBAN i el titular</span></span><span class="avatar avatar--l" aria-hidden="true">L</span></li><li class="pay__band"><span class="pay__time">09:20</span><span class="pay__what"><b>Un pagament queda bloquejat</b><span>El certificat no acredita el compte nou i l&#x27;empresa exigeix certificat per signar</span></span><span class="avatar avatar--l" aria-hidden="true">L</span></li><li class="pay__band"><span class="pay__time">09:31</span><span class="pay__what"><b>Dona la primera signatura als 11 correctes</b><span>El que falta surt en vermell i no deixa avançar</span></span><span class="avatar avatar--l" aria-hidden="true">L</span></li></ol><ol class="pay__bands" role="tabpanel" id="panel-m" aria-labelledby="tab-m" hidden><li class="pay__band"><span class="pay__time">10:02</span><span class="pay__what"><b>Obre el tiquet del pagament bloquejat</b><span>El botó verd reuneix documents, tiquets i validacions del proveïdor</span></span><span class="avatar avatar--m" aria-hidden="true">M</span></li><li class="pay__band"><span class="pay__time">10:10</span><span class="pay__what"><b>Rebutja el canvi de compte</b><span>Un correu demanava pagar en un altre banc; el motiu queda registrat</span></span><span class="avatar avatar--m" aria-hidden="true">M</span></li><li class="pay__band"><span class="pay__time">10:15</span><span class="pay__what"><b>Valida el certificat de Ficticia Beta</b><span>Només un validador o un administrador pot validar o rebutjar documents</span></span><span class="avatar avatar--m" aria-hidden="true">M</span></li></ol><ol class="pay__bands" role="tabpanel" id="panel-a" aria-labelledby="tab-a" hidden><li class="pay__band"><span class="pay__time">11:40</span><span class="pay__what"><b>Dona la segona signatura</b><span>Ha de ser una altra persona: qui va signar primer no pot signar dues vegades</span></span><span class="avatar avatar--a" aria-hidden="true">A</span></li><li class="pay__band"><span class="pay__time">11:45</span><span class="pay__what"><b>Genera el fitxer SEPA</b><span>Només amb el que s&#x27;ha aprovat; si algú canvia un import, les signatures deixen de valer</span></span><span class="avatar avatar--a" aria-hidden="true">A</span></li><li class="pay__band"><span class="pay__time">12:00</span><span class="pay__what"><b>Revisa l&#x27;auditoria</b><span>Qui ha fet què i quan, amb l&#x27;abans i el després; ningú no la pot retocar sense que es noti</span></span><span class="avatar avatar--a" aria-hidden="true">A</span></li></ol></div>
+  </div>
+  <div class="pay__shots">
+    <figure data-reveal><img src="../img/web-pagos-tablero.jpg" width="1600" height="894" loading="lazy" alt="Tauler de tiquets de pagaments a Odoo, amb dades fictícies"><figcaption>Tauler de tiquets: qui l&#x27;ha creat, a qui està assignat, què falta i el pas següent.</figcaption></figure>
+    <figure data-reveal style="--d:1"><img src="../img/web-pagos-relacionado.jpg" width="1600" height="950" loading="lazy" alt="Panell amb tot el que està relacionat amb un tiquet, amb dades fictícies"><figcaption>El botó verd d&#x27;un tiquet: tota l&#x27;activitat, documents i validacions relacionats.</figcaption></figure>
+  </div>
+</section>
+
+<section class="wrap section" aria-labelledby="inst-t">
+  <div class="inst__head">
+    <h2 class="head" id="inst-t" data-reveal>Instal·lar-lo a Odoo.sh</h2>
+    <p data-reveal style="--d:1">Un vídeo de 8 minuts, amb subtítols en castellà, català i anglès: de la compra a Odoo Apps a la primera validació.</p>
+  </div>
+  <div class="inst__tiles"><a class="inst__tile" href="../odoo-sh/" data-reveal style="--d:0"><div class="inst__pic"><img src="../img/web-instalar-1.jpg" width="960" height="540" loading="lazy" alt="Fotograma del vídeo d&#x27;instal·lació: Preparació · Baixar-lo d&#x27;Odoo Apps"></div><div class="inst__strip"><b>Preparació</b><span>00:50 · Baixar-lo d&#x27;Odoo Apps</span></div></a><a class="inst__tile" href="../odoo-sh/" data-reveal style="--d:1"><div class="inst__pic"><img src="../img/web-instalar-2.jpg" width="960" height="540" loading="lazy" alt="Fotograma del vídeo d&#x27;instal·lació: Instal·lació · La branca a Odoo.sh"></div><div class="inst__strip"><b>Instal·lació</b><span>02:06 · La branca a Odoo.sh</span></div></a><a class="inst__tile" href="../odoo-sh/" data-reveal style="--d:2"><div class="inst__pic"><img src="../img/web-instalar-3.jpg" width="960" height="540" loading="lazy" alt="Fotograma del vídeo d&#x27;instal·lació: Configuració · Qui veu què"></div><div class="inst__strip"><b>Configuració</b><span>03:19 · Qui veu què</span></div></a><a class="inst__tile" href="../odoo-sh/" data-reveal style="--d:3"><div class="inst__pic"><img src="../img/web-instalar-4.jpg" width="960" height="540" loading="lazy" alt="Fotograma del vídeo d&#x27;instal·lació: Demostració · La primera validació"></div><div class="inst__strip"><b>Demostració</b><span>04:39 · La primera validació</span></div></a></div>
+  <div class="inst__more">
+    <div data-reveal><h3>Al teu propi servidor</h3><ol><li>Copia la carpeta orivexy_validator als teus addons.</li><li>Instal·la les llibreries: pip install -r orivexy_validator/requirements.txt</li><li>Activa el mode desenvolupador, actualitza la llista d&#x27;aplicacions, cerca «ORIVEXY» i prem Activa.</li></ol><p class="small muted" style="margin-top:12px">Els PDF escanejats necessiten Tesseract OCR al servidor. Odoo.sh no el porta: fes servir el PDF amb text, l&#x27;XML SEPA o l&#x27;app.</p></div>
+    <div data-reveal style="--d:1"><h3>App d&#x27;escriptori a Windows</h3><p>Prem Windows + R, enganxa aquesta ordre i prem Retorn. Baixa l&#x27;instal·lador oficial i l&#x27;obre.</p>
+      <div class="code"><pre><code id="cmd">powershell -c "irm https://orivexy.com/instalar.ps1 | iex"</code></pre><button type="button" data-copy="cmd">Copiar</button></div>
+      <p style="margin-top:12px"><a class="link" href="../instalar.html">Més detalls i baixada normal (en castellà)</a></p></div>
+  </div>
+</section>
+
+<section class="wrap price" id="preu" aria-labelledby="price-t">
+  <div class="price__text">
+    <h2 id="price-t">Un preu, una vegada</h2>
+    <p>Sense subscripció i sense caducitat. El mòdul es compra a Odoo Apps, una vegada per cada versió d&#x27;Odoo, i inclou l&#x27;app d&#x27;escriptori. L&#x27;app d&#x27;escriptori sola costa el mateix, per llicència o per usuari.</p>
+  </div>
+  <div class="price__fig">
+    <p class="price__num nums"><span>249</span><span class="price__cur">€</span><span class="price__per">una vegada</span></p>
+    <img class="price__mark" src="../img/web-simbolo.svg" width="100" height="100" alt="">
+    <ul class="price__list"><li>Odoo 15, 16, 17, 18, 19 o 20, Community o Enterprise</li><li>App d&#x27;escriptori inclosa</li><li>Sense subscripció i sense caducitat</li><li>Es compra i es baixa a Odoo Apps</li></ul>
+    <div class="price__actions"><a class="button" href="https://apps.odoo.com/apps/modules/18.0/orivexy_validator">Comprar a Odoo Apps</a></div>
+    <p class="price__alt">Només l'app d'escriptori per a Windows? <a class="link" href="mailto:ericmunizgeneb@gmail.com?subject=Llicència%20de%20l&#x27;app%20d&#x27;escriptori%20ORIVEXY%20Verify">Demana-la per correu</a>: 249 € + IVA, per llicència o per usuari. Pagaments amb doble signatura: preu a mida.</p>
+  </div>
+</section>
+
+<section class="wrap section faq" aria-labelledby="faq-t">
+  <h2 class="faq__title" id="faq-t">Preguntes</h2>
+  <div class="faq__list"><details name="faq"><summary>Substitueix la verificació del beneficiari del banc?</summary><p>No, la complementa. Des del 9 d&#x27;octubre de 2025 els bancs de la zona euro han de comprovar nom i IBAN a les transferències en euros, però en els enviaments per lots l&#x27;empresa hi pot renunciar. ORIVEXY revisa tota la remesa abans d&#x27;enviar-la, contra el certificat de titularitat que emet el banc del proveïdor, i deixa constància de què s&#x27;ha revisat i qui ho ha decidit.</p></details><details name="faq"><summary>Què passa si un nom està escrit diferent?</summary><p>Accents, majúscules, puntuació i «S.L.» davant «SL» no compten. L&#x27;ordre de les paraules només s&#x27;ignora si hi surten exactament les mateixes. Un cognom diferent o que falta es marca, i els casos dubtosos van a revisió manual.</p></details><details name="faq"><summary>Consulta el banc o bloqueja pagaments?</summary><p>No. Compara la remesa amb el certificat que tu aportes. No consulta el banc, no demostra que un compte existeixi o estigui actiu ni que el certificat sigui autèntic. El mòdul de verificació no bloqueja pagaments: et diu quins revisar.</p></details><details name="faq"><summary>Quins fitxers accepta?</summary><p>Certificats: PDF amb text, PDF escanejat (amb OCR) i XML SEPA. Remeses: TXT, CSV, TSV, DAT i XML SEPA pain.001 o pain.008. PDF de fins a 64 MB; remeses i XML de fins a 24 MB. A Odoo, els resultats s&#x27;exporten a PDF, CSV i Excel amb els IBAN emmascarats; l&#x27;app d&#x27;escriptori exporta a CSV i Excel.</p></details><details name="faq"><summary>Funciona a Odoo Online?</summary><p>No, perquè necessita llibreries de Python pròpies. Funciona a Odoo 15, 16, 17, 18, 19 i 20, Community i Enterprise, al teu servidor o a Odoo.sh.</p></details><details name="faq"><summary>Les meves dades surten de l&#x27;empresa?</summary><p>No. Tot es processa al teu servidor d&#x27;Odoo o al teu ordinador; el mòdul no fa crides externes. L&#x27;app d&#x27;escriptori només es connecta per activar o comprovar la llicència (el teu correu) i per buscar actualitzacions a GitHub; mai no envia IBAN, noms ni fitxers.</p></details><details name="faq"><summary>En quins idiomes està?</summary><p>El mòdul i l&#x27;app d&#x27;escriptori, en català, castellà i anglès; les notes de cada resultat del mòdul, en castellà. Llegeix certificats en 9 idiomes i valida IBAN dels 85 països que el fan servir.</p></details><details name="faq"><summary>Com sé que l&#x27;encerta?</summary><p>A la versió 0.1.13 es va mesurar amb 2.000 parells sintètics de noms semblants: cap «correcte» fals. La versió publicada passa més de 750 proves automàtiques. Tot i així, confirma-ho sempre abans de pagar.</p></details><details name="faq"><summary>Ho puc provar abans?</summary><p>Sí: la demo funciona al navegador amb dades fictícies, sense registrar-te. Si vols provar-lo amb els teus fitxers, escriu-me i ho provem junts al teu equip; no enviïs dades bancàries per correu.</p></details></div>
+</section>
+
+<section class="wrap contact" aria-labelledby="contact-t">
+  <div class="contact__inner">
+    <h2 id="contact-t" data-reveal><span class="soft">Vols provar una remesa?</span>Escriu-me i ho mirem.</h2>
+    <form data-contact data-reveal style="--d:1">
+      <label class="sr-only" for="contact-q">La teva pregunta i el teu correu</label>
+      <input id="contact-q" name="q" placeholder="La teva pregunta i el teu correu" autocomplete="off">
+      <button type="submit" aria-label="Enviar per correu"><svg width="20" height="20" viewBox="0 0 20 20" aria-hidden="true"><path d="M3 10h13M11 4l6 6-6 6" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round"/></svg></button>
+    </form>
+    <p class="contact__hint">S&#x27;obrirà el teu programa de correu amb el missatge a punt. No hi posis IBAN ni dades bancàries.</p>
+    <dl><div><dt>Correu</dt><dd><a class="link" href="mailto:ericmunizgeneb@gmail.com">ericmunizgeneb@gmail.com</a></dd></div><div><dt>Odoo Apps</dt><dd><a class="link" href="https://apps.odoo.com/apps/modules/18.0/orivexy_validator">apps.odoo.com · orivexy_validator</a></dd></div><div><dt>Des de</dt><dd>Espanya</dd></div></dl>
+  </div>
+</section>
 </main>
+
+<footer class="foot">
+  <div class="tile tile--say"><p>Comprova-ho abans de pagar.</p><p class="foot__legal">© 2026 ORIVEXY · Eric Muñiz Genebriera, desenvolupador independent (Espanya). Els exemples fan servir persones, empreses i IBAN ficticis. · <a href="mailto:ericmunizgeneb@gmail.com">ericmunizgeneb@gmail.com</a></p></div>
+  <nav class="tile tile--nav" aria-label="ORIVEXY Verify"><ul><li><a href="../demo/">Demo</a></li><li><a href="../odoo-sh/">Instal·lar a Odoo.sh</a></li><li><a href="../instalar.html">Instal·lar a Windows</a></li><li><a href="https://apps.odoo.com/apps/modules/18.0/orivexy_validator">Odoo Apps</a></li><li><a href="../privacy.html">Privadesa</a></li><li><a href="../terms.html">Condicions</a></li></ul></nav>
+  <div class="tile tile--time"><span class="small muted">Hora a Espanya</span><strong data-clock></strong></div>
+  <div class="tile tile--mail"><a href="mailto:ericmunizgeneb@gmail.com">ericmunizgeneb@gmail.com</a></div>
+  <div class="tile tile--word" aria-hidden="true"><span>ORIVEXY Verify</span></div>
+  <a class="tile tile--go" href="../demo/"><p>Prova la demo, sense registrar-te</p><svg width="56" height="56" viewBox="0 0 56 56" aria-hidden="true"><path d="M14 42L42 14M20 14h22v22" fill="none" stroke="currentColor" stroke-width="4" stroke-linecap="square"/></svg></a>
+</footer>
+<script type="application/json" id="i18n">{"yes": "Sí", "no": "No", "notChecked": "Sense comprovar", "copy": "Copiar", "copied": "Copiada", "copyFail": "Copia-la a mà", "why": {"identical": "Coincideix exactament.", "punct": "Les mateixes paraules: només canvien majúscules, accents o puntuació.", "order": "Les mateixes paraules en un altre ordre.", "legal": "Una altra forma jurídica: pot ser una altra empresa. Ho decideix una persona.", "legalMissing": "En un dels dos falta la forma jurídica: ho decideix una persona.", "similar": "S'assembla, però no és igual: ho decideix una persona.", "other": "No coincideix amb el titular del certificat. Retén el pagament.", "empty": "Escriu un titular.", "invalid": "Els dígits de control no quadren: corregeix el número.", "missing": "Aquest IBAN no és a cap certificat: demana el certificat o confirma el compte."}, "how": {"identical": "Idèntic", "normalised": "Igual després de normalitzar", "similar": "Semblant", "different": "Diferent"}, "review": {"resolved": "RESOLT", "by": "Tu", "needNote": "Escriu què has comprovat: la nota és obligatòria."}, "result": {"ok": "CORRECTE", "review": "REVISIÓ MANUAL", "other": "UN ALTRE TITULAR", "missing": "IBAN NO TROBAT", "invalid": "IBAN NO VÀLID"}, "mail": "ericmunizgeneb@gmail.com", "mailSubject": "ORIVEXY Verify: consulta des del web", "lab": {"iban": "ES14 0415 0026 0037 0048 0059", "ibanTypo": "ES14 0415 0026 0037 0048 0050", "certHolder": "Ficticia Beta 2024 SL", "noCert": "—"}}</script>
+<script src="../assets/web.js?v=bbdf2fa3" defer></script>
 </body>
 </html>
