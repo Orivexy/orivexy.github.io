@@ -1,5 +1,5 @@
 # ORIVEXY Verify · instalador por orden (sin pasar por el navegador)
-# Uso:  powershell -c "irm https://orivexy.github.io/instalar.ps1 | iex"
+# Uso:  powershell -c "irm https://orivexy.com/instalar.ps1 | iex"
 #       (versión de prueba: instalar-prueba.ps1)
 $ErrorActionPreference = "Stop"
 if (-not $OrivexyVersion) { $OrivexyVersion = "ORIVEXY-Verify-Setup-0.1.8.exe" }
