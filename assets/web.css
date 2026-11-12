@@ -337,10 +337,10 @@ p + p { margin-top: 0.9em; }
 .price__text h2 { font-size: clamp(1.75rem, 1.4rem + 1vw, 2.25rem); margin-bottom: 18px; }
 .price__text p { font-size: 17px; }
 .price__fig { grid-column: 6 / span 7; position: relative; }
-.price__num { font-family: var(--font-display); font-weight: 300; font-size: clamp(120px, 16vw, 240px); line-height: 0.85; letter-spacing: -0.045em; display: flex; align-items: flex-start; gap: 0.04em; font-variant-numeric: lining-nums; }
+.price__num { font-family: var(--font-display); font-weight: 300; font-size: clamp(88px, 10.5vw, 180px); line-height: 0.85; letter-spacing: -0.045em; display: flex; flex-wrap: wrap; align-items: flex-start; gap: 0.04em; font-variant-numeric: lining-nums; }
 .price__cur { font-size: 0.5em; line-height: 1; margin-top: 0.06em; margin-inline: 0.08em; }
-.price__per { font-family: var(--font-text); font-size: 18px; letter-spacing: 0; align-self: flex-end; margin-bottom: 0.4em; margin-left: 0.6em; color: var(--muted); }
-.price__mark { position: absolute; width: clamp(72px, 9vw, 140px); top: -4%; left: clamp(330px, 42vw, 620px); background: none; }
+.price__per { font-family: var(--font-text); font-size: 18px; letter-spacing: 0; flex-basis: 100%; margin-top: 0.5em; color: var(--muted); }
+.price__mark { position: absolute; width: clamp(64px, 7vw, 120px); top: -6%; right: 0; background: none; }
 .price__list { margin-top: 32px; display: grid; gap: 6px; font-size: 18px; }
 .price__actions { margin-top: 28px; display: flex; align-items: center; flex-wrap: wrap; gap: 1.25rem; }
 .price__alt { margin-top: 24px; font-size: 16px; color: var(--muted); max-width: 56ch; }
@@ -458,7 +458,7 @@ p + p { margin-top: 0.9em; }
   .price__per { flex-basis: 100%; margin: 0.6em 0 0; }
   .price__text, .price__fig { grid-column: 1; padding-top: 0; }
   .price__fig { margin-top: 40px; }
-  .price__num { font-size: 34vw; }
+  .price__num { font-size: 21vw; }
   .price__mark { left: auto; right: 0; top: -10%; width: 22vw; }
   .faq { display: block; }
   .faq__title { position: static; margin-bottom: 24px; font-size: 9vw; }
