@@ -64,7 +64,6 @@ def page(L):
     <div class="reel__frame is-far"><img src="{b}img/web-reel-certificado.jpg" width="1008" height="567" alt="{e(L['alt_cert'])}"></div>
     {frame1}
     <div class="reel__frame is-far"><img src="{b}img/web-reel-odoo.jpg" width="1008" height="567" alt="{e(L['alt_odoo'])}"></div>
-    <div class="reel__frame is-far"><img src="{b}img/web-reel-escritorio.jpg" width="1008" height="567" alt="{e(L['alt_desk'])}"></div>
     <div class="reel__frame is-far"><video src="{b}img/web-clip-validacion.mp4" poster="{b}img/web-clip-validacion.jpg" muted loop playsinline preload="metadata" aria-label="{e(L['alt_clip'])}"></video></div>
     </div>
   </div>"""
@@ -188,7 +187,7 @@ def page(L):
 
     canonical = SITE + L["path"]
     ld = {"@context": "https://schema.org", "@type": "SoftwareApplication", "name": "ORIVEXY Verify",
-          "applicationCategory": "BusinessApplication", "operatingSystem": "Odoo 15–20; Windows",
+          "applicationCategory": "BusinessApplication", "operatingSystem": "Odoo 15–20 (Odoo.sh, Community, Enterprise)",
           "description": L["desc"], "inLanguage": L["lang"], "url": canonical, "image": SITE + "img/web-resultados-odoo.jpg",
           "author": {"@type": "Person", "name": "Eric Muñiz Genebriera"},
           "offers": {"@type": "Offer", "price": "249.00", "priceCurrency": "EUR", "url": apps, "availability": "https://schema.org/InStock"}}
@@ -313,8 +312,8 @@ def page(L):
   <div class="inst__more">
     <div data-reveal><h3>{e(L['inst_server_t'])}</h3><ol>{server_steps}</ol><p class="small muted" style="margin-top:12px">{e(L['inst_server_note'])}</p></div>
     <div data-reveal style="--d:1"><h3>{e(L['inst_win_t'])}</h3><p>{e(L['inst_win'])}</p>
-      <div class="code"><pre><code id="cmd">powershell -c "irm https://orivexy.com/instalar.ps1 | iex"</code></pre><button type="button" data-copy="cmd">{e(L['js']['copy'])}</button></div>
-      <p style="margin-top:12px"><a class="link" href="{b}instalar.html">{e(L['inst_win_more'])}</a></p></div>
+      <div class="code"><pre><code id="cmd">cat orivexy_validator/requirements.txt >> requirements.txt</code></pre><button type="button" data-copy="cmd">{e(L['js']['copy'])}</button></div>
+      <div class="price__actions"><a class="button" href="{apps}">{e(L['inst_dl'])}</a><a class="link" href="{b}odoo-sh/">{e(L['inst_win_more'])}</a></div></div>
   </div>
 </section>
 
@@ -327,8 +326,8 @@ def page(L):
     <p class="price__num nums">{num}<span class="price__per">{e(L['price_per'])}</span></p>
     <img class="price__mark" src="{b}img/web-simbolo.svg" width="100" height="100" alt="">
     <ul class="price__list">{price_list}</ul>
-    <div class="price__actions"><a class="button" href="{apps}">{e(L['price_button'])}</a></div>
     <p class="price__alt">{price_alt}</p>
+    <div class="price__actions"><a class="button" href="{apps}">{e(L['price_button'])}</a></div>
   </div>
 </section>
 
