@@ -10,7 +10,7 @@ sys.path.insert(0, str(Path(__file__).parent))
 from textos import APPS, IB, LANGS, MAIL  # noqa: E402
 
 ROOT = Path(__file__).resolve().parent.parent
-SITE = "https://orivexy.com/"
+SITE = "https://orivexy.github.io/"
 import hashlib
 VER = hashlib.sha1((ROOT / "assets" / "web.css").read_bytes() + (ROOT / "assets" / "web.js").read_bytes()).hexdigest()[:8]
 VERSIONS = ["15.0", "16.0", "17.0", "18.0", "19.0", "20.0"]

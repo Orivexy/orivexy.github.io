@@ -40,6 +40,10 @@ ES = {
         ("Qué comprueba.", "Que el IBAN es válido (85 países, longitud y dígitos de control), que aparece en el certificado y que el titular coincide. Tildes, mayúsculas y «S.L.» frente a «SL» no cuentan; un apellido distinto, sí. Y avisa si un IBAN se repite en la remesa."),
         ("Dónde.", "Dentro de tu base de datos de Odoo.sh. Los IBAN, los nombres y los ficheros no salen de tu instalación: el módulo no llama a ningún servicio externo."),
         ("Cómo empezar.", "Prueba la demo en el navegador, con datos ficticios y sin registrarte. Después descarga el módulo en Odoo Apps para tu versión de Odoo e intégralo en tu base de datos."),
+        ('Cuentas de proveedores.', 'Con Contabilidad, cada cuenta bancaria guarda su certificado con fecha de caducidad y un estado: sin verificar, verificada, caducada o no coincide.'),
+        ('Cambios de IBAN.', 'Si alguien cambia el IBAN o el titular de una cuenta, vuelve a «sin verificar», queda una nota en el contacto y los responsables reciben una tarea.'),
+        ('Pagos salientes.', '«Comprobar beneficiarios» revisa los pagos seleccionados con los certificados guardados. Opcionalmente, bloquea pagar a cuentas sin verificar salvo con la nota de un responsable.'),
+        ('Con la verificación del banco.', 'Desde octubre de 2025 los bancos de la zona euro comprueban el beneficiario de cada transferencia. ORIVEXY revisa la remesa entera antes de enviarla y deja constancia.'),
     ],
     "how_title": "Dos ficheros y un botón",
     "how": [
@@ -179,6 +183,10 @@ EN = {
         ("What it checks.", "That the IBAN is valid (85 countries, length and check digits), that it is in the certificate and that the holder matches. Accents, capitals and \"S.L.\" versus \"SL\" do not count; a different surname does. It also warns when an IBAN repeats in the batch."),
         ("Where.", "Inside your Odoo.sh database. IBANs, names and files never leave your installation: the module calls no external service."),
         ("How to start.", "Try the demo in your browser, with fictitious data and no sign-up. Then download the module from Odoo Apps for your Odoo version and add it to your database."),
+        ('Supplier accounts.', 'With Accounting, each bank account stores its certificate with an expiry date and a status: unverified, verified, expired or mismatch.'),
+        ('IBAN changes.', 'If someone changes the IBAN or the holder of an account, it goes back to unverified, a note is left on the contact and managers get a task.'),
+        ('Outgoing payments.', '“Check payees” reviews the selected payments against the stored certificates. Optionally, it blocks paying unverified accounts unless a manager adds a note.'),
+        ("Alongside your bank's check.", 'Since October 2025, euro-area banks check the payee of each transfer. ORIVEXY reviews the whole batch before you send it and keeps a record.'),
     ],
     "how_title": "Two files and a button",
     "how": [
@@ -318,6 +326,10 @@ CA = {
         ("Què comprova.", "Que l'IBAN és vàlid (85 països, longitud i dígits de control), que surt al certificat i que el titular coincideix. Accents, majúscules i «S.L.» davant «SL» no compten; un cognom diferent, sí. I avisa si un IBAN es repeteix a la remesa."),
         ("On.", "Dins de la teva base de dades d'Odoo.sh. Els IBAN, els noms i els fitxers no surten de la instal·lació: el mòdul no crida cap servei extern."),
         ("Com començar.", "Prova la demo al navegador, amb dades fictícies i sense registrar-te. Després baixa el mòdul d'Odoo Apps per a la teva versió d'Odoo i integra'l a la teva base de dades."),
+        ('Comptes de proveïdors.', 'Amb Comptabilitat, cada compte bancari guarda el seu certificat amb data de caducitat i un estat: sense verificar, verificat, caducat o no coincideix.'),
+        ("Canvis d'IBAN.", "Si algú canvia l'IBAN o el titular d'un compte, torna a «sense verificar», queda una nota al contacte i els responsables reben una tasca."),
+        ('Pagaments sortints.', "«Comprovar beneficiaris» revisa els pagaments seleccionats amb els certificats desats. Opcionalment, bloqueja pagar a comptes sense verificar si no hi ha la nota d'un responsable."),
+        ('Amb la verificació del banc.', "Des d'octubre de 2025 els bancs de la zona euro comproven el beneficiari de cada transferència. ORIVEXY revisa la remesa sencera abans d'enviar-la i en deixa constància."),
     ],
     "how_title": "Dos fitxers i un botó",
     "how": [
