@@ -21,434 +21,450 @@ quien dice ser. Lo cruza con el certificado de
 titularidad que te da el banco.
 
 5
-00:00:22.683 --> 00:00:27.713
+00:00:22.683 --> 00:00:27.723
 Y te dice qué pagos son correctos, cuáles van
 a otra persona y qué cuentas no
 
 6
-00:00:27.713 --> 00:00:33.005
-aparecen en el certificado. Todo se procesa
-dentro de tu propio Odoo: ningún dato
+00:00:27.723 --> 00:00:32.960
+aparecen en el certificado. Todo pasa dentro de
+tu Odoo, con tu usuario de Odoo:
 
 7
-00:00:33.005 --> 00:00:34.899
-bancario sale de tu servidor.
+00:00:32.960 --> 00:00:35.643
+ningún dato bancario sale de tu servidor.
 
 8
-00:00:35.350 --> 00:00:40.459
+00:00:36.083 --> 00:00:41.193
 Antes de empezar necesitas tres cosas: un
 proyecto de Odoo.sh con permisos de
 
 9
-00:00:40.459 --> 00:00:45.568
+00:00:41.193 --> 00:00:46.302
 administrador, acceso al repositorio de
 GitHub del proyecto, y ORIVEXY Verify
 
 10
-00:00:45.568 --> 00:00:50.014
+00:00:46.302 --> 00:00:50.747
 comprado en Odoo Apps, en la misma
 versión de Odoo que tu proyecto.
 
 11
-00:00:50.450 --> 00:00:53.162
+00:00:51.183 --> 00:00:53.895
 Parte dos: preparación.
 
 12
-00:00:53.617 --> 00:00:59.789
+00:00:54.350 --> 00:00:59.761
 Busca ORIVEXY Verify en Odoo Apps y elige tu
-versión de Odoo. Es un pago único por
+versión de Odoo, de la quince a la
 
 13
-00:00:59.789 --> 00:01:06.036
-versión. Al terminar la compra, Odoo Apps te
-deja descargar el módulo en un archivo
+00:00:59.761 --> 00:01:05.445
+veinte. Cuesta cuatrocientos cuarenta y nueve
+euros con noventa y nueve, en un pago
 
 14
-00:01:06.036 --> 00:01:06.337
-ZIP.
+00:01:05.445 --> 00:01:11.198
+único por versión, sin suscripción. Al terminar
+la compra, descargas un archivo ZIP.
 
 15
-00:01:06.783 --> 00:01:13.313
-Dentro del ZIP hay una carpeta,
-orivexy_validator, que es el módulo. Dentro de ella,
+00:01:11.650 --> 00:01:17.149
+Dentro del ZIP está la carpeta
+orivexy_validator, que es el módulo, todo en uno: el
 
 16
-00:01:13.313 --> 00:01:18.831
-el fichero requirements.txt lista las
-librerías de Python que necesita.
+00:01:17.149 --> 00:01:22.714
+motor y sus librerías van dentro, así que no hay
+librerías ni nada más que instalar.
 
 17
-00:01:19.283 --> 00:01:26.038
+00:01:23.150 --> 00:01:29.078
+Si usas Facturación, orivexy_validator_account
+la conecta y se instala sola. El
+
+18
+00:01:29.078 --> 00:01:35.381
+paquete completo para Odoo dieciocho trae además
+el panel, los tickets y los colores
+
+19
+00:01:35.381 --> 00:01:36.206
+de ORIVEXY.
+
+20
+00:01:36.650 --> 00:01:43.404
 Tu proyecto de Odoo.sh guarda sus módulos en un
 repositorio de GitHub. Si todavía no
 
-18
-00:01:26.038 --> 00:01:30.299
+21
+00:01:43.404 --> 00:01:47.666
 tienes proyecto, entra en odoo.sh
 y pulsa Create New.
 
-19
-00:01:30.750 --> 00:01:36.560
+22
+00:01:48.117 --> 00:01:53.927
 Ahí eliges el repositorio, la versión de Odoo y
 tu código de suscripción de Odoo
 
-20
-00:01:36.560 --> 00:01:41.862
+23
+00:01:53.927 --> 00:01:59.229
 Enterprise, y pulsas Deploy. Si ya tienes
 un proyecto, sáltate este paso.
 
-21
-00:01:42.317 --> 00:01:47.921
-Ahora, en una copia del repositorio, crea una
-rama de pruebas y copia la carpeta
-
-22
-00:01:47.921 --> 00:01:51.845
-orivexy_validator en la raíz, junto
-a tus otros módulos.
-
-23
-00:01:52.283 --> 00:01:58.554
-Añade sus librerías al requirements.txt del
-repositorio, que es el que lee Odoo.sh,
-
 24
-00:01:58.554 --> 00:02:04.824
-y sube la rama a GitHub. Si no usas la terminal,
-puedes hacer lo mismo desde la web
+00:01:59.683 --> 00:02:05.095
+Ahora, en una copia del repositorio, crea una
+rama de staging y copia las carpetas
 
 25
-00:02:04.824 --> 00:02:05.579
-de GitHub.
+00:02:05.095 --> 00:02:08.131
+del ZIP en la raíz, junto a
+tus otros módulos.
 
 26
-00:02:06.017 --> 00:02:08.777
-Parte tres: instalación.
+00:02:08.583 --> 00:02:15.671
+Después, git add, git commit y git push. Eso es
+todo. Si no usas la terminal, puedes
 
 27
-00:02:09.217 --> 00:02:16.020
+00:02:15.671 --> 00:02:19.215
+subir las carpetas desde la web de GitHub.
+
+28
+00:02:19.650 --> 00:02:22.410
+Parte tres: instalación.
+
+29
+00:02:22.850 --> 00:02:29.427
 En tu proyecto de Odoo.sh, abre la pestaña
 Branches: la rama nueva aparece sola.
 
-28
-00:02:16.020 --> 00:02:23.164
-Arrástrala a Staging. Odoo.sh copiará tu base de
-datos y construirá la rama, con las
-
-29
-00:02:23.164 --> 00:02:25.801
-librerías del requirements.txt.
-
 30
-00:02:26.250 --> 00:02:31.510
-Cuando el build esté en verde, pulsa Connect
-para entrar en la base de datos de
+00:02:29.427 --> 00:02:36.086
+Arrástrala a Staging, y Odoo.sh copiará tu base
+de datos y construirá la rama. No
 
 31
-00:02:31.510 --> 00:02:36.570
-pruebas. Lo que verás a partir de ahora es
-Odoo de verdad, en la versión 18.
+00:02:36.086 --> 00:02:38.306
+hay librerías que instalar.
 
 32
-00:02:37.017 --> 00:02:43.656
+00:02:38.750 --> 00:02:44.345
+Cuando el build esté en verde, pulsa Connect. Lo
+que verás a partir de ahora es Odoo
+
+33
+00:02:44.345 --> 00:02:48.542
+de verdad, en la versión dieciocho,
+con los colores de ORIVEXY.
+
+34
+00:02:48.983 --> 00:02:55.623
 Lo primero es activar el modo desarrollador. Abre
 el menú de aplicaciones y entra en
 
-33
-00:02:43.656 --> 00:02:44.289
+35
+00:02:55.623 --> 00:02:56.255
 Ajustes.
 
-34
-00:02:44.750 --> 00:02:49.478
+36
+00:02:56.717 --> 00:03:01.445
 Baja hasta el final de la página y pulsa
 Activar modo de desarrollador.
 
-35
-00:02:52.083 --> 00:02:57.276
+37
+00:03:01.883 --> 00:03:07.076
 Ahora entra en Aplicaciones y pulsa Actualizar
 lista de aplicaciones, para que Odoo
 
-36
-00:02:57.276 --> 00:02:59.715
+38
+00:03:07.076 --> 00:03:09.515
 encuentre los módulos de la rama nueva.
 
-37
-00:03:00.150 --> 00:03:03.150
+39
+00:03:09.950 --> 00:03:12.950
 Escribe ORIVEXY en el buscador.
 
-38
-00:03:03.617 --> 00:03:10.529
-Ahí está ORIVEXY Verify. Pulsa Activar y espera
-unos segundos mientras se instala.
-
-39
-00:03:10.983 --> 00:03:17.351
-Cuando termina, Odoo recarga la página. En el
-menú de aplicaciones ya aparece
-
 40
-00:03:17.351 --> 00:03:18.591
-ORIVEXY Verify.
+00:03:13.417 --> 00:03:20.065
+Ahí está ORIVEXY Verify. Pulsa Activar y
+espera un momento mientras se instala.
 
 41
-00:03:19.050 --> 00:03:22.194
-Parte cuatro: configuración inicial.
+00:03:20.517 --> 00:03:26.209
+Cuando termina, abre el menú de aplicaciones: ya
+está el Validador. Con el paquete
 
 42
-00:03:22.650 --> 00:03:28.318
-ORIVEXY Verify funciona en cuanto se instala;
-solo hay que decidir quién ve qué.
+00:03:26.209 --> 00:03:31.485
+completo, también ORIVEXY Verify y Tickets,
+cada uno como aplicación aparte.
 
 43
-00:03:28.318 --> 00:03:34.270
-Cada usuario interno ve sus propias validaciones.
-Un responsable ve las de todos los
+00:03:31.950 --> 00:03:35.094
+Parte cuatro: configuración inicial.
 
 44
-00:03:34.270 --> 00:03:37.458
-de su empresa, sin ser
-administrador de Odoo.
+00:03:35.550 --> 00:03:41.612
+ORIVEXY Verify funciona en cuanto se instala;
+solo hay que decidir quién ve qué. El
 
 45
-00:03:37.917 --> 00:03:44.221
-Para nombrar a alguien responsable, ve a
-Ajustes, Usuarios y compañías, Usuarios, y
+00:03:41.612 --> 00:03:47.746
+rol Validador ve y revisa las validaciones de
+toda su empresa. Contables y firmantes
 
 46
-00:03:44.221 --> 00:03:45.285
-abre su ficha.
+00:03:47.746 --> 00:03:49.134
+ven solo las suyas.
 
 47
-00:03:45.750 --> 00:03:51.331
-Con el modo desarrollador activo, en Permisos
-de acceso marca ORIVEXY Verify:
+00:03:49.583 --> 00:03:55.719
+Para dar un rol, abre ORIVEXY Verify, Usuarios y
+permisos, y entra en la ficha de la
 
 48
-00:03:51.331 --> 00:03:52.926
-Responsable, y guarda.
+00:03:55.719 --> 00:03:56.303
+persona.
 
 49
-00:03:53.383 --> 00:03:58.589
-Si trabajas con varias empresas, cada validación
-queda guardada en la suya, y cada
+00:03:56.750 --> 00:04:02.235
+Marca el rol Validador y guarda. Con solo el
+módulo de Odoo Apps, el permiso
 
 50
-00:03:58.589 --> 00:04:02.335
-usuario solo ve las de las empresas
-a las que tiene acceso.
+00:04:02.235 --> 00:04:06.638
+equivalente se llama Responsable y
+está en Ajustes, Usuarios.
 
 51
-00:04:02.783 --> 00:04:08.246
-No hay que activar ninguna licencia: el pago
-único de Odoo Apps cubre el módulo y la
+00:04:07.083 --> 00:04:12.267
+Cada persona entra en Odoo como siempre, con su
+usuario de Odoo: ORIVEXY no tiene
 
 52
-00:04:08.246 --> 00:04:13.644
-app de escritorio. Tampoco hay integraciones que
-configurar, porque no se conecta a
+00:04:12.267 --> 00:04:14.571
+cuentas ni inicio de sesión propios.
 
 53
-00:04:13.644 --> 00:04:14.879
-servicios externos.
+00:04:15.017 --> 00:04:20.170
+Tampoco hay licencias ni claves que activar, ni
+integraciones que configurar, porque
 
 54
-00:04:15.317 --> 00:04:21.596
-Un detalle: los certificados escaneados
-necesitan reconocimiento de texto, que
+00:04:20.170 --> 00:04:22.625
+no se conecta a ningún servicio externo.
 
 55
-00:04:21.596 --> 00:04:28.278
-Odoo.sh no incluye. Para esos, usa el PDF con
-texto del banco, el XML SEPA o la app
-
-56
-00:04:28.278 --> 00:04:29.405
-de escritorio.
-
-57
-00:04:29.850 --> 00:04:34.706
-La app de escritorio se descarga desde el propio
-módulo, en ORIVEXY Verify, App de
-
-58
-00:04:34.706 --> 00:04:38.970
-escritorio, para quien prefiera trabajar
-con los ficheros fuera de Odoo.
-
-59
-00:04:39.417 --> 00:04:43.977
+00:04:23.083 --> 00:04:27.643
 Parte cinco: una validación de
 prueba, con datos ficticios.
 
+56
+00:04:28.083 --> 00:04:34.524
+Abre el Validador. El panel resume tu actividad
+y, con un semáforo, los resultados
+
+57
+00:04:34.524 --> 00:04:39.315
+de los últimos treinta días. La
+primera vez está todo a cero.
+
+58
+00:04:39.750 --> 00:04:45.286
+Pulsa Probar con datos de ejemplo. ORIVEXY
+valida al momento una remesa ficticia
+
+59
+00:04:45.286 --> 00:04:49.230
+contra un certificado ficticio que
+trae el propio módulo.
+
 60
-00:04:44.417 --> 00:04:51.167
-Abre ORIVEXY Verify. En Validaciones aparecerán
-todas tus comprobaciones; la primera
+00:04:49.683 --> 00:04:56.226
+Arriba está el veredicto: hay incidencias. Nueve
+pagos: seis correctos, dos a nombre
 
 61
-00:04:51.167 --> 00:04:53.177
-vez, la lista está vacía.
+00:04:56.226 --> 00:05:02.536
+de otro titular y uno cuyo IBAN no aparece en
+el certificado. Cada color abre sus
 
 62
-00:04:53.617 --> 00:05:01.509
-Pulsa Nuevo. En Certificado, sube el certificado
-de titularidad del banco, en PDF o
+00:05:02.536 --> 00:05:03.003
+filas.
 
 63
-00:05:01.509 --> 00:05:08.545
-XML SEPA. En Fichero a comprobar, sube tu
-remesa de pagos: TXT, CSV o XML.
+00:05:03.450 --> 00:05:09.438
+Abajo, cada fila lleva una insignia de color, el
+IBAN enmascarado, los dos titulares
 
 64
-00:05:08.983 --> 00:05:14.935
-Pulsa VALIDAR. En un par de segundos
-tienes el resultado de cada pago.
+00:05:09.438 --> 00:05:15.142
+lado a lado y el motivo del resultado. Aquí,
+Martines con ese no es Martínez con
 
 65
-00:05:15.383 --> 00:05:20.917
-Arriba está el resumen: nueve pagos, seis
-correctos, dos a nombre de otro titular y
+00:05:15.142 --> 00:05:15.498
+zeta.
 
 66
-00:05:20.917 --> 00:05:23.783
-uno cuyo IBAN no aparece en
-el certificado.
+00:05:15.950 --> 00:05:22.103
+Con Ver discrepancias te quedas solo con lo que
+necesita atención. Abre el pago a
 
 67
-00:05:24.250 --> 00:05:29.570
-Abajo, cada fila muestra el titular de tu remesa,
-el del certificado y el resultado,
+00:05:22.103 --> 00:05:23.318
+Pedro Fernández.
 
 68
-00:05:29.570 --> 00:05:31.786
-con una nota que explica el porqué.
+00:05:23.783 --> 00:05:29.890
+El IBAN sí está en el certificado, pero es de
+María López Ruiz. Ese pago no debería
 
 69
-00:05:32.250 --> 00:05:37.988
-Fíjate en el pago a Pedro Fernández: el IBAN sí
-está en el certificado, pero es de
+00:05:29.890 --> 00:05:32.759
+salir sin confirmarlo con el proveedor.
 
 70
-00:05:37.988 --> 00:05:43.026
-María López. Ese pago no debería salir sin
-confirmarlo con el proveedor.
+00:05:33.217 --> 00:05:40.052
+Pulsa Empezar revisión. Si intentas resolverla
+sin escribir nada, no te deja: la
 
 71
-00:05:43.483 --> 00:05:48.019
-Con Ver discrepancias te quedas solo con
-lo que necesita atención.
+00:05:40.052 --> 00:05:41.761
+nota es obligatoria.
 
 72
-00:05:48.483 --> 00:05:54.351
-Abre una fila y pulsa Empezar revisión. Escribe
-qué has comprobado y resuélvela: la
+00:05:42.217 --> 00:05:48.595
+Escribe qué has comprobado y pulsa Resolver. La
+nota queda registrada con tu nombre
 
 73
-00:05:54.351 --> 00:05:58.875
-nota es obligatoria y queda registrada
-con tu nombre y la fecha.
+00:05:48.595 --> 00:05:49.441
+y la fecha.
 
 74
-00:05:59.683 --> 00:06:05.821
+00:05:51.617 --> 00:05:57.755
 Desde la validación puedes imprimir el informe
 en PDF, con los IBAN enmascarados, o
 
 75
-00:06:05.821 --> 00:06:08.779
-exportar los resultados a Excel o a CSV.
+00:05:57.755 --> 00:06:00.713
+exportar los resultados a CSV o a Excel.
 
 76
-00:06:09.217 --> 00:06:16.474
+00:06:01.150 --> 00:06:06.843
+Con tus propios ficheros, pulsa Nueva
+validación: sube uno o varios certificados,
+
+77
+00:06:06.843 --> 00:06:09.022
+sube la remesa y pulsa VALIDAR.
+
+78
+00:06:09.483 --> 00:06:15.037
+Cualquier fichero termina la validación. Lo que
+no se puede leer, como una imagen o
+
+79
+00:06:15.037 --> 00:06:20.457
+un escaneado sin reconocimiento de texto, queda
+en revisión manual con el motivo,
+
+80
+00:06:20.457 --> 00:06:21.795
+nunca como correcto.
+
+81
+00:06:22.250 --> 00:06:27.354
+Y las remesas de más de dos mil filas se validan
+en segundo plano, por bloques, con
+
+82
+00:06:27.354 --> 00:06:30.122
+una barra de progreso y un
+aviso al terminar.
+
+83
+00:06:30.583 --> 00:06:37.841
 Así se leen los resultados. Correcto: no hay
 que hacer nada. Titular incorrecto:
 
-77
-00:06:16.474 --> 00:06:22.825
+84
+00:06:37.841 --> 00:06:44.191
 retén el pago y compruébalo. Revisión
 manual: decide tú, con una nota.
 
-78
-00:06:23.283 --> 00:06:30.097
+85
+00:06:44.650 --> 00:06:51.463
 IBAN no encontrado: falta su certificado. E
 IBAN no válido: el número está mal
 
-79
-00:06:30.097 --> 00:06:30.795
+86
+00:06:51.463 --> 00:06:52.162
 escrito.
 
-80
-00:06:31.250 --> 00:06:34.274
+87
+00:06:52.617 --> 00:06:55.641
 Parte seis: comprobación final.
 
-81
-00:06:34.717 --> 00:06:40.031
-La instalación está completa si ORIVEXY Verify
-aparece en el menú, si una validación
+88
+00:06:56.083 --> 00:07:01.210
+La instalación está completa si el Validador
+aparece en el menú, si Probar con datos
 
-82
-00:06:40.031 --> 00:06:44.838
-de prueba termina con resultados, y si un
-usuario normal solo ve sus propias
+89
+00:07:01.210 --> 00:07:06.093
+de ejemplo da nueve pagos y seis correctos, y
+si un usuario sin rol de Validador
 
-83
-00:06:44.838 --> 00:06:45.661
-validaciones.
+90
+00:07:06.093 --> 00:07:08.107
+solo ve sus propias validaciones.
 
-84
-00:06:46.117 --> 00:06:51.684
+91
+00:07:08.550 --> 00:07:14.103
 Los errores más habituales se arreglan
 rápido. Si no aparece en Aplicaciones,
 
-85
-00:06:51.684 --> 00:06:57.397
-comprueba que la carpeta está en la raíz de la
-rama y actualiza la lista. Si el
+92
+00:07:14.103 --> 00:07:20.017
+comprueba que las carpetas están en la raíz de
+la rama y actualiza la lista. Si el
 
-86
-00:06:57.397 --> 00:07:02.965
-build falla, mira sus logs: casi siempre
-falta una línea en requirements.txt.
+93
+00:07:20.017 --> 00:07:23.262
+build sale en rojo, sus logs
+dicen qué falla.
 
-87
-00:07:03.417 --> 00:07:08.682
-Si un certificado no se lee, probablemente
-es una imagen escaneada. Y si un
-
-88
-00:07:08.682 --> 00:07:14.087
-responsable no ve las validaciones de otros,
-revisa su permiso en la ficha de
-
-89
-00:07:14.087 --> 00:07:14.649
-usuario.
-
-90
-00:07:15.083 --> 00:07:20.183
+94
+00:07:23.717 --> 00:07:28.817
 Prueba siempre en Staging. Cuando todo esté
 bien, fusiona la rama en la de
 
-91
-00:07:20.183 --> 00:07:25.283
+95
+00:07:28.817 --> 00:07:33.917
 producción y, en esa base de datos, instala
 el módulo igual que has visto.
 
-92
-00:07:25.717 --> 00:07:31.137
-Para actualizar a una versión nueva, sustituye la
-carpeta por la del nuevo ZIP, sube
+96
+00:07:34.350 --> 00:07:39.584
+Para actualizar a una versión nueva, sustituye
+las carpetas por las del nuevo ZIP,
 
-93
-00:07:31.137 --> 00:07:34.429
-el cambio y actualiza el módulo
-desde Aplicaciones.
+97
+00:07:39.584 --> 00:07:43.158
+sube el cambio y actualiza el
+módulo desde Aplicaciones.
 
-94
-00:07:34.883 --> 00:07:41.835
+98
+00:07:43.617 --> 00:07:50.569
 Y ya está: ORIVEXY Verify instalado y
 funcionando en Odoo.sh. Si necesitas ayuda,
 
-95
-00:07:41.835 --> 00:07:47.843
+99
+00:07:50.569 --> 00:07:56.577
 escríbenos desde la página del módulo en
 Odoo Apps. Gracias por verlo.

@@ -21,426 +21,451 @@ qui diu ser. El creua amb el certificat de
 titularitat que et dona el banc.
 
 5
-00:00:22.683 --> 00:00:27.634
+00:00:22.683 --> 00:00:27.575
 I et diu quins pagaments són correctes, quins
 van a una altra persona i quins
 
 6
-00:00:27.634 --> 00:00:32.906
-comptes no surten al certificat. Tot es processa
-dins del teu propi Odoo: cap dada
+00:00:27.575 --> 00:00:32.594
+comptes no surten al certificat. Tot passa
+dins del teu Odoo, amb el teu usuari
 
 7
-00:00:32.906 --> 00:00:34.899
-bancària surt del teu servidor.
+00:00:32.594 --> 00:00:35.643
+d’Odoo: cap dada bancària surt
+del teu servidor.
 
 8
-00:00:35.350 --> 00:00:40.326
+00:00:36.083 --> 00:00:41.059
 Abans de començar necessites tres coses: un
 projecte d’Odoo.sh amb permisos
 
 9
-00:00:40.326 --> 00:00:45.436
+00:00:41.059 --> 00:00:46.169
 d’administrador, accés al repositori de
 GitHub del projecte, i ORIVEXY Verify
 
 10
-00:00:45.436 --> 00:00:50.014
+00:00:46.169 --> 00:00:50.747
 comprat a Odoo Apps, en la mateixa versió
 d’Odoo que el teu projecte.
 
 11
-00:00:50.450 --> 00:00:53.162
+00:00:51.183 --> 00:00:53.895
 Part dos: preparació.
 
 12
-00:00:53.617 --> 00:00:59.717
+00:00:54.350 --> 00:01:01.298
 Busca ORIVEXY Verify a Odoo Apps i tria la teva
-versió d’Odoo. És un pagament únic
+versió d’Odoo, de la 15 a la 20.
 
 13
-00:00:59.717 --> 00:01:05.519
-per versió. En acabar la compra, Odoo Apps et
-deixa descarregar el mòdul en un
+00:01:01.298 --> 00:01:08.158
+Costa 449,99 €, en un pagament únic per
+versió, sense subscripció. En acabar la
 
 14
-00:01:05.519 --> 00:01:06.337
-fitxer ZIP.
+00:01:08.158 --> 00:01:11.198
+compra, descarregues un fitxer ZIP.
 
 15
-00:01:06.783 --> 00:01:13.124
-Dins del ZIP hi ha una carpeta,
-orivexy_validator, que és el mòdul. Dins seu, el
+00:01:11.650 --> 00:01:16.479
+Dins del ZIP hi ha la carpeta
+orivexy_validator, que és el mòdul, tot en un: el
 
 16
-00:01:13.124 --> 00:01:18.831
-fitxer requirements.txt llista les
-biblioteques de Python que necessita.
+00:01:16.479 --> 00:01:21.553
+motor i les seves biblioteques hi van a dins,
+així que no hi ha biblioteques ni res
 
 17
-00:01:19.283 --> 00:01:26.179
+00:01:21.553 --> 00:01:22.714
+més per instal·lar.
+
+18
+00:01:23.150 --> 00:01:29.411
+Si fas servir Facturació,
+orivexy_validator_account la connecta i s’instal·la sol.
+
+19
+00:01:29.411 --> 00:01:35.442
+El paquet complet per a Odoo 18 porta també el
+tauler, els tiquets i els colors
+
+20
+00:01:35.442 --> 00:01:36.206
+d’ORIVEXY.
+
+21
+00:01:36.650 --> 00:01:43.546
 El teu projecte d’Odoo.sh desa els mòduls en un
 repositori de GitHub. Si encara no
 
-18
-00:01:26.179 --> 00:01:30.299
+22
+00:01:43.546 --> 00:01:47.666
 tens projecte, entra a odoo.sh
 i prem Create New.
 
-19
-00:01:30.750 --> 00:01:36.567
+23
+00:01:48.117 --> 00:01:53.934
 Allà tries el repositori, la versió d’Odoo i
 el teu codi de subscripció d’Odoo
 
-20
-00:01:36.567 --> 00:01:41.862
+24
+00:01:53.934 --> 00:01:59.229
 Enterprise, i prems Deploy. Si ja tens un
 projecte, salta’t aquest pas.
 
-21
-00:01:42.317 --> 00:01:47.782
-Ara, en una còpia del repositori, crea una
-branca de proves i copia la carpeta
-
-22
-00:01:47.782 --> 00:01:51.845
-orivexy_validator a l’arrel, al
-costat dels altres mòduls.
-
-23
-00:01:52.283 --> 00:01:57.766
-Afegeix les seves biblioteques al
-requirements.txt del repositori, que és el que
-
-24
-00:01:57.766 --> 00:02:03.386
-llegeix Odoo.sh, i puja la branca a GitHub. Si
-no fas servir el terminal, pots fer
-
 25
-00:02:03.386 --> 00:02:05.579
-el mateix des del web de GitHub.
+00:01:59.683 --> 00:02:04.988
+Ara, en una còpia del repositori, crea una
+branca de staging i copia les carpetes
 
 26
-00:02:06.017 --> 00:02:08.777
-Part tres: instal·lació.
+00:02:04.988 --> 00:02:08.131
+del ZIP a l’arrel, al costat
+dels altres mòduls.
 
 27
-00:02:09.217 --> 00:02:15.397
+00:02:08.583 --> 00:02:15.424
+Després, git add, git commit i git push. Això és
+tot. Si no fas servir el terminal,
+
+28
+00:02:15.424 --> 00:02:19.215
+pots pujar les carpetes des
+del web de GitHub.
+
+29
+00:02:19.650 --> 00:02:22.410
+Part tres: instal·lació.
+
+30
+00:02:22.850 --> 00:02:28.692
 Al teu projecte d’Odoo.sh, obre la pestanya
 Branches: la branca nova hi apareix
 
-28
-00:02:15.397 --> 00:02:21.890
-sola. Arrossega-la a Staging. Odoo.sh copiarà la
-teva base de dades i construirà la
-
-29
-00:02:21.890 --> 00:02:25.801
-branca, amb les biblioteques del
-requirements.txt.
-
-30
-00:02:26.250 --> 00:02:32.188
-Quan el build estigui en verd, prem Connect per
-entrar a la base de dades de proves.
-
 31
-00:02:32.188 --> 00:02:36.570
-El que veuràs a partir d’ara és Odoo
-de debò, en la versió 18.
+00:02:28.692 --> 00:02:34.756
+sola. Arrossega-la a Staging, i Odoo.sh copiarà
+la teva base de dades i construirà
 
 32
-00:02:37.017 --> 00:02:43.635
+00:02:34.756 --> 00:02:38.306
+la branca. No hi ha
+biblioteques per instal·lar.
+
+33
+00:02:38.750 --> 00:02:44.981
+Quan el build estigui en verd, prem Connect. El
+que veuràs a partir d’ara és Odoo de
+
+34
+00:02:44.981 --> 00:02:48.542
+debò, en la versió 18, amb els
+colors d’ORIVEXY.
+
+35
+00:02:48.983 --> 00:02:55.601
 El primer és activar el mode desenvolupador.
 Obre el menú d’aplicacions i entra a
 
-33
-00:02:43.635 --> 00:02:44.289
+36
+00:02:55.601 --> 00:02:56.255
 Ajustos.
 
-34
-00:02:44.750 --> 00:02:49.478
+37
+00:02:56.717 --> 00:03:01.445
 Baixa fins al final de la pàgina i prem
 Activa el mode de desenvolupador.
 
-35
-00:02:52.083 --> 00:02:57.756
+38
+00:03:01.883 --> 00:03:07.556
 Ara entra a Aplicacions i prem Actualitza la
 llista d’aplicacions, perquè Odoo trobi
 
-36
-00:02:57.756 --> 00:02:59.715
+39
+00:03:07.556 --> 00:03:09.515
 els mòduls de la branca nova.
 
-37
-00:03:00.150 --> 00:03:03.150
+40
+00:03:09.950 --> 00:03:12.950
 Escriu ORIVEXY al cercador.
 
-38
-00:03:03.617 --> 00:03:10.529
-Aquí tens ORIVEXY Verify. Prem Activa i
-espera uns segons mentre s’instal·la.
-
-39
-00:03:10.983 --> 00:03:18.591
-Quan acaba, Odoo recarrega la pàgina. Al menú
-d’aplicacions ja surt ORIVEXY Verify.
-
-40
-00:03:19.050 --> 00:03:22.194
-Part quatre: configuració inicial.
-
 41
-00:03:22.650 --> 00:03:28.318
-ORIVEXY Verify funciona tan bon punt
-s’instal·la; només cal decidir qui veu què.
+00:03:13.417 --> 00:03:20.065
+Aquí tens ORIVEXY Verify. Prem Activa i
+espera un moment mentre s’instal·la.
 
 42
-00:03:28.318 --> 00:03:34.270
-Cada usuari intern veu les seves validacions. Un
-responsable veu les de tothom de la
+00:03:20.517 --> 00:03:26.111
+Quan acaba, obre el menú d’aplicacions: ja hi
+ha el Validador. Amb el paquet
 
 43
-00:03:34.270 --> 00:03:37.458
-seva empresa, sense ser
-administrador d’Odoo.
+00:03:26.111 --> 00:03:31.485
+complet, també ORIVEXY Verify i Tiquets,
+cadascun com a aplicació a part.
 
 44
-00:03:37.917 --> 00:03:44.423
-Per nomenar algú responsable, ves a Ajustos,
-Usuaris i empreses, Usuaris, i obre la
+00:03:31.950 --> 00:03:35.094
+Part quatre: configuració inicial.
 
 45
-00:03:44.423 --> 00:03:45.285
-seva fitxa.
+00:03:35.550 --> 00:03:41.362
+ORIVEXY Verify funciona tan bon punt
+s’instal·la; només cal decidir qui veu què. El
 
 46
-00:03:45.750 --> 00:03:51.399
-Amb el mode desenvolupador actiu, a Permisos
-d’accés marca ORIVEXY Verify:
+00:03:41.362 --> 00:03:46.963
+rol Validador veu i revisa les validacions de
+tota la seva empresa. Comptables i
 
 47
-00:03:51.399 --> 00:03:52.926
-Responsable, i desa.
+00:03:46.963 --> 00:03:49.134
+signants només veuen les seves.
 
 48
-00:03:53.383 --> 00:03:58.835
-Si treballes amb diverses empreses, cada
-validació queda desada a la seva, i cada
+00:03:49.583 --> 00:03:55.712
+Per donar un rol, obre ORIVEXY Verify, Usuaris i
+permisos, i entra a la fitxa de la
 
 49
-00:03:58.835 --> 00:04:02.335
-usuari només veu les de les
-empreses a què té accés.
+00:03:55.712 --> 00:03:56.303
+persona.
 
 50
-00:04:02.783 --> 00:04:08.330
-No cal activar cap llicència: el pagament únic
-d’Odoo Apps cobreix el mòdul i l’app
+00:03:56.750 --> 00:04:03.264
+Marca el rol Validador i desa. Amb només el
+mòdul d’Odoo Apps, el permís equivalent
 
 51
-00:04:08.330 --> 00:04:13.810
-d’escriptori. Tampoc no hi ha integracions per
-configurar, perquè no es connecta a
+00:04:03.264 --> 00:04:06.638
+es diu Responsable i és a
+Ajustos, Usuaris.
 
 52
-00:04:13.810 --> 00:04:14.879
-serveis externs.
+00:04:07.083 --> 00:04:12.277
+Cada persona entra a Odoo com sempre, amb el
+seu usuari d’Odoo: ORIVEXY no té
 
 53
-00:04:15.317 --> 00:04:21.923
-Un detall: els certificats escanejats necessiten
-reconeixement de text, que Odoo.sh
+00:04:12.277 --> 00:04:14.571
+comptes ni inici de sessió propis.
 
 54
-00:04:21.923 --> 00:04:28.370
-no inclou. Per a aquests, fes servir el PDF amb
-text del banc, l’XML SEPA o l’app
+00:04:15.017 --> 00:04:20.006
+Tampoc no hi ha llicències ni claus per
+activar, ni integracions per configurar,
 
 55
-00:04:28.370 --> 00:04:29.405
-d’escriptori.
+00:04:20.006 --> 00:04:22.625
+perquè no es connecta a cap servei extern.
 
 56
-00:04:29.850 --> 00:04:34.502
-L’app d’escriptori es descarrega des del
-mateix mòdul, a ORIVEXY Verify, App
-
-57
-00:04:34.502 --> 00:04:38.970
-d’escriptori, per a qui prefereixi
-treballar amb els fitxers fora d’Odoo.
-
-58
-00:04:39.417 --> 00:04:43.977
+00:04:23.083 --> 00:04:27.643
 Part cinc: una validació de prova,
 amb dades fictícies.
 
+57
+00:04:28.083 --> 00:04:34.043
+Obre el Validador. El tauler resumeix la teva
+activitat i, amb un semàfor, els
+
+58
+00:04:34.043 --> 00:04:39.315
+resultats dels últims trenta dies. La
+primera vegada està tot a zero.
+
 59
-00:04:44.417 --> 00:04:50.440
-Obre ORIVEXY Verify. A Validacions hi
-apareixeran totes les comprovacions; la
+00:04:39.750 --> 00:04:45.310
+Prem Prova amb dades d’exemple. ORIVEXY valida
+a l’instant una remesa fictícia
 
 60
-00:04:50.440 --> 00:04:53.177
-primera vegada, la llista és buida.
+00:04:45.310 --> 00:04:49.230
+contra un certificat fictici que
+porta el mateix mòdul.
 
 61
-00:04:53.617 --> 00:05:01.224
-Prem Nou. A Certificat, puja el certificat de
-titularitat del banc, en PDF o XML
+00:04:49.683 --> 00:04:55.710
+A dalt hi ha el veredicte: hi ha incidències.
+Nou pagaments: sis correctes, dos a
 
 62
-00:05:01.224 --> 00:05:08.545
-SEPA. A Fitxer a comprovar, puja la teva
-remesa de pagaments: TXT, CSV o XML.
+00:04:55.710 --> 00:05:01.812
+nom d’un altre titular i un amb un IBAN que no
+surt al certificat. Cada color obre
 
 63
-00:05:08.983 --> 00:05:14.935
-Prem VALIDAR. En un parell de segons tens
-el resultat de cada pagament.
+00:05:01.812 --> 00:05:03.003
+les seves files.
 
 64
-00:05:15.383 --> 00:05:21.006
-A dalt hi ha el resum: nou pagaments, sis
-correctes, dos a nom d’un altre titular i
+00:05:03.450 --> 00:05:09.194
+A sota, cada fila porta una insígnia de color,
+l’IBAN emmascarat, els dos titulars
 
 65
-00:05:21.006 --> 00:05:23.783
-un amb un IBAN que no surt al certificat.
+00:05:09.194 --> 00:05:14.868
+costat per costat i el motiu del resultat.
+Aquí, Martines amb essa no és Martínez
 
 66
-00:05:24.250 --> 00:05:29.443
-A sota, cada fila mostra el titular de la
-remesa, el del certificat i el resultat,
+00:05:14.868 --> 00:05:15.498
+amb zeta.
 
 67
-00:05:29.443 --> 00:05:31.786
-amb una nota que n’explica el perquè.
+00:05:15.950 --> 00:05:21.405
+Amb Veure discrepàncies et quedes només amb
+el que necessita atenció. Obre el
 
 68
-00:05:32.250 --> 00:05:37.606
-Fixa’t en el pagament a Pedro Fernández: l’IBAN
-sí que és al certificat, però és de
+00:05:21.405 --> 00:05:23.318
+pagament a Pedro Fernández.
 
 69
-00:05:37.606 --> 00:05:42.381
-María López. Aquest pagament no hauria de
-sortir sense confirmar-ho amb el
+00:05:23.783 --> 00:05:29.155
+L’IBAN sí que és al certificat, però és de
+María López Ruiz. Aquest pagament no
 
 70
-00:05:42.381 --> 00:05:43.026
-proveïdor.
+00:05:29.155 --> 00:05:32.759
+hauria de sortir sense
+confirmar-ho amb el proveïdor.
 
 71
-00:05:43.483 --> 00:05:48.019
-Amb Veure discrepàncies et quedes només
-amb el que necessita atenció.
+00:05:33.217 --> 00:05:40.118
+Prem Comença la revisió. Si intentes resoldre-la
+sense escriure res, no et deixa: la
 
 72
-00:05:48.483 --> 00:05:54.256
-Obre una fila i prem Comença la revisió. Escriu
-què has comprovat i resol-la: la
+00:05:40.118 --> 00:05:41.761
+nota és obligatòria.
 
 73
-00:05:54.256 --> 00:05:58.875
-nota és obligatòria i queda registrada
-amb el teu nom i la data.
+00:05:42.217 --> 00:05:49.031
+Escriu què has comprovat i prem Resol. La nota
+queda registrada amb el teu nom i la
 
 74
-00:05:59.683 --> 00:06:05.773
+00:05:49.031 --> 00:05:49.441
+data.
+
+75
+00:05:51.617 --> 00:05:57.707
 Des de la validació pots imprimir l’informe en
 PDF, amb els IBAN emmascarats, o
 
-75
-00:06:05.773 --> 00:06:08.779
-exportar els resultats a Excel o a CSV.
-
 76
-00:06:09.217 --> 00:06:16.592
+00:05:57.707 --> 00:06:00.713
+exportar els resultats a CSV o a Excel.
+
+77
+00:06:01.150 --> 00:06:06.894
+Amb els teus propis fitxers, prem Nova
+validació: puja un o diversos certificats,
+
+78
+00:06:06.894 --> 00:06:09.022
+puja la remesa i prem VALIDAR.
+
+79
+00:06:09.483 --> 00:06:15.149
+Qualsevol fitxer acaba la validació. El que no
+es pot llegir, com una imatge o un
+
+80
+00:06:15.149 --> 00:06:21.026
+escanejat sense reconeixement de text, queda en
+revisió manual amb el motiu, mai com
+
+81
+00:06:21.026 --> 00:06:21.795
+a correcte.
+
+82
+00:06:22.250 --> 00:06:27.674
+I les remeses de més de dues mil files es
+validen en segon pla, per blocs, amb una
+
+83
+00:06:27.674 --> 00:06:30.122
+barra de progrés i un avís en acabar.
+
+84
+00:06:30.583 --> 00:06:37.958
 Així es llegeixen els resultats. Correcte: no cal
 fer res. Titular incorrecte: retén
 
-77
-00:06:16.592 --> 00:06:22.825
+85
+00:06:37.958 --> 00:06:44.191
 el pagament i comprova-ho. Revisió manual:
 decideixes tu, amb una nota.
 
-78
-00:06:23.283 --> 00:06:30.795
+86
+00:06:44.650 --> 00:06:52.162
 IBAN no trobat: falta el seu certificat. I IBAN
 no vàlid: el número està mal escrit.
 
-79
-00:06:31.250 --> 00:06:34.274
+87
+00:06:52.617 --> 00:06:55.641
 Part sis: comprovació final.
 
-80
-00:06:34.717 --> 00:06:40.155
-La instal·lació és completa si ORIVEXY Verify
-surt al menú, si una validació de
+88
+00:06:56.083 --> 00:07:00.867
+La instal·lació és completa si el Validador
+surt al menú, si Prova amb dades
 
-81
-00:06:40.155 --> 00:06:45.661
-prova acaba amb resultats i si un usuari normal
+89
+00:07:00.867 --> 00:07:06.093
+d’exemple dona nou pagaments i sis correctes, i
+si un usuari sense rol de Validador
+
+90
+00:07:06.093 --> 00:07:08.107
 només veu les seves validacions.
 
-82
-00:06:46.117 --> 00:06:52.324
-Els errors més habituals s’arreglen ràpid. Si no
-surt a Aplicacions, comprova que la
+91
+00:07:08.550 --> 00:07:14.420
+Els errors més habituals s’arreglen ràpid. Si
+no surt a Aplicacions, comprova que
 
-83
-00:06:52.324 --> 00:06:58.457
-carpeta és a l’arrel de la branca i actualitza
-la llista. Si el build falla, mira’n
+92
+00:07:14.420 --> 00:07:20.436
+les carpetes són a l’arrel de la branca i
+actualitza la llista. Si el build surt en
 
-84
-00:06:58.457 --> 00:07:02.965
-els logs: gairebé sempre falta una
-línia al requirements.txt.
+93
+00:07:20.436 --> 00:07:23.262
+vermell, els seus logs diuen què falla.
 
-85
-00:07:03.417 --> 00:07:08.759
-Si un certificat no es llegeix, probablement
-és una imatge escanejada. I si un
-
-86
-00:07:08.759 --> 00:07:14.033
-responsable no veu les validacions dels
-altres, revisa’n el permís a la fitxa
-
-87
-00:07:14.033 --> 00:07:14.649
-d’usuari.
-
-88
-00:07:15.083 --> 00:07:20.696
+94
+00:07:23.717 --> 00:07:29.330
 Prova sempre a Staging. Quan tot estigui bé,
 fusiona la branca amb la de producció
 
-89
-00:07:20.696 --> 00:07:25.283
+95
+00:07:29.330 --> 00:07:33.917
 i, en aquella base de dades, instal·la
 el mòdul igual que has vist.
 
-90
-00:07:25.717 --> 00:07:31.170
+96
+00:07:34.350 --> 00:07:39.609
 Per actualitzar a una versió nova, substitueix
-la carpeta per la del ZIP nou, puja
+les carpetes per les del ZIP nou,
 
-91
-00:07:31.170 --> 00:07:34.429
-el canvi i actualitza el mòdul
-des d’Aplicacions.
+97
+00:07:39.609 --> 00:07:43.158
+puja el canvi i actualitza el
+mòdul des d’Aplicacions.
 
-92
-00:07:34.883 --> 00:07:41.744
+98
+00:07:43.617 --> 00:07:50.478
 I ja està: ORIVEXY Verify instal·lat i
 funcionant a Odoo.sh. Si necessites ajuda,
 
-93
-00:07:41.744 --> 00:07:47.843
+99
+00:07:50.478 --> 00:07:56.577
 escriu-nos des de la pàgina del mòdul a
 Odoo Apps. Gràcies per mirar-lo.
