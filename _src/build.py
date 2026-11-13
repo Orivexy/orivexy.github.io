@@ -312,7 +312,7 @@ def page(L):
   <div class="inst__more">
     <div data-reveal><h3>{e(L['inst_server_t'])}</h3><ol>{server_steps}</ol><p class="small muted" style="margin-top:12px">{e(L['inst_server_note'])}</p></div>
     <div data-reveal style="--d:1"><h3>{e(L['inst_win_t'])}</h3><p>{e(L['inst_win'])}</p>
-      <div class="code"><pre><code id="cmd">git add orivexy_validator && git commit -m "ORIVEXY Verify" && git push</code></pre><button type="button" data-copy="cmd">{e(L['js']['copy'])}</button></div>
+      <div class="code"><pre><code id="cmd">git add orivexy_validator orivexy_validator_account && git commit -m "ORIVEXY Verify" && git push</code></pre><button type="button" data-copy="cmd">{e(L['js']['copy'])}</button></div>
       <div class="price__actions"><a class="button" href="{apps}">{e(L['inst_dl'])}</a><a class="link" href="{b}odoo-sh/">{e(L['inst_win_more'])}</a></div></div>
   </div>
 </section>

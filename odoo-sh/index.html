@@ -4,6 +4,7 @@
 <meta name="description" content="Vídeo tutorial y guía paso a paso para instalar ORIVEXY Verify en Odoo.sh: repositorio, rama, build, instalación, permisos y primera validación.">
 <meta property="og:title" content="Instalar ORIVEXY Verify en Odoo.sh">
 <meta property="og:image" content="https://orivexy.github.io/odoo-sh/miniatura.jpg">
+<link rel="canonical" href="https://orivexy.github.io/odoo-sh/">
 <link rel="icon" href="../demo/logo.png">
 <style>
 :root { --fondo:#F6F8FB; --texto:#0F1E3D; --suave:#526378; --borde:#D5DDE7; --marino:#0F2747; --verde:#0E7C86; }
@@ -17,6 +18,7 @@ h1 { font-size:clamp(2rem,4.5vw,3.2rem); line-height:1.08; letter-spacing:-0.02e
 header p { color:#A9C1DA; font-size:1.15rem; margin:0; max-width:720px; }
 .video { margin-top:-40px; background:#000; border-radius:16px; overflow:hidden; box-shadow:0 24px 60px rgba(15,39,71,.25); }
 video { display:block; width:100%; height:auto; }
+.aviso { margin:18px 0 0; padding:12px 16px; border-radius:10px; background:#E3F1F2; color:var(--texto); font-size:15px; }
 .descargas { display:flex; flex-wrap:wrap; gap:10px; margin:18px 0 0; }
 .capitulos { display:flex; flex-wrap:wrap; gap:8px; align-items:center; margin:18px 0 0; font-size:15px; }
 .capitulos a { color:var(--verde); text-decoration:none; border:1px solid var(--borde); border-radius:999px; padding:6px 12px; background:#fff; }
@@ -45,6 +47,7 @@ footer { border-top:1px solid var(--borde); padding:24px 0 48px; color:var(--sua
     <track kind="subtitles" srclang="ca" label="Català" src="odoo-sh-installation.ca.vtt">
     <track kind="subtitles" srclang="en" label="English" src="odoo-sh-installation.en.vtt">
   </video></div>
+  <p class="aviso"><strong>Qué enseña el vídeo:</strong> está grabado con el paquete completo de Odoo 18. El módulo de Odoo Apps (ORIVEXY Verify) incluye el validador; el panel con Tickets y la doble firma son del paquete de pagos, que no se vende en Odoo Apps.</p>
   <div class="capitulos"><b>Capítulos:</b> <a href="#" onclick="var v=document.querySelector('video');v.currentTime=0;v.play();return false">00:00 · 1. Introducción</a><a href="#" onclick="var v=document.querySelector('video');v.currentTime=51;v.play();return false">00:51 · 2. Preparación</a><a href="#" onclick="var v=document.querySelector('video');v.currentTime=139;v.play();return false">02:19 · 3. Instalación</a><a href="#" onclick="var v=document.querySelector('video');v.currentTime=211;v.play();return false">03:31 · 4. Configuración</a><a href="#" onclick="var v=document.querySelector('video');v.currentTime=263;v.play();return false">04:23 · 5. Demostración</a><a href="#" onclick="var v=document.querySelector('video');v.currentTime=412;v.play();return false">06:52 · 6. Comprobación</a></div>
   <div class="descargas">
     <a href="odoo-sh-installation.mp4" download>Descargar el vídeo (MP4)</a>
@@ -53,7 +56,8 @@ footer { border-top:1px solid var(--borde); padding:24px 0 48px; color:var(--sua
   </div>
 </div>
 <main class="ancho" id="guia"><h1>ORIVEXY Verify para Odoo · Manual del cliente</h1>
-<p>Versión del módulo: <strong>0.1.14</strong> · Odoo 15, 16, 17, 18, 19 y 20 (Community y Enterprise, en Odoo.sh) · 449,99 € pago único por versión de Odoo en Odoo Apps.
+<p>Versión del módulo: <strong>0.1.17</strong> · Odoo 15, 16, 17, 18, 19 y 20 (Community y Enterprise, en Odoo.sh) · 449,99 € pago único por versión de Odoo en Odoo Apps.
+Probado en Odoo Community 15–20 en un entorno que imita Odoo.sh; aún sin probar en un proyecto real de Odoo.sh.
 Vídeo de instalación en Odoo.sh: esta página</p>
 <p>ORIVEXY Verify comprueba, <strong>antes de pagar</strong>, que cada IBAN de una remesa pertenece a quien dice ser.
 Lo cruza con el certificado de titularidad que te da el banco y te dice qué pagos son correctos,
@@ -79,7 +83,7 @@ Odoo: ningún dato bancario sale de tu servidor.</p>
 </tr>
 <tr>
 <td>Librerías</td>
-<td>Incluidas dentro del módulo (<code>vendor/lib</code>): PDFium, <code>defusedxml</code>, <code>openpyxl</code> y <code>et_xmlfile</code>. No hay nada que instalar con pip.</td>
+<td>Incluidas dentro del módulo (<code>vendor/lib</code>): PDFium, <code>defusedxml</code>, <code>openpyxl</code>, <code>et_xmlfile</code> y <code>xlrd</code>. No hay nada que instalar con pip.</td>
 </tr>
 <tr>
 <td>PDF escaneados</td>
@@ -94,31 +98,34 @@ Odoo: ningún dato bancario sale de tu servidor.</p>
 <p>Todo va en el módulo: la red neuronal que compara nombres funciona en Python puro, sin dependencias externas.</p>
 <p><strong>Ficheros admitidos</strong></p>
 <ul>
-<li>Certificado del banco: PDF con texto o XML SEPA (los PDF escaneados no se leen).</li>
-<li>Remesa a comprobar: TXT, CSV, TSV, DAT o XML SEPA (pain.001 / pain.008).</li>
-<li>Tamaño máximo: 64 MB por fichero (PDF hasta 300 páginas).</li>
+<li>Certificado del banco y remesa a comprobar: PDF, XML (también SEPA pain.001 y pain.008), XLSX, DOCX, CSV, TXT, JSON, ZIP, JPG, JPEG, PNG o WEBP. Los DOC y XLS antiguos se aceptan solo para avisarte de que los guardes como DOCX, XLSX o PDF.</li>
+<li>Las imágenes y los PDF escaneados necesitan OCR en el servidor; si no lo hay, usa el PDF con texto del banco o el XML SEPA.</li>
+<li>Tamaño máximo: 16 MB el fichero a comprobar y 64 MB cada certificado (PDF hasta 300 páginas).</li>
+<li>Las remesas de más de 2.000 filas se validan en segundo plano.</li>
 </ul>
 <hr />
 <h2>2. Instalación</h2>
 <h3>2.1 En Odoo.sh (paso a paso)</h3>
 <ol>
 <li><strong>Compra y descarga.</strong> En Odoo Apps, elige la versión de Odoo de tu proyecto y compra ORIVEXY Verify
-   (pago único por versión). Descarga el ZIP. Dentro hay una carpeta, <code>orivexy_validator</code>.</li>
+   (pago único por versión). Descarga el ZIP. Dentro hay dos carpetas: <code>orivexy_validator</code> (el validador) y <code>orivexy_validator_account</code>
+   (el complemento para cuentas bancarias y pagos salientes, que se instala solo si usas Facturación).</li>
 <li><strong>Añade el módulo al repositorio.</strong> En el repositorio de GitHub de tu proyecto, crea una rama de pruebas
-   y copia la carpeta <code>orivexy_validator</code> en la raíz de la rama, junto a tus otros módulos.
+   y copia las dos carpetas, <code>orivexy_validator</code> y <code>orivexy_validator_account</code>, en la raíz de la rama, junto a tus otros módulos.
    No hay que instalar librerías: todo va dentro del módulo.</li>
 <li><strong>Sube la rama</strong> a GitHub.
    <code>bash
    git checkout -b orivexy-staging
-   cp -r ~/Descargas/orivexy_validator .
-   git add orivexy_validator &amp;&amp; git commit -m "ORIVEXY Verify" &amp;&amp; git push -u origin orivexy-staging</code>
-   Sin terminal: en GitHub, <em>Add file › Upload files</em> para la carpeta.</li>
+   cp -r ~/Descargas/orivexy_validator ~/Descargas/orivexy_validator_account .
+   git add orivexy_validator orivexy_validator_account &amp;&amp; git commit -m "ORIVEXY Verify" &amp;&amp; git push -u origin orivexy-staging</code>
+   Sin terminal: en GitHub, <em>Add file › Upload files</em> para las dos carpetas.</li>
 <li><strong>Construye en Staging.</strong> En Odoo.sh, pestaña <em>Branches</em>: la rama aparece sola. Arrástrala a <em>Staging</em>
    y espera a que el build esté en verde.</li>
 <li><strong>Entra</strong> con <em>Connect</em> en la base de datos de pruebas.</li>
 <li><strong>Activa el modo desarrollador:</strong> <em>Ajustes</em> › al final de la página › <em>Activar modo de desarrollador</em>.</li>
 <li><strong>Actualiza la lista:</strong> <em>Aplicaciones</em> › <em>Actualizar lista de aplicaciones</em> › <em>Actualizar</em>.</li>
-<li><strong>Instala:</strong> busca «ORIVEXY» y pulsa <em>Activar</em>. Al terminar, ORIVEXY Verify aparece en el menú.</li>
+<li><strong>Instala:</strong> busca «ORIVEXY» y pulsa <em>Activar</em> en ORIVEXY Verify. Al terminar, aparece en el menú. Si tienes Facturación,
+   el complemento <code>orivexy_validator_account</code> se instala solo; si instalas Facturación más tarde, se instalará entonces.</li>
 <li><strong>Producción.</strong> Cuando todo esté bien en Staging, fusiona la rama en la de producción y repite los
     pasos 6 a 8 en la base de datos de producción (Odoo.sh no instala módulos nuevos por su cuenta).</li>
 </ol>
@@ -169,10 +176,10 @@ resultado («Coincide exactamente», «No coincide con el titular del certificad
 <hr />
 <h2>4. Guía de uso</h2>
 <ol>
-<li>Abre <strong>ORIVEXY Verify</strong> › <em>Validaciones</em> › <strong>Nuevo</strong>.</li>
-<li>En <strong>Certificado</strong>, sube el certificado de titularidad del banco (PDF o XML SEPA).</li>
-<li>En <strong>Fichero a comprobar</strong>, sube tu remesa (TXT, CSV o XML SEPA).</li>
-<li>Pulsa <strong>VALIDAR</strong>. En segundos tienes un resultado por pago.</li>
+<li>Abre <strong>Validación</strong> › <em>Validaciones</em> › <strong>Nuevo</strong>.</li>
+<li>En <strong>Certificado</strong>, sube el certificado de titularidad del banco: PDF, XML (también SEPA pain.001 y pain.008), XLSX, DOCX, CSV, TXT, JSON, ZIP, JPG, JPEG, PNG o WEBP.</li>
+<li>En <strong>Fichero a comprobar</strong>, sube tu remesa (mismos formatos; hasta 16 MB).</li>
+<li>Pulsa <strong>VALIDAR</strong>. Tienes un resultado por pago; las remesas de más de 2.000 filas se validan en segundo plano y la validación muestra su avance.</li>
 <li>Arriba, los contadores: filas, correctos, titular KO, IBAN KO, IBAN no válido y pendientes de revisión.</li>
 <li><strong>Ver discrepancias</strong> muestra solo lo que necesita atención.</li>
 <li>Para revisar una fila: ábrela › <strong>Empezar revisión</strong> › escribe en <em>Nota de revisión</em> qué has
@@ -219,14 +226,16 @@ resultado («Coincide exactamente», «No coincide con el titular del certificad
 </table>
 <p>Un IBAN repetido en la misma remesa se marca con «⚠ IBAN repetido N veces» (posible pago doble).</p>
 <p><strong>Límites:</strong> ORIVEXY compara tu remesa con el certificado que tú aportas. No consulta al banco, no
-demuestra que una cuenta exista ni que el certificado sea auténtico, y no bloquea pagos: te dice cuáles revisar.</p>
+demuestra que una cuenta exista ni que el certificado sea auténtico. El validador no bloquea pagos: te dice cuáles revisar.
+Si usas Facturación, el complemento <code>orivexy_validator_account</code> puede impedir confirmar pagos a cuentas no verificadas;
+viene desactivado y se activa por empresa.</p>
 <hr />
 <h2>5. Actualizar a una versión nueva</h2>
 <ol>
 <li>Descarga el ZIP nuevo desde Odoo Apps (tu compra incluye las actualizaciones de esa versión de Odoo).</li>
-<li>Sustituye la carpeta <code>orivexy_validator</code> del repositorio por la nueva.</li>
+<li>Sustituye las carpetas <code>orivexy_validator</code> y <code>orivexy_validator_account</code> del repositorio por las nuevas.</li>
 <li>Haz push del cambio a una rama de pruebas y construye en Staging.</li>
-<li><em>Aplicaciones</em> › busca ORIVEXY › menú ⋮ › <strong>Actualizar</strong>. Comprueba una validación.</li>
+<li><em>Aplicaciones</em> › busca ORIVEXY › menú ⋮ › <strong>Actualizar</strong> en ORIVEXY Verify y, si está instalado, también en el complemento de cuentas y pagos. Comprueba una validación.</li>
 <li>Fusiona en producción y actualiza también allí.</li>
 </ol>
 <p>Las validaciones anteriores se conservan. Para rellenar los campos nuevos de una validación antigua, pulsa <em>Revalidar</em>.</p>
@@ -261,11 +270,11 @@ validaciones guardadas</strong>: exporta antes lo que quieras conservar. Despué
 </tr>
 <tr>
 <td>«Este tipo de fichero no se admite»</td>
-<td>Revisa la extensión: certificado PDF o XML; remesa TXT, CSV, TSV, DAT o XML.</td>
+<td>Revisa la extensión: PDF, XML (también SEPA pain.001 y pain.008), XLSX, DOCX, CSV, TXT, JSON, ZIP, JPG, JPEG, PNG o WEBP.</td>
 </tr>
 <tr>
 <td>«El documento es demasiado grande»</td>
-<td>Máximo 64 MB por fichero. Divide la remesa.</td>
+<td>Máximo 16 MB el fichero a comprobar y 64 MB cada certificado. Divide la remesa.</td>
 </tr>
 <tr>
 <td>Un responsable no ve las validaciones de otros</td>
